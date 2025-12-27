@@ -1,0 +1,12 @@
+# Core dependencies
+numpy
+pandas
+matplotlib
+tqdm
+ipykernel
+
+# Optional dependencies for GRR module
+# Uncomment to install:
+# scikit-learn  # For LASSO, ElasticNet, RF, GBM
+# torch         # For neural network GRR (MLP)
+
