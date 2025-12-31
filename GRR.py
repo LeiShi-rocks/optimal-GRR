@@ -54,16 +54,18 @@ except ImportError:
 # Input Preparation
 # =============================================================================
 
-def prepare_grr_inputs(Y, D, X, d1, d2, pi_id_all, eps=1e-12):
+def prepare_grr_inputs(Y, D, X, d1, d2, pi_id_all, X1=None, X2=None, eps=1e-12):
     """
     Prepare inputs for GRR estimation.
     
     Args:
         Y: observed outcomes (n,)
         D: observed exposure (n,)
-        X: covariate matrix (n x p)
+        X: covariate matrix (n x p) - used if X1, X2 not provided
         d1, d2: exposure levels to compare
         pi_id_all: propensity score matrix (n x k)
+        X1: covariates for level d1 (n x p1), optional
+        X2: covariates for level d2 (n x p2), optional
         eps: small constant for numerical stability
     
     Returns:
@@ -72,6 +74,7 @@ def prepare_grr_inputs(Y, D, X, d1, d2, pi_id_all, eps=1e-12):
             tilde1_d1, tilde1_d2: demeaned weights (n,)
             hatY_d1, hatY_d2: weighted outcomes (n,)
             dHY: difference in weighted outcomes (n,)
+            X1, X2: covariates for each level
     """
     pi1 = pi_id_all[:, d1]
     pi2 = pi_id_all[:, d2]
@@ -91,6 +94,12 @@ def prepare_grr_inputs(Y, D, X, d1, d2, pi_id_all, eps=1e-12):
     # Difference in weighted outcomes
     dHY = hatY_d1 - hatY_d2
     
+    # Handle covariates: use X1, X2 if provided, otherwise use X for both
+    if X1 is None:
+        X1 = X
+    if X2 is None:
+        X2 = X
+    
     return {
         'hat1_d1': hat1_d1,
         'hat1_d2': hat1_d2,
@@ -98,7 +107,9 @@ def prepare_grr_inputs(Y, D, X, d1, d2, pi_id_all, eps=1e-12):
         'tilde1_d2': tilde1_d2,
         'hatY_d1': hatY_d1,
         'hatY_d2': hatY_d2,
-        'dHY': dHY
+        'dHY': dHY,
+        'X1': X1,
+        'X2': X2
     }
 
 
@@ -142,18 +153,36 @@ class BaseGRR(ABC):
     """Abstract base class for GRR estimators."""
     
     @abstractmethod
-    def fit(self, X, tilde1_d1, tilde1_d2, dHY, Kn):
-        """Fit the model."""
+    def fit(self, X1, X2, tilde1_d1, tilde1_d2, dHY, Kn):
+        """
+        Fit the model.
+        
+        Args:
+            X1: covariates for level d1 (n x p1)
+            X2: covariates for level d2 (n x p2)
+            tilde1_d1, tilde1_d2: demeaned weights (n,)
+            dHY: target variable (n,)
+            Kn: weight matrix (n x n)
+        """
         pass
     
     @abstractmethod
-    def predict(self, X):
-        """Return (f1_hat, f2_hat) predictions."""
+    def predict(self, X1, X2):
+        """
+        Return (f1_hat, f2_hat) predictions.
+        
+        Args:
+            X1: covariates for level d1 (n x p1)
+            X2: covariates for level d2 (n x p2)
+        
+        Returns:
+            f1_hat, f2_hat: predictions (n,), (n,)
+        """
         pass
     
-    def compute_residual_loss(self, X, tilde1_d1, tilde1_d2, dHY, Kn):
+    def compute_residual_loss(self, X1, X2, tilde1_d1, tilde1_d2, dHY, Kn):
         """Compute the weighted residual loss res' @ Kn @ res."""
-        f1_hat, f2_hat = self.predict(X)
+        f1_hat, f2_hat = self.predict(X1, X2)
         res = dHY - f1_hat * tilde1_d1 + f2_hat * tilde1_d2
         return float(res @ Kn @ res)
 
@@ -166,13 +195,15 @@ class LinearGRR(BaseGRR):
     """
     Linear GRR estimator with exact weighted least squares solution.
     
-    For f1(X) = X @ theta1 and f2(X) = X @ theta2, we minimize:
+    For f1(X1) = X1 @ theta1 and f2(X2) = X2 @ theta2, we minimize:
         (dHY - Z @ theta)' @ Kn @ (dHY - Z @ theta)
-    where Z = [X * tilde1_d1, -X * tilde1_d2] and theta = [theta1; theta2].
+    where Z = [X1 * tilde1_d1, -X2 * tilde1_d2] and theta = [theta1; theta2].
     
     The solution is: theta = (Z' Kn Z + alpha*I)^{-1} Z' Kn dHY
     
     Supports: 'ols', 'ridge', 'lasso', 'elasticnet'
+    
+    Note: X1 and X2 can have different dimensions (p1 and p2).
     """
     
     def __init__(self, reg_type='ridge', alpha=0.01, l1_ratio=0.5):
@@ -187,14 +218,16 @@ class LinearGRR(BaseGRR):
         self.l1_ratio = l1_ratio
         self.theta1_ = None
         self.theta2_ = None
-        self.p_ = None
+        self.p1_ = None
+        self.p2_ = None
         
-    def fit(self, X, tilde1_d1, tilde1_d2, dHY, Kn):
+    def fit(self, X1, X2, tilde1_d1, tilde1_d2, dHY, Kn):
         """
         Fit the linear model.
         
         Args:
-            X: covariates (n x p)
+            X1: covariates for d1 (n x p1)
+            X2: covariates for d2 (n x p2)
             tilde1_d1, tilde1_d2: demeaned weights (n,)
             dHY: target variable (n,)
             Kn: weight matrix (n x n)
@@ -202,22 +235,25 @@ class LinearGRR(BaseGRR):
         Returns:
             self
         """
-        n, p = X.shape
-        self.p_ = p
+        n = len(dHY)
+        p1 = X1.shape[1]
+        p2 = X2.shape[1]
+        self.p1_ = p1
+        self.p2_ = p2
         
-        # Build design matrix: Z = [X * tilde1_d1, -X * tilde1_d2]
-        Z1 = X * tilde1_d1[:, None]  # (n, p)
-        Z2 = X * tilde1_d2[:, None]  # (n, p)
-        Z = np.hstack([Z1, -Z2])     # (n, 2p)
+        # Build design matrix: Z = [X1 * tilde1_d1, -X2 * tilde1_d2]
+        Z1 = X1 * tilde1_d1[:, None]  # (n, p1)
+        Z2 = X2 * tilde1_d2[:, None]  # (n, p2)
+        Z = np.hstack([Z1, -Z2])       # (n, p1+p2)
         
         if self.reg_type in ['ols', 'ridge']:
             # Direct solution: theta = (Z'KnZ + alpha*I)^{-1} Z'Kn y
-            ZtKn = Z.T @ Kn           # (2p, n)
-            ZtKnZ = ZtKn @ Z          # (2p, 2p)
-            ZtKny = ZtKn @ dHY        # (2p,)
+            ZtKn = Z.T @ Kn           # (p1+p2, n)
+            ZtKnZ = ZtKn @ Z          # (p1+p2, p1+p2)
+            ZtKny = ZtKn @ dHY        # (p1+p2,)
             
             if self.reg_type == 'ridge' and self.alpha > 0:
-                ZtKnZ += self.alpha * np.eye(2 * p)
+                ZtKnZ += self.alpha * np.eye(p1 + p2)
             
             # Use pseudo-inverse for numerical stability
             theta = np.linalg.lstsq(ZtKnZ, ZtKny, rcond=1e-2)[0]
@@ -226,18 +262,17 @@ class LinearGRR(BaseGRR):
             if not SKLEARN_AVAILABLE:
                 raise ImportError("sklearn is required for LASSO/ElasticNet")
             
-            # Transform using Cholesky: Kn = L @ L.T
-            # Then res'Kn res = ||L.T @ res||^2
-            theta = self._fit_sparse(X, Z, tilde1_d1, tilde1_d2, dHY, Kn)
+            # Transform using eigendecomposition
+            theta = self._fit_sparse(Z, dHY, Kn)
         else:
             raise ValueError(f"Unknown reg_type: {self.reg_type}")
         
-        self.theta1_ = theta[:p]
-        self.theta2_ = theta[p:]
+        self.theta1_ = theta[:p1]
+        self.theta2_ = theta[p1:]
         
         return self
     
-    def _fit_sparse(self, X, Z, tilde1_d1, tilde1_d2, dHY, Kn):
+    def _fit_sparse(self, Z, dHY, Kn):
         """
         Fit LASSO/ElasticNet using eigendecomposition-based transformation.
         
@@ -252,13 +287,10 @@ class LinearGRR(BaseGRR):
         eigvals, eigvecs = np.linalg.eigh(Kn)
         
         # Handle non-PSD: take absolute values of eigenvalues
-        # This is an approximation that preserves the "importance" structure
-        # Alternatively, we could set negative eigenvalues to 0
         eigvals_abs = np.abs(eigvals)
         eigvals_abs = np.maximum(eigvals_abs, 1e-8)  # numerical stability
         
         # Construct transformation: L such that L.T @ L ≈ |Kn|
-        # L = V @ diag(sqrt(|eigvals|))
         L = eigvecs @ np.diag(np.sqrt(eigvals_abs))
         
         # Transform: Z_new = L.T @ Z, y_new = L.T @ dHY
@@ -274,12 +306,13 @@ class LinearGRR(BaseGRR):
         model.fit(Z_new, y_new)
         return model.coef_
     
-    def predict(self, X):
+    def predict(self, X1, X2):
         """
         Predict f1 and f2.
         
         Args:
-            X: covariates (n x p)
+            X1: covariates for d1 (n x p1)
+            X2: covariates for d2 (n x p2)
         
         Returns:
             f1_hat, f2_hat: predictions (n,), (n,)
@@ -287,8 +320,8 @@ class LinearGRR(BaseGRR):
         if self.theta1_ is None:
             raise ValueError("Model not fitted. Call fit() first.")
         
-        f1_hat = X @ self.theta1_
-        f2_hat = X @ self.theta2_
+        f1_hat = X1 @ self.theta1_
+        f2_hat = X2 @ self.theta2_
         return f1_hat, f2_hat
 
 
@@ -312,6 +345,8 @@ class SklearnGRR(BaseGRR):
        works well for tree-based models that support sample_weight.
     
     For tree-based models, the diagonal approximation is recommended.
+    
+    Note: X1 and X2 can have different dimensions (p1 and p2).
     """
     
     def __init__(self, base_estimator=None, use_transform=False, 
@@ -336,17 +371,21 @@ class SklearnGRR(BaseGRR):
         self.model1_ = None
         self.model2_ = None
         self.joint_model_ = None
+        self.p1_ = None
+        self.p2_ = None
         
-    def fit(self, X, tilde1_d1, tilde1_d2, dHY, Kn):
+    def fit(self, X1, X2, tilde1_d1, tilde1_d2, dHY, Kn):
         """Fit the model."""
-        n, p = X.shape
+        n = len(dHY)
+        self.p1_ = X1.shape[1]
+        self.p2_ = X2.shape[1]
         
         if self.use_transform:
-            return self._fit_transform(X, tilde1_d1, tilde1_d2, dHY, Kn)
+            return self._fit_transform(X1, X2, tilde1_d1, tilde1_d2, dHY, Kn)
         else:
-            return self._fit_weighted(X, tilde1_d1, tilde1_d2, dHY, Kn)
+            return self._fit_weighted(X1, X2, tilde1_d1, tilde1_d2, dHY, Kn)
     
-    def _fit_transform(self, X, tilde1_d1, tilde1_d2, dHY, Kn):
+    def _fit_transform(self, X1, X2, tilde1_d1, tilde1_d2, dHY, Kn):
         """
         Fit using eigendecomposition-based transformation.
         
@@ -354,7 +393,7 @@ class SklearnGRR(BaseGRR):
         using eigendecomposition and taking absolute values of eigenvalues.
         This is an approximation that preserves the importance structure.
         """
-        n, p = X.shape
+        n = len(dHY)
         
         # Eigendecomposition (works for any symmetric matrix)
         eigvals, eigvecs = np.linalg.eigh(Kn)
@@ -371,13 +410,9 @@ class SklearnGRR(BaseGRR):
         
         if self.separate_models:
             # Fit two separate models for interpretability
-            # This is an approximation but often works well
             
-            # For f1: regress L.T @ (dHY on units with D=d1) ~ L.T @ X
-            # We use the full transformed problem with appropriate weighting
-            
-            # Model 1: predict tilde1_d1 * f1(X) contribution
-            Z1 = X * tilde1_d1[:, None]
+            # Model 1: predict tilde1_d1 * f1(X1) contribution
+            Z1 = X1 * tilde1_d1[:, None]
             Z1_transformed = L.T @ Z1
             
             self.model1_ = clone(self.base_estimator)
@@ -387,8 +422,8 @@ class SklearnGRR(BaseGRR):
             pred1 = self.model1_.predict(Z1_transformed)
             residual = y_transformed - pred1
             
-            # Model 2: predict -tilde1_d2 * f2(X) contribution
-            Z2 = X * tilde1_d2[:, None]
+            # Model 2: predict -tilde1_d2 * f2(X2) contribution
+            Z2 = X2 * tilde1_d2[:, None]
             Z2_transformed = L.T @ (-Z2)
             
             self.model2_ = clone(self.base_estimator)
@@ -396,8 +431,8 @@ class SklearnGRR(BaseGRR):
             
         else:
             # Joint model: stack features
-            Z1 = X * tilde1_d1[:, None]
-            Z2 = X * tilde1_d2[:, None]
+            Z1 = X1 * tilde1_d1[:, None]
+            Z2 = X2 * tilde1_d2[:, None]
             Z = np.hstack([Z1, -Z2])
             Z_transformed = L.T @ Z
             
@@ -407,16 +442,16 @@ class SklearnGRR(BaseGRR):
         self._L = L  # Store for prediction
         return self
     
-    def _fit_weighted(self, X, tilde1_d1, tilde1_d2, dHY, Kn):
+    def _fit_weighted(self, X1, X2, tilde1_d1, tilde1_d2, dHY, Kn):
         """Fit using diagonal weight approximation."""
-        n, p = X.shape
+        n = len(dHY)
         
         # Use row sums as sample weights (approximation)
         sample_weight = np.maximum(Kn.sum(axis=1), 1e-6)
         
         # Build stacked design
-        Z1 = X * tilde1_d1[:, None]
-        Z2 = X * tilde1_d2[:, None]
+        Z1 = X1 * tilde1_d1[:, None]
+        Z2 = X2 * tilde1_d2[:, None]
         Z = np.hstack([Z1, -Z2])
         
         self.joint_model_ = clone(self.base_estimator)
@@ -430,39 +465,34 @@ class SklearnGRR(BaseGRR):
         
         return self
     
-    def predict(self, X):
+    def predict(self, X1, X2):
         """Predict f1 and f2."""
-        n, p = X.shape
+        n = X1.shape[0]
+        p1 = self.p1_
+        p2 = self.p2_
         
         if self.separate_models and self.model1_ is not None:
-            # For separate models, we need to extract predictions carefully
-            # The models were trained on transformed space, so we approximate
-            
-            # Simple approach: use the fitted coefficients if linear
-            # For non-linear, we need a different strategy
-            
-            # Predict on original scale (approximation)
-            f1_hat = self.model1_.predict(X)
-            f2_hat = -self.model2_.predict(X)  # Note the negative
+            # For separate models, predict on original scale (approximation)
+            f1_hat = self.model1_.predict(X1)
+            f2_hat = -self.model2_.predict(X2)  # Note the negative
             
         elif self.joint_model_ is not None:
             # For joint model, extract coefficients if linear
             if hasattr(self.joint_model_, 'coef_'):
                 coef = self.joint_model_.coef_
-                theta1 = coef[:p]
-                theta2 = coef[p:]
-                f1_hat = X @ theta1
-                f2_hat = X @ (-theta2)  # Note: Z had -Z2
+                theta1 = coef[:p1]
+                theta2 = coef[p1:]
+                f1_hat = X1 @ theta1
+                f2_hat = X2 @ (-theta2)  # Note: Z had -Z2
             else:
                 # Non-linear model: predict with indicator features
-                # This is trickier - we use a simple approximation
-                Z1 = X * np.ones(n)[:, None]  # Assume tilde1_d1 = 1
-                Z2 = X * np.zeros(n)[:, None]
+                Z1 = X1 * np.ones(n)[:, None]  # Assume tilde1_d1 = 1
+                Z2 = X2 * np.zeros(n)[:, None]
                 Z = np.hstack([Z1, -Z2])
                 f1_hat = self.joint_model_.predict(Z)
                 
-                Z1 = X * np.zeros(n)[:, None]
-                Z2 = X * np.ones(n)[:, None]
+                Z1 = X1 * np.zeros(n)[:, None]
+                Z2 = X2 * np.ones(n)[:, None]
                 Z = np.hstack([Z1, -Z2])
                 f2_hat = -self.joint_model_.predict(Z)
         else:
@@ -512,47 +542,82 @@ if TORCH_AVAILABLE:
         PyTorch-based GRR for neural network function classes.
         
         Minimizes res' @ Kn @ res using gradient descent.
+        Automatically uses GPU if available.
+        
+        Note: X1 and X2 can have different dimensions (p1 and p2).
         """
         
-        def __init__(self, input_dim, model_type='mlp', 
+        def __init__(self, input_dim1, input_dim2=None, model_type='mlp', 
                      hidden_dims=[64, 32], activation='relu', dropout=0.0,
-                     share_architecture=False):
+                     share_architecture=False, device=None):
             """
             Args:
-                input_dim: number of input features
+                input_dim1: number of input features for f1
+                input_dim2: number of input features for f2 (default: same as input_dim1)
                 model_type: 'linear' or 'mlp'
                 hidden_dims: hidden layer sizes for MLP
                 activation: activation function
                 dropout: dropout rate
-                share_architecture: if True, f1 and f2 share weights (not recommended)
+                share_architecture: if True, f1 and f2 share weights (requires same input dims)
+                device: 'cuda', 'cpu', or None (auto-detect)
             """
             nn.Module.__init__(self)
             
-            self.input_dim = input_dim
+            # Auto-detect device (prefer CUDA)
+            if device is None:
+                self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+            else:
+                self.device = torch.device(device)
+            
+            # Print device info once
+            if not hasattr(TorchGRR, '_device_printed'):
+                print(f"[TorchGRR] Using device: {self.device}")
+                if self.device.type == 'cuda':
+                    print(f"[TorchGRR] GPU: {torch.cuda.get_device_name(0)}")
+                TorchGRR._device_printed = True
+            
+            if input_dim2 is None:
+                input_dim2 = input_dim1
+            
+            self.input_dim1 = input_dim1
+            self.input_dim2 = input_dim2
             self.model_type = model_type
             self.share_architecture = share_architecture
             
+            if share_architecture and input_dim1 != input_dim2:
+                raise ValueError("Cannot share architecture when input dimensions differ")
+            
             if model_type == 'linear':
-                self.f1 = nn.Linear(input_dim, 1, bias=True)
-                self.f2 = nn.Linear(input_dim, 1, bias=True)
+                self.f1 = nn.Linear(input_dim1, 1, bias=True)
+                self.f2 = nn.Linear(input_dim2, 1, bias=True)
             elif model_type == 'mlp':
-                self.f1 = TorchMLP(input_dim, hidden_dims, activation, dropout)
+                self.f1 = TorchMLP(input_dim1, hidden_dims, activation, dropout)
                 if share_architecture:
                     self.f2 = self.f1
                 else:
-                    self.f2 = TorchMLP(input_dim, hidden_dims, activation, dropout)
+                    self.f2 = TorchMLP(input_dim2, hidden_dims, activation, dropout)
             else:
                 raise ValueError(f"Unknown model_type: {model_type}")
             
+            # Move model to device
+            self.to(self.device)
+            
             self._fitted = False
         
-        def forward(self, X):
+        def forward(self, X1, X2):
             """Forward pass returning (f1, f2) predictions."""
-            if isinstance(X, np.ndarray):
-                X = torch.tensor(X, dtype=torch.float32)
+            if isinstance(X1, np.ndarray):
+                X1 = torch.tensor(X1, dtype=torch.float32, device=self.device)
+            elif X1.device != self.device:
+                X1 = X1.to(self.device)
             
-            f1_out = self.f1(X)
-            f2_out = self.f2(X)
+            if isinstance(X2, np.ndarray):
+                X2 = torch.tensor(X2, dtype=torch.float32, device=self.device)
+            elif X2.device != self.device:
+                X2 = X2.to(self.device)
+            
+            f1_out = self.f1(X1)
+            f2_out = self.f2(X2)
             
             if f1_out.dim() > 1:
                 f1_out = f1_out.squeeze(-1)
@@ -561,11 +626,11 @@ if TORCH_AVAILABLE:
             
             return f1_out, f2_out
         
-        def compute_loss(self, X, tilde1_d1, tilde1_d2, dHY, Kn):
+        def compute_loss(self, X1, X2, tilde1_d1, tilde1_d2, dHY, Kn):
             """
             Compute weighted L2 loss: res' @ Kn @ res
             """
-            f1, f2 = self(X)
+            f1, f2 = self(X1, X2)
             
             # res = dHY - f1 * tilde1_d1 + f2 * tilde1_d2
             res = dHY - f1 * tilde1_d1 + f2 * tilde1_d2
@@ -576,7 +641,7 @@ if TORCH_AVAILABLE:
             
             return loss
         
-        def fit(self, X, tilde1_d1, tilde1_d2, dHY, Kn,
+        def fit(self, X1, X2, tilde1_d1, tilde1_d2, dHY, Kn,
                 lr=0.001, n_epochs=1000, weight_decay=0.0,
                 early_stopping=True, patience=50, min_delta=1e-6,
                 verbose=False, batch_size=None):
@@ -584,7 +649,8 @@ if TORCH_AVAILABLE:
             Fit using gradient descent.
             
             Args:
-                X: covariates (n x p)
+                X1: covariates for d1 (n x p1)
+                X2: covariates for d2 (n x p2)
                 tilde1_d1, tilde1_d2: demeaned weights (n,)
                 dHY: target (n,)
                 Kn: weight matrix (n x n)
@@ -600,12 +666,13 @@ if TORCH_AVAILABLE:
             Returns:
                 self
             """
-            # Convert to tensors
-            X_t = torch.tensor(X, dtype=torch.float32)
-            tilde1_d1_t = torch.tensor(tilde1_d1, dtype=torch.float32)
-            tilde1_d2_t = torch.tensor(tilde1_d2, dtype=torch.float32)
-            dHY_t = torch.tensor(dHY, dtype=torch.float32)
-            Kn_t = torch.tensor(Kn, dtype=torch.float32)
+            # Convert to tensors and move to device
+            X1_t = torch.tensor(X1, dtype=torch.float32, device=self.device)
+            X2_t = torch.tensor(X2, dtype=torch.float32, device=self.device)
+            tilde1_d1_t = torch.tensor(tilde1_d1, dtype=torch.float32, device=self.device)
+            tilde1_d2_t = torch.tensor(tilde1_d2, dtype=torch.float32, device=self.device)
+            dHY_t = torch.tensor(dHY, dtype=torch.float32, device=self.device)
+            Kn_t = torch.tensor(Kn, dtype=torch.float32, device=self.device)
             
             optimizer = torch.optim.Adam(self.parameters(), lr=lr, 
                                          weight_decay=weight_decay)
@@ -615,7 +682,7 @@ if TORCH_AVAILABLE:
             
             for epoch in range(n_epochs):
                 optimizer.zero_grad()
-                loss = self.compute_loss(X_t, tilde1_d1_t, tilde1_d2_t, 
+                loss = self.compute_loss(X1_t, X2_t, tilde1_d1_t, tilde1_d2_t, 
                                         dHY_t, Kn_t)
                 loss.backward()
                 optimizer.step()
@@ -641,22 +708,28 @@ if TORCH_AVAILABLE:
             self._fitted = True
             return self
         
-        def predict(self, X):
+        def predict(self, X1, X2):
             """Predict f1 and f2."""
             if not self._fitted:
                 raise ValueError("Model not fitted. Call fit() first.")
             
             self.eval()
             with torch.no_grad():
-                if isinstance(X, np.ndarray):
-                    X_t = torch.tensor(X, dtype=torch.float32)
+                if isinstance(X1, np.ndarray):
+                    X1_t = torch.tensor(X1, dtype=torch.float32, device=self.device)
                 else:
-                    X_t = X
-                f1, f2 = self(X_t)
+                    X1_t = X1.to(self.device)
+                
+                if isinstance(X2, np.ndarray):
+                    X2_t = torch.tensor(X2, dtype=torch.float32, device=self.device)
+                else:
+                    X2_t = X2.to(self.device)
+                
+                f1, f2 = self(X1_t, X2_t)
                 
                 if isinstance(f1, torch.Tensor):
-                    f1 = f1.numpy()
-                    f2 = f2.numpy()
+                    f1 = f1.cpu().numpy()
+                    f2 = f2.cpu().numpy()
             
             return f1, f2
 
@@ -665,13 +738,14 @@ if TORCH_AVAILABLE:
 # Main GRR Interface
 # =============================================================================
 
-def fit_grr(X, tilde1_d1, tilde1_d2, dHY, Kn,
+def fit_grr(X1, X2, tilde1_d1, tilde1_d2, dHY, Kn,
             method='linear', **kwargs):
     """
     Fit a GRR model.
     
     Args:
-        X: covariates (n x p)
+        X1: covariates for d1 (n x p1)
+        X2: covariates for d2 (n x p2)
         tilde1_d1, tilde1_d2: demeaned weights (n,)
         dHY: target (n,)
         Kn: weight matrix (n x n)
@@ -730,7 +804,8 @@ def fit_grr(X, tilde1_d1, tilde1_d2, dHY, Kn,
         if not TORCH_AVAILABLE:
             raise ImportError("PyTorch required for MLP")
         model = TorchGRR(
-            input_dim=X.shape[1],
+            input_dim1=X1.shape[1],
+            input_dim2=X2.shape[1],
             model_type='mlp',
             hidden_dims=kwargs.get('hidden_dims', [64, 32]),
             activation=kwargs.get('activation', 'relu'),
@@ -741,7 +816,7 @@ def fit_grr(X, tilde1_d1, tilde1_d2, dHY, Kn,
     
     # Fit the model
     if method == 'mlp':
-        model.fit(X, tilde1_d1, tilde1_d2, dHY, Kn,
+        model.fit(X1, X2, tilde1_d1, tilde1_d2, dHY, Kn,
                  lr=kwargs.get('lr', 0.001),
                  n_epochs=kwargs.get('n_epochs', 1000),
                  weight_decay=kwargs.get('weight_decay', 0.0),
@@ -749,13 +824,13 @@ def fit_grr(X, tilde1_d1, tilde1_d2, dHY, Kn,
                  patience=kwargs.get('patience', 50),
                  verbose=kwargs.get('verbose', False))
     else:
-        model.fit(X, tilde1_d1, tilde1_d2, dHY, Kn)
+        model.fit(X1, X2, tilde1_d1, tilde1_d2, dHY, Kn)
     
     return model
 
 
 def grr_estimator(Y, D, X, d1, d2, pi_id_all, Kn,
-                  method='ridge', **kwargs):
+                  method='ridge', X1=None, X2=None, **kwargs):
     """
     Compute the GRR treatment effect estimator.
     
@@ -767,12 +842,14 @@ def grr_estimator(Y, D, X, d1, d2, pi_id_all, Kn,
     Args:
         Y: observed outcomes (n,)
         D: observed exposure (n,)
-        X: covariates (n x p)
+        X: covariates (n x p) - used if X1, X2 not provided
         d1, d2: exposure levels to compare
         pi_id_all: propensity scores (n x k)
         Kn: weight matrix (n x n), typically from build_kn_matrix
         method: model type ('linear', 'ridge', 'lasso', 'elasticnet',
                            'rf', 'gbm', 'mlp')
+        X1: covariates for level d1 (n x p1), optional
+        X2: covariates for level d2 (n x p2), optional
         **kwargs: method-specific arguments
     
     Returns:
@@ -785,12 +862,17 @@ def grr_estimator(Y, D, X, d1, d2, pi_id_all, Kn,
             model: fitted model object
             loss: final weighted loss value
     """
-    # Prepare inputs
-    inputs = prepare_grr_inputs(Y, D, X, d1, d2, pi_id_all)
+    # Prepare inputs (with optional X1, X2)
+    inputs = prepare_grr_inputs(Y, D, X, d1, d2, pi_id_all, X1=X1, X2=X2)
+    
+    # Get the covariates to use
+    X1_use = inputs['X1']
+    X2_use = inputs['X2']
     
     # Fit model
     model = fit_grr(
-        X, 
+        X1_use,
+        X2_use,
         inputs['tilde1_d1'], 
         inputs['tilde1_d2'], 
         inputs['dHY'], 
@@ -800,7 +882,7 @@ def grr_estimator(Y, D, X, d1, d2, pi_id_all, Kn,
     )
     
     # Get predictions
-    f1_hat, f2_hat = model.predict(X)
+    f1_hat, f2_hat = model.predict(X1_use, X2_use)
     
     # Compute treatment effect
     tau_hat, mu1_hat, mu2_hat = compute_grr_tau(
@@ -811,7 +893,7 @@ def grr_estimator(Y, D, X, d1, d2, pi_id_all, Kn,
     
     # Compute loss
     loss = model.compute_residual_loss(
-        X, inputs['tilde1_d1'], inputs['tilde1_d2'], 
+        X1_use, X2_use, inputs['tilde1_d1'], inputs['tilde1_d2'], 
         inputs['dHY'], Kn
     )
     
@@ -832,13 +914,15 @@ def grr_estimator(Y, D, X, d1, d2, pi_id_all, Kn,
 
 def compare_grr_methods(Y, D, X, d1, d2, pi_id_all, Kn,
                         methods=['linear', 'ridge', 'lasso'],
-                        verbose=True, **kwargs):
+                        X1=None, X2=None, verbose=True, **kwargs):
     """
     Compare multiple GRR methods on the same data.
     
     Args:
         Y, D, X, d1, d2, pi_id_all, Kn: standard GRR inputs
         methods: list of methods to compare
+        X1: covariates for level d1 (n x p1), optional
+        X2: covariates for level d2 (n x p2), optional
         verbose: print results
         **kwargs: passed to all methods
     
@@ -850,7 +934,7 @@ def compare_grr_methods(Y, D, X, d1, d2, pi_id_all, Kn,
     for method in methods:
         try:
             result = grr_estimator(Y, D, X, d1, d2, pi_id_all, Kn,
-                                  method=method, **kwargs)
+                                  method=method, X1=X1, X2=X2, **kwargs)
             results[method] = result
             
             if verbose:
@@ -862,4 +946,330 @@ def compare_grr_methods(Y, D, X, d1, d2, pi_id_all, Kn,
             results[method] = None
     
     return results
+
+
+# =============================================================================
+# GAT Embedding Function
+# =============================================================================
+
+def GAT_embedding(X, A, D, Y, k, d1=None, d2=None,
+                  gat_hidden_dims=[64, 32],
+                  rep_dim=16,
+                  head_hidden_dims=[32, 16],
+                  heads=4,
+                  dropout=0.1,
+                  lambda_ipm=0.0,
+                  n_epochs=300,
+                  lr=0.001,
+                  weight_decay=1e-4,
+                  early_stopping=True,
+                  patience=50,
+                  verbose=True,
+                  return_model=False):
+    """
+    Train a GAT model and extract embeddings for GRR estimation.
+    
+    This function trains a Graph Attention Network using the GAT-embedder module
+    and returns two sets of embeddings:
+    
+    1. X_GAT_root: Shared backbone embeddings from the GAT encoder (last attention 
+       layer output, before the outcome heads). Shape: (n, rep_dim)
+       
+    2. X_GAT_leaf: Per-exposure-level embeddings from the last hidden layer of 
+       each outcome head MLP. Returns a list of k arrays, each of shape 
+       (n, last_hidden_dim), or if d1/d2 are specified, returns just 
+       (X1_leaf, X2_leaf) for the two specified exposure levels.
+    
+    Args:
+        X: node covariates (n x p), numpy array
+        A: adjacency matrix (n x n), numpy array
+        D: exposure levels (n,), numpy array with values in {0, ..., k-1}
+        Y: observed outcomes (n,), numpy array
+        k: number of exposure levels
+        d1: first exposure level for comparison (optional)
+        d2: second exposure level for comparison (optional)
+        gat_hidden_dims: hidden dimensions for GAT encoder
+        rep_dim: dimension of GAT output representations
+        head_hidden_dims: hidden dimensions for outcome MLP heads
+        heads: number of attention heads in GAT
+        dropout: dropout rate
+        lambda_ipm: IPM regularization weight (0 = no regularization)
+        n_epochs: maximum training epochs
+        lr: learning rate
+        weight_decay: L2 regularization
+        early_stopping: stop if validation loss plateaus
+        patience: epochs to wait before stopping
+        verbose: print training progress
+        return_model: if True, also return the fitted GAT model
+    
+    Returns:
+        dict with keys:
+            X_GAT_root: shared backbone embeddings (n x rep_dim)
+            X_GAT_leaf: list of k embeddings (n x last_hidden_dim each), OR
+                       if d1, d2 specified: tuple (X1_leaf, X2_leaf)
+            leaf_dim: dimension of leaf embeddings
+            model: fitted GATOutcomeModel (only if return_model=True)
+    
+    Example:
+        # Get embeddings for GRR with linear estimator
+        emb = GAT_embedding(X, A, D, Y, k=3, d1=0, d2=2)
+        
+        # Use leaf embeddings for GRR (level-specific representations)
+        result = grr_estimator(Y, D, X, d1=0, d2=2, pi_id_all=pi, Kn=Kn,
+                               method='linear', 
+                               X1=emb['X_GAT_leaf'][0],  # embedding for d1=0
+                               X2=emb['X_GAT_leaf'][1])  # embedding for d2=2
+    """
+    # Import GAT-embedder module
+    try:
+        from importlib import import_module
+        import sys
+        import os
+        
+        # Get the directory containing this file
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        if current_dir not in sys.path:
+            sys.path.insert(0, current_dir)
+        
+        # Import GATOutcomeModel from GAT-embedder
+        # Handle the hyphen in filename
+        import importlib.util
+        gat_path = os.path.join(current_dir, 'GAT-embedder.py')
+        spec = importlib.util.spec_from_file_location("gat_embedder", gat_path)
+        gat_module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(gat_module)
+        
+        GATOutcomeModel = gat_module.GATOutcomeModel
+        
+    except Exception as e:
+        raise ImportError(
+            f"Could not import GAT-embedder module: {e}. "
+            "Make sure GAT-embedder.py is in the same directory as GRR.py "
+            "and torch_geometric is installed."
+        )
+    
+    # Create and fit the GAT model
+    model = GATOutcomeModel(
+        input_dim=X.shape[1],
+        k=k,
+        gat_hidden_dims=gat_hidden_dims,
+        rep_dim=rep_dim,
+        head_hidden_dims=head_hidden_dims,
+        heads=heads,
+        dropout=dropout,
+        lambda_ipm=lambda_ipm
+    )
+    
+    model.fit(
+        X, A, D, Y,
+        n_epochs=n_epochs,
+        lr=lr,
+        weight_decay=weight_decay,
+        early_stopping=early_stopping,
+        patience=patience,
+        verbose=verbose
+    )
+    
+    # Extract embeddings
+    X_GAT_root, X_GAT_leaf_all = model.get_all_embeddings(X, A)
+    leaf_dim = model.get_leaf_embedding_dim()
+    
+    # If d1, d2 specified, return only those two leaf embeddings
+    if d1 is not None and d2 is not None:
+        X_GAT_leaf = (X_GAT_leaf_all[d1], X_GAT_leaf_all[d2])
+    else:
+        X_GAT_leaf = X_GAT_leaf_all
+    
+    result = {
+        'X_GAT_root': X_GAT_root,
+        'X_GAT_leaf': X_GAT_leaf,
+        'leaf_dim': leaf_dim,
+        'rep_dim': rep_dim,
+    }
+    
+    if return_model:
+        result['model'] = model
+    
+    if verbose:
+        print(f"\nGAT Embedding Summary:")
+        print(f"  X_GAT_root shape: {X_GAT_root.shape} (shared backbone)")
+        if d1 is not None and d2 is not None:
+            print(f"  X_GAT_leaf shapes: {X_GAT_leaf[0].shape}, {X_GAT_leaf[1].shape} "
+                  f"(for d1={d1}, d2={d2})")
+        else:
+            print(f"  X_GAT_leaf: {len(X_GAT_leaf)} embeddings, each shape {X_GAT_leaf[0].shape}")
+    
+    return result
+
+
+# =============================================================================
+# PNA Embedding Function
+# =============================================================================
+
+def PNA_embedding(X, A, D, Y, k, d1=None, d2=None,
+                  pna_hidden_dims=[64, 32],
+                  rep_dim=16,
+                  head_hidden_dims=[32, 16],
+                  aggregators=['mean', 'sum', 'max', 'std'],
+                  scalers=['identity', 'amplification', 'attenuation'],
+                  dropout=0.1,
+                  lambda_ipm=0.0,
+                  n_epochs=300,
+                  lr=0.001,
+                  weight_decay=1e-4,
+                  early_stopping=True,
+                  patience=50,
+                  verbose=True,
+                  return_model=False):
+    """
+    Train a PNA model and extract embeddings for GRR estimation.
+    
+    PNA (Principal Neighbourhood Aggregation) is superior to GAT when outcomes 
+    depend on node degree because:
+    - GAT's softmax attention normalizes away degree information
+    - PNA uses multiple aggregators (mean, sum, max, std) that preserve degree
+    - PNA uses degree scalers (amplification, attenuation) to explicitly inject degree info
+    
+    This function trains a PNA network using the PNA-embedder module and returns 
+    two sets of embeddings:
+    
+    1. X_PNA_root: Shared backbone embeddings from the PNA encoder (last layer output,
+       before the outcome heads). Shape: (n, rep_dim)
+       
+    2. X_PNA_leaf: Per-exposure-level embeddings from the last hidden layer of 
+       each outcome head MLP. Returns a list of k arrays, each of shape 
+       (n, last_hidden_dim), or if d1/d2 are specified, returns just 
+       (X1_leaf, X2_leaf) for the two specified exposure levels.
+    
+    Args:
+        X: node covariates (n x p), numpy array
+        A: adjacency matrix (n x n), numpy array
+        D: exposure levels (n,), numpy array with values in {0, ..., k-1}
+        Y: observed outcomes (n,), numpy array
+        k: number of exposure levels
+        d1: first exposure level for comparison (optional)
+        d2: second exposure level for comparison (optional)
+        pna_hidden_dims: hidden dimensions for PNA encoder
+        rep_dim: dimension of PNA output representations
+        head_hidden_dims: hidden dimensions for outcome MLP heads
+        aggregators: PNA aggregation functions (default: mean, sum, max, std)
+        scalers: PNA degree scalers (default: identity, amplification, attenuation)
+        dropout: dropout rate
+        lambda_ipm: IPM regularization weight (0 = no regularization)
+        n_epochs: maximum training epochs
+        lr: learning rate
+        weight_decay: L2 regularization
+        early_stopping: stop if validation loss plateaus
+        patience: epochs to wait before stopping
+        verbose: print training progress
+        return_model: if True, also return the fitted PNA model
+    
+    Returns:
+        dict with keys:
+            X_PNA_root: shared backbone embeddings (n x rep_dim)
+            X_PNA_leaf: list of k embeddings (n x last_hidden_dim each), OR
+                       if d1, d2 specified: tuple (X1_leaf, X2_leaf)
+            leaf_dim: dimension of leaf embeddings
+            model: fitted PNAOutcomeModel (only if return_model=True)
+    
+    Example:
+        # Get embeddings for GRR with linear estimator
+        emb = PNA_embedding(X, A, D, Y, k=3, d1=0, d2=2)
+        
+        # Use leaf embeddings for GRR (level-specific representations)
+        result = grr_estimator(Y, D, X, d1=0, d2=2, pi_id_all=pi, Kn=Kn,
+                               method='linear', 
+                               X1=emb['X_PNA_leaf'][0],  # embedding for d1=0
+                               X2=emb['X_PNA_leaf'][1])  # embedding for d2=2
+    """
+    # Import PNA-embedder module
+    try:
+        from importlib import import_module
+        import sys
+        import os
+        
+        # Get the directory containing this file
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        if current_dir not in sys.path:
+            sys.path.insert(0, current_dir)
+        
+        # Import PNAOutcomeModel from PNA-embedder
+        # Handle the hyphen in filename
+        import importlib.util
+        pna_path = os.path.join(current_dir, 'PNA-embedder.py')
+        spec = importlib.util.spec_from_file_location("pna_embedder", pna_path)
+        pna_module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(pna_module)
+        
+        PNAOutcomeModel = pna_module.PNAOutcomeModel
+        compute_degree_histogram = pna_module.compute_degree_histogram
+        
+    except Exception as e:
+        raise ImportError(
+            f"Could not import PNA-embedder module: {e}. "
+            "Make sure PNA-embedder.py is in the same directory as GRR.py "
+            "and torch_geometric is installed."
+        )
+    
+    # Compute degree histogram (required for PNA)
+    deg = compute_degree_histogram(A)
+    
+    # Create and fit the PNA model
+    model = PNAOutcomeModel(
+        input_dim=X.shape[1],
+        k=k,
+        deg=deg,
+        pna_hidden_dims=pna_hidden_dims,
+        rep_dim=rep_dim,
+        head_hidden_dims=head_hidden_dims,
+        aggregators=aggregators,
+        scalers=scalers,
+        dropout=dropout,
+        lambda_ipm=lambda_ipm
+    )
+    
+    model.fit(
+        X, A, D, Y,
+        n_epochs=n_epochs,
+        lr=lr,
+        weight_decay=weight_decay,
+        early_stopping=early_stopping,
+        patience=patience,
+        verbose=verbose
+    )
+    
+    # Extract embeddings
+    X_PNA_root, X_PNA_leaf_all = model.get_all_embeddings(X, A)
+    leaf_dim = model.get_leaf_embedding_dim()
+    
+    # If d1, d2 specified, return only those two leaf embeddings
+    if d1 is not None and d2 is not None:
+        X_PNA_leaf = (X_PNA_leaf_all[d1], X_PNA_leaf_all[d2])
+    else:
+        X_PNA_leaf = X_PNA_leaf_all
+    
+    result = {
+        'X_PNA_root': X_PNA_root,
+        'X_PNA_leaf': X_PNA_leaf,
+        'leaf_dim': leaf_dim,
+        'rep_dim': rep_dim,
+    }
+    
+    if return_model:
+        result['model'] = model
+    
+    if verbose:
+        print(f"\nPNA Embedding Summary:")
+        print(f"  X_PNA_root shape: {X_PNA_root.shape} (shared backbone)")
+        print(f"  Aggregators: {aggregators}")
+        print(f"  Scalers: {scalers}")
+        if d1 is not None and d2 is not None:
+            print(f"  X_PNA_leaf shapes: {X_PNA_leaf[0].shape}, {X_PNA_leaf[1].shape} "
+                  f"(for d1={d1}, d2={d2})")
+        else:
+            print(f"  X_PNA_leaf: {len(X_PNA_leaf)} embeddings, each shape {X_PNA_leaf[0].shape}")
+    
+    return result
+
+
 
