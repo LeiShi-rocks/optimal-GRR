@@ -80,7 +80,7 @@ def mu_haj(Y, D, d, pi_id_all, eps=1e-12):
     return mu_ht(Y, D, d, pi_id_all, eps) / (one_ht(D, d, pi_id_all, eps) + eps)
 
 
-def _solve(A, b):
+def _solve(A, b, ratio_cond=1e-2):
     """
     Solve linear system Ax = b using pseudoinverse.
     
@@ -91,7 +91,7 @@ def _solve(A, b):
     Returns:
         x: solution vector (n,)
     """
-    return np.linalg.pinv(A, rcond=1e-2) @ b
+    return np.linalg.pinv(A, rcond=ratio_cond) @ b
 
 
 # ---------- HAIPW estimator forms ----------

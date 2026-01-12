@@ -1,0 +1,280 @@
+Monte Carlo simulations:   0%|          | 0/50 [00:00<?, ?it/s][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.889e+04, tolerance: 3.528e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:   2%|▏         | 1/50 [00:31<25:29, 31.22s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.808e+04, tolerance: 2.359e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:   4%|▍         | 2/50 [00:55<21:42, 27.14s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 2.771e+04, tolerance: 1.886e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:   6%|▌         | 3/50 [01:25<22:19, 28.50s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 4.981e+04, tolerance: 2.274e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:   8%|▊         | 4/50 [01:55<22:18, 29.10s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 1.354e+05, tolerance: 5.138e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  10%|█         | 5/50 [02:20<20:44, 27.66s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 4.022e+04, tolerance: 1.857e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  12%|█▏        | 6/50 [02:50<20:41, 28.22s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 2.364e+03, tolerance: 1.505e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  14%|█▍        | 7/50 [03:10<18:18, 25.55s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.253e+04, tolerance: 2.322e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  16%|█▌        | 8/50 [03:35<17:48, 25.45s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.821e+04, tolerance: 2.392e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  18%|█▊        | 9/50 [04:02<17:40, 25.88s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.876e+04, tolerance: 2.166e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  20%|██        | 10/50 [04:26<16:50, 25.26s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.931e+04, tolerance: 2.131e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  22%|██▏       | 11/50 [04:49<16:04, 24.72s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.111e+04, tolerance: 2.907e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  24%|██▍       | 12/50 [05:18<16:29, 26.05s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.434e+04, tolerance: 2.797e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  26%|██▌       | 13/50 [05:43<15:45, 25.54s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 4.065e+04, tolerance: 4.688e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  28%|██▊       | 14/50 [06:11<15:55, 26.53s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 3.617e+04, tolerance: 2.296e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  30%|███       | 15/50 [06:33<14:34, 24.98s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 1.832e+05, tolerance: 6.506e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  32%|███▏      | 16/50 [06:58<14:09, 24.98s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.330e+04, tolerance: 2.261e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  34%|███▍      | 17/50 [07:22<13:35, 24.72s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.121e+04, tolerance: 2.900e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  36%|███▌      | 18/50 [07:48<13:29, 25.30s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 3.505e+04, tolerance: 2.156e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  38%|███▊      | 19/50 [08:15<13:12, 25.56s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 8.028e+04, tolerance: 3.028e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  40%|████      | 20/50 [08:39<12:39, 25.31s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 4.747e+04, tolerance: 2.008e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  42%|████▏     | 21/50 [09:05<12:15, 25.36s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.411e+04, tolerance: 2.503e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  44%|████▍     | 22/50 [09:28<11:33, 24.77s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 1.033e+05, tolerance: 2.888e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  46%|████▌     | 23/50 [09:55<11:21, 25.23s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 4.077e+04, tolerance: 2.396e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  48%|████▊     | 24/50 [10:19<10:52, 25.09s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 4.773e+04, tolerance: 2.353e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  50%|█████     | 25/50 [10:47<10:50, 26.01s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 1.152e+05, tolerance: 4.236e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  52%|█████▏    | 26/50 [11:10<10:02, 25.11s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.717e+04, tolerance: 3.103e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  54%|█████▍    | 27/50 [11:35<09:35, 25.04s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.956e+04, tolerance: 2.844e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  56%|█████▌    | 28/50 [12:14<10:42, 29.18s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 9.325e+04, tolerance: 4.868e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  58%|█████▊    | 29/50 [12:40<09:54, 28.29s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.696e+04, tolerance: 4.206e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  60%|██████    | 30/50 [13:05<09:02, 27.12s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.167e+04, tolerance: 2.824e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  62%|██████▏   | 31/50 [13:34<08:50, 27.90s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.828e+04, tolerance: 2.530e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  64%|██████▍   | 32/50 [14:04<08:28, 28.25s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.293e+04, tolerance: 3.069e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  66%|██████▌   | 33/50 [14:35<08:16, 29.18s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 1.916e+05, tolerance: 5.521e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  68%|██████▊   | 34/50 [14:58<07:16, 27.26s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 1.056e+05, tolerance: 3.916e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  70%|███████   | 35/50 [15:26<06:55, 27.70s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 1.515e+05, tolerance: 4.493e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  72%|███████▏  | 36/50 [15:52<06:17, 26.99s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.852e+04, tolerance: 4.687e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  74%|███████▍  | 37/50 [16:21<05:58, 27.61s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.844e+04, tolerance: 3.369e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  76%|███████▌  | 38/50 [16:42<05:09, 25.77s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 3.455e+04, tolerance: 2.904e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  78%|███████▊  | 39/50 [17:05<04:33, 24.83s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 4.426e+04, tolerance: 2.017e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  80%|████████  | 40/50 [17:33<04:19, 25.95s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 4.600e+04, tolerance: 2.180e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  82%|████████▏ | 41/50 [18:05<04:08, 27.65s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.289e+04, tolerance: 2.229e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  84%|████████▍ | 42/50 [18:34<03:45, 28.14s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 8.350e+04, tolerance: 2.901e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  86%|████████▌ | 43/50 [19:02<03:16, 28.03s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.926e+04, tolerance: 4.031e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  88%|████████▊ | 44/50 [19:29<02:46, 27.82s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.745e+04, tolerance: 2.888e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  90%|█████████ | 45/50 [19:55<02:16, 27.23s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.895e+04, tolerance: 3.644e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  92%|█████████▏| 46/50 [20:33<02:01, 30.49s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.483e+04, tolerance: 3.636e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  94%|█████████▍| 47/50 [21:08<01:35, 31.68s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.509e+04, tolerance: 3.677e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  96%|█████████▌| 48/50 [21:42<01:04, 32.37s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 4.837e+04, tolerance: 2.590e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  98%|█████████▊| 49/50 [22:24<00:35, 35.38s/it][GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 2 (3 levels)
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.160e+04, tolerance: 2.677e+02
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations: 100%|██████████| 50/50 [22:53<00:00, 33.33s/it]Monte Carlo simulations: 100%|██████████| 50/50 [22:53<00:00, 27.47s/it]
+
+================================================================================
+Simulation Results (true_tau = -0.5939)
+================================================================================
+Method                Bias         SD       RMSE    Mean Loss  N Valid
+--------------------------------------------------------------------------------
+ht                 -0.1186     0.4730     0.4876            -       50
+hajek              -0.0187     0.1846     0.1856            -       50
+haipw-truth         0.1151     0.2873     0.3095            -       50
+haipw-one           0.0146     0.1508     0.1515            -       50
+haipw-cov-truth     0.1832     0.3158     0.3651            -       50
+haipw-cov-one       0.0291     0.1361     0.1392            -       50
+linear              0.0363     0.1348     0.1396   95490.7510       50
+lasso               0.0364     0.1373     0.1421  101744.1161       50
+gat-linear          0.0462     0.1269     0.1350   73251.7026       50
+gat-lasso           0.0985     0.1234     0.1579   58069.9904       50
+================================================================================
+
+Outcome Prediction R² (how well models predict Y given X):
+--------------------------------------------------
+  Linear model:  R² = 0.1266 ± 0.0071
+  GAT model:     R² = 0.2556 ± 0.0684
+--------------------------------------------------
+Summary saved to: results/out1_20251230_173626_summary.csv
+Config saved to: results/out1_20251230_173626_config.json
+Full results saved to: results/out1_20251230_173626_full.npz
+/home/colligo/personal-research/optimal-GRR/simulation-out1.py:429: MatplotlibDeprecationWarning: The 'labels' parameter of boxplot() has been renamed 'tick_labels' since Matplotlib 3.9; support for the old name will be dropped in 3.11.
+  bp = axes[0].boxplot(errors, labels=valid_methods, patch_artist=True, showfliers=False)
+Plot saved to: results/out1_20251230_173626_plot.png

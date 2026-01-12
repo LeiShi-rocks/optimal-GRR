@@ -1,0 +1,929 @@
+nohup: ignoring input
+Monte Carlo simulations:   0%|          | 0/100 [00:00<?, ?it/s]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.377e+04, tolerance: 1.186e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:   1%|          | 1/100 [00:19<32:50, 19.90s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.060e+04, tolerance: 1.188e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:   2%|▏         | 2/100 [00:37<29:58, 18.35s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.250e+04, tolerance: 1.221e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:   3%|▎         | 3/100 [00:54<29:03, 17.97s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.756e+04, tolerance: 1.190e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:   4%|▍         | 4/100 [01:12<28:53, 18.06s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.185e+04, tolerance: 1.159e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:   5%|▌         | 5/100 [01:30<28:12, 17.82s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.663e+04, tolerance: 1.260e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:   6%|▌         | 6/100 [01:47<27:26, 17.52s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 8.598e+04, tolerance: 1.149e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:   7%|▋         | 7/100 [02:04<27:13, 17.56s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.490e+04, tolerance: 1.142e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:   8%|▊         | 8/100 [02:22<26:50, 17.50s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 8.909e+04, tolerance: 1.097e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:   9%|▉         | 9/100 [02:39<26:28, 17.45s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.270e+04, tolerance: 1.196e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  10%|█         | 10/100 [02:56<26:02, 17.36s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.689e+04, tolerance: 1.190e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  11%|█         | 11/100 [03:14<26:04, 17.58s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 2.799e+04, tolerance: 1.264e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  12%|█▏        | 12/100 [03:33<26:16, 17.91s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 8.374e+04, tolerance: 1.153e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  13%|█▎        | 13/100 [03:49<25:04, 17.29s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.931e+04, tolerance: 1.255e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  14%|█▍        | 14/100 [04:07<25:11, 17.57s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.481e+04, tolerance: 1.145e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  15%|█▌        | 15/100 [04:25<25:15, 17.83s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 4.636e+04, tolerance: 1.209e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  16%|█▌        | 16/100 [04:44<25:12, 18.01s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 8.446e+04, tolerance: 1.156e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  17%|█▋        | 17/100 [05:01<24:38, 17.82s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.959e+04, tolerance: 1.204e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  18%|█▊        | 18/100 [05:19<24:23, 17.85s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 8.731e+04, tolerance: 1.266e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  19%|█▉        | 19/100 [05:37<24:08, 17.88s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.320e+04, tolerance: 1.266e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  20%|██        | 20/100 [05:56<24:07, 18.10s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 9.224e+04, tolerance: 1.223e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  21%|██        | 21/100 [06:14<24:03, 18.27s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.833e+04, tolerance: 1.149e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  22%|██▏       | 22/100 [06:34<24:05, 18.53s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.652e+04, tolerance: 1.103e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  23%|██▎       | 23/100 [06:52<23:39, 18.44s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 3.498e+04, tolerance: 1.225e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  24%|██▍       | 24/100 [07:10<23:21, 18.43s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.871e+04, tolerance: 1.181e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  25%|██▌       | 25/100 [07:30<23:25, 18.74s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.760e+04, tolerance: 1.212e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  26%|██▌       | 26/100 [07:49<23:24, 18.98s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.989e+04, tolerance: 1.215e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  27%|██▋       | 27/100 [08:09<23:16, 19.12s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 4.711e+04, tolerance: 1.261e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  28%|██▊       | 28/100 [08:27<22:40, 18.89s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.265e+04, tolerance: 1.267e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  29%|██▉       | 29/100 [08:45<22:10, 18.74s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.530e+04, tolerance: 1.258e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  30%|███       | 30/100 [09:04<21:43, 18.62s/it][PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.123e+04, tolerance: 1.197e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  31%|███       | 31/100 [09:22<21:20, 18.56s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.346e+04, tolerance: 1.152e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  32%|███▏      | 32/100 [09:41<20:59, 18.52s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.104e+04, tolerance: 1.205e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  33%|███▎      | 33/100 [09:59<20:43, 18.57s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.727e+04, tolerance: 1.210e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  34%|███▍      | 34/100 [10:18<20:19, 18.47s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 2.975e+04, tolerance: 1.300e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  35%|███▌      | 35/100 [10:36<19:56, 18.41s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.690e+04, tolerance: 1.141e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  36%|███▌      | 36/100 [10:54<19:30, 18.30s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.901e+04, tolerance: 1.297e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  37%|███▋      | 37/100 [11:12<19:05, 18.18s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.166e+04, tolerance: 1.220e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  38%|███▊      | 38/100 [11:30<18:46, 18.17s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.452e+04, tolerance: 1.186e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  39%|███▉      | 39/100 [11:48<18:18, 18.02s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 8.180e+04, tolerance: 1.160e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  40%|████      | 40/100 [12:04<17:27, 17.46s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.080e+04, tolerance: 1.173e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  41%|████      | 41/100 [12:21<17:14, 17.54s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.692e+04, tolerance: 1.204e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  42%|████▏     | 42/100 [12:39<17:03, 17.65s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.354e+04, tolerance: 1.231e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  43%|████▎     | 43/100 [12:58<16:56, 17.83s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 4.474e+04, tolerance: 1.226e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  44%|████▍     | 44/100 [13:16<16:45, 17.96s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.679e+04, tolerance: 1.167e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  45%|████▌     | 45/100 [13:34<16:29, 17.99s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.765e+04, tolerance: 1.271e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  46%|████▌     | 46/100 [13:52<16:18, 18.12s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 8.143e+04, tolerance: 1.240e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  47%|████▋     | 47/100 [14:10<15:58, 18.09s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.003e+04, tolerance: 1.268e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  48%|████▊     | 48/100 [14:29<15:45, 18.18s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 4.188e+04, tolerance: 1.176e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  49%|████▉     | 49/100 [14:47<15:24, 18.12s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.999e+04, tolerance: 1.233e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  50%|█████     | 50/100 [15:05<15:08, 18.17s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.839e+04, tolerance: 1.184e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  51%|█████     | 51/100 [15:23<14:53, 18.24s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.403e+04, tolerance: 1.238e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  52%|█████▏    | 52/100 [15:41<14:30, 18.14s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.609e+04, tolerance: 1.201e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  53%|█████▎    | 53/100 [16:00<14:18, 18.27s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.996e+04, tolerance: 1.145e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  54%|█████▍    | 54/100 [16:18<14:03, 18.34s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.027e+04, tolerance: 1.170e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  55%|█████▌    | 55/100 [16:36<13:33, 18.08s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 9.254e+04, tolerance: 1.261e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  56%|█████▌    | 56/100 [16:55<13:28, 18.36s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.283e+04, tolerance: 1.230e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  57%|█████▋    | 57/100 [17:12<12:57, 18.08s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.941e+04, tolerance: 1.275e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  58%|█████▊    | 58/100 [17:29<12:27, 17.79s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.119e+04, tolerance: 1.182e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  59%|█████▉    | 59/100 [17:47<12:09, 17.79s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.883e+04, tolerance: 1.214e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  60%|██████    | 60/100 [18:05<11:50, 17.77s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.655e+04, tolerance: 1.177e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  61%|██████    | 61/100 [18:23<11:30, 17.71s/it]
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.394e+04, tolerance: 1.257e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  62%|██████▏   | 62/100 [18:41<11:20, 17.90s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.296e+04, tolerance: 1.231e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  63%|██████▎   | 63/100 [19:01<11:30, 18.65s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.231e+04, tolerance: 1.126e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  64%|██████▍   | 64/100 [19:22<11:36, 19.34s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 3.437e+04, tolerance: 1.189e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  65%|██████▌   | 65/100 [19:43<11:30, 19.74s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.035e+04, tolerance: 1.163e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  66%|██████▌   | 66/100 [20:01<10:59, 19.40s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.664e+04, tolerance: 1.186e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  67%|██████▋   | 67/100 [20:22<10:50, 19.73s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.699e+04, tolerance: 1.199e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  68%|██████▊   | 68/100 [20:42<10:38, 19.94s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.949e+04, tolerance: 1.207e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  69%|██████▉   | 69/100 [21:03<10:25, 20.17s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.158e+04, tolerance: 1.182e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  70%|███████   | 70/100 [21:24<10:08, 20.27s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.273e+04, tolerance: 1.191e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  71%|███████   | 71/100 [21:43<09:40, 20.01s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 8.353e+04, tolerance: 1.203e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  72%|███████▏  | 72/100 [22:04<09:26, 20.23s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 3.197e+04, tolerance: 1.190e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  73%|███████▎  | 73/100 [22:24<09:07, 20.28s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.551e+04, tolerance: 1.225e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  74%|███████▍  | 74/100 [22:44<08:46, 20.24s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 8.009e+04, tolerance: 1.200e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  75%|███████▌  | 75/100 [23:05<08:27, 20.30s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 8.711e+04, tolerance: 1.150e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  76%|███████▌  | 76/100 [23:23<07:50, 19.60s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.262e+04, tolerance: 1.195e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  77%|███████▋  | 77/100 [23:44<07:42, 20.12s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 4.608e+04, tolerance: 1.240e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  78%|███████▊  | 78/100 [24:05<07:28, 20.38s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 8.465e+04, tolerance: 1.196e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  79%|███████▉  | 79/100 [24:26<07:12, 20.60s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.235e+04, tolerance: 1.226e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  80%|████████  | 80/100 [24:48<07:00, 21.04s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.612e+04, tolerance: 1.201e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  81%|████████  | 81/100 [25:09<06:39, 21.01s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 8.015e+04, tolerance: 1.185e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  82%|████████▏ | 82/100 [25:30<06:15, 20.85s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.061e+04, tolerance: 1.205e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  83%|████████▎ | 83/100 [25:49<05:49, 20.54s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.668e+04, tolerance: 1.188e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  84%|████████▍ | 84/100 [26:09<05:25, 20.33s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 8.926e+04, tolerance: 1.257e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  85%|████████▌ | 85/100 [26:29<05:03, 20.23s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.917e+04, tolerance: 1.138e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  86%|████████▌ | 86/100 [26:49<04:40, 20.06s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.430e+04, tolerance: 1.225e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  87%|████████▋ | 87/100 [27:09<04:20, 20.03s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.425e+04, tolerance: 1.209e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  88%|████████▊ | 88/100 [27:28<03:58, 19.85s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 8.186e+04, tolerance: 1.192e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  89%|████████▉ | 89/100 [27:49<03:39, 19.96s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 4.167e+04, tolerance: 1.256e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  90%|█████████ | 90/100 [28:09<03:20, 20.08s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 6.444e+04, tolerance: 1.214e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  91%|█████████ | 91/100 [28:29<03:00, 20.03s/it]
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 8.519e+04, tolerance: 1.240e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  92%|█████████▏| 92/100 [28:49<02:39, 19.95s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 8.018e+04, tolerance: 1.197e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  93%|█████████▎| 93/100 [29:08<02:18, 19.84s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.028e+04, tolerance: 1.193e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  94%|█████████▍| 94/100 [29:27<01:56, 19.47s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.736e+04, tolerance: 1.231e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  95%|█████████▌| 95/100 [29:46<01:37, 19.46s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.790e+04, tolerance: 1.161e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  96%|█████████▌| 96/100 [30:05<01:17, 19.25s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 2.166e+04, tolerance: 1.182e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  97%|█████████▋| 97/100 [30:24<00:57, 19.25s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 7.362e+04, tolerance: 1.090e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  98%|█████████▊| 98/100 [30:43<00:38, 19.24s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 5.240e+04, tolerance: 1.146e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations:  99%|█████████▉| 99/100 [31:03<00:19, 19.23s/it]/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/sklearn/linear_model/_coordinate_descent.py:716: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 9.657e+04, tolerance: 1.196e+03
+  model = cd_fast.enet_coordinate_descent(
+Monte Carlo simulations: 100%|██████████| 100/100 [31:21<00:00, 19.05s/it]Monte Carlo simulations: 100%|██████████| 100/100 [31:21<00:00, 18.82s/it]
+
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+
+=====================================================================================
+Simulation Results (true_tau = -0.3713)
+=====================================================================================
+Method                   Bias         SD       RMSE    Mean Loss  N Valid
+-------------------------------------------------------------------------------------
+ht                    -0.0037     0.4761     0.4761            -      100
+hajek                 -0.0175     0.1928     0.1935            -      100
+haipw-truth           -0.0078     0.1916     0.1918            -      100
+haipw-one             -0.0152     0.1925     0.1931            -      100
+haipw-cov-truth       -0.0102     0.0855     0.0861            -      100
+haipw-cov-one         -0.0059     0.0826     0.0829            -      100
+linear                -0.0087     0.0839     0.0843   60680.8766      100
+lasso                  0.0120     0.0768     0.0777   55058.4786      100
+pna-linear            -0.0001     0.0596     0.0596   48677.9574      100
+pna-lasso              0.0160     0.0565     0.0587   43900.0317      100
+=====================================================================================
+
+Outcome Prediction R² (how well models predict Y given X):
+-------------------------------------------------------
+  Linear model:  R² = 0.7661 ± 0.0042
+  PNA model:     R² = 0.8542 ± 0.0071
+-------------------------------------------------------
+Summary saved to: results/out4_20251231_004613_summary.csv
+Config saved to: results/out4_20251231_004613_config.json
+Full results saved to: results/out4_20251231_004613_full.npz
+Plot saved to: results/out4_20251231_004613_plot.png
