@@ -32,10 +32,16 @@ ALL_METHODS = [
     # Standard GRR
     'linear', 'lasso',
     # GAT-enhanced GRR (softmax attention - loses some degree info)
-    'gat-linear', 'gat-lasso',
+    'gat-linear', 'gat-lasso', 'gat-no-harm', 'gat-pred',
     # PNA-enhanced GRR (preserves degree info via sum aggregator + degree scalers)
-    'pna-linear', 'pna-lasso',
+    'pna-linear', 'pna-lasso', 'pna-no-harm', 'pna-pred'
 ]
+
+# ALL_METHODS = [
+#     # Standard GRR
+#     'linear', 'pna'
+# ]
+
 
 # GAT configuration (5-layer deep, tuned for network data)
 GAT_CONFIG = {
@@ -91,7 +97,7 @@ if __name__ == "__main__":
         seed_graph=123, 
         seed_cov=1234, 
         seed_out=999,
-        B=50,  # Number of randomizations (increase to 200+ for final results)
+        B=30,  # Number of randomizations (increase to 200+ for final results)
         
         # Methods
         methods=ALL_METHODS,

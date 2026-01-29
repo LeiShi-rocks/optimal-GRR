@@ -110,6 +110,9 @@ def build_lambdas(pi_id_all, pi_ij_d1d2, pi_ij_d1d1, pi_ij_d2d2, d1, d2, eps=1e-
     return L1, L2, L12
 
 
+
+
+
 def build_kn_matrix(G):
     """
     Build the Kn matrix: indicator matrix where (i,j) = 1 if nodes i and j 
@@ -123,3 +126,36 @@ def build_kn_matrix(G):
     """
     return (G @ G.T > 0).astype(int)
 
+
+# ---------- Step 8: Lambda matrices ----------
+def build_W_pi(pi_id_all, pi_ij_d1d1, pi_ij_d2d2, d1, d2, Kn, eps=1e-12, robust=True):
+    pi1 = pi_id_all[:, d1]
+    pi2 = pi_id_all[:, d2]
+
+    # den11_{i,j} = pi_i(d1) * pi_j(d1)
+    den11 = np.outer(pi1, pi1)
+    # L1 off-diagonal items
+    L1_pi = Kn * (pi_ij_d1d1 > eps) * ((pi_ij_d1d1 - den11) / (pi_ij_d1d1 + eps))
+    np.fill_diagonal(L1_pi, (pi1 > eps) * (1.0 - pi1))
+    
+    den22 = np.outer(pi2, pi2)
+    L2_pi = Kn * (pi_ij_d2d2 > eps) * ((pi_ij_d2d2 - den22) / (pi_ij_d2d2 + eps))
+    np.fill_diagonal(L2_pi, (pi2 > eps) * (1.0 - pi2))
+    # den12 = np.outer(pi1, pi2)
+    # L12 = (pi_ij_d1d2 > eps) * ((pi_ij_d1d2 - den12) / (pi_ij_d1d2 + eps))
+    # np.fill_diagonal(L12, -1.0)
+
+    # Initialize W matrices as copies of L matrices
+    W1_pi = L1_pi.copy()
+    W2_pi = L2_pi.copy()
+    
+    # For each row i, count entries where Kn=1 but L_pi=0
+    # phi_1[i] = number of j where Kn[i,j]=1 and L1_pi[i,j]=0
+    phi_1 = np.sum((Kn == 1) & (L1_pi == 0), axis=1) if robust else 0
+    phi_2 = np.sum((Kn == 1) & (L2_pi == 0), axis=1) if robust else 0
+    
+    # Add pi[i] * phi[i] to the diagonal
+    W1_pi[np.diag_indices_from(W1_pi)] += pi1 * phi_1
+    W2_pi[np.diag_indices_from(W2_pi)] += pi2 * phi_2
+    
+    return W1_pi, W2_pi

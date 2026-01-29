@@ -1,0 +1,1043 @@
+[Parallel(n_jobs=3)]: Using backend LokyBackend with 3 concurrent workers.
+Starting OUT4 parallel simulation with 3 workers, B=100 replications
+Network: n=2000, avg_degree=10.0, max_degree=19, k=2 (binary)
+Methods: ['ht', 'hajek', 'linear', 'lasso', 'gat-linear', 'gat-no-harm', 'gat-pred', 'pna-linear', 'pna-no-harm', 'pna-pred']
+Generating graph and covariates...
+Generating potential outcomes with neighbor spillover...
+True tau = -0.3713
+Computing propensity scores via Monte Carlo...
+Running 100 MC replications in parallel...
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+[Parallel(n_jobs=3)]: Done   2 tasks      | elapsed:   43.5s
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+[Parallel(n_jobs=3)]: Done   7 tasks      | elapsed:  1.7min
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+[Parallel(n_jobs=3)]: Done  12 tasks      | elapsed:  2.4min
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+[Parallel(n_jobs=3)]: Done  19 tasks      | elapsed:  3.8min
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+[Parallel(n_jobs=3)]: Done  26 tasks      | elapsed:  5.3min
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+[Parallel(n_jobs=3)]: Done  35 tasks      | elapsed:  7.0min
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+[Parallel(n_jobs=3)]: Done  44 tasks      | elapsed:  8.7min
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+[Parallel(n_jobs=3)]: Done  55 tasks      | elapsed: 10.6min
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+[Parallel(n_jobs=3)]: Done  66 tasks      | elapsed: 12.6min
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+[Parallel(n_jobs=3)]: Done  79 tasks      | elapsed: 15.2min
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+[Parallel(n_jobs=3)]: Done  92 tasks      | elapsed: 17.5min
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+/home/colligo/personal-research/optimal-GRR/.venv/lib/python3.12/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+[Parallel(n_jobs=3)]: Done 100 out of 100 | elapsed: 19.0min finished
+Aggregating results...
+
+Completed in 19.2 minutes (11.5s per rep)
+
+====================================================================================================
+Simulation Results (true_tau = -0.3713, B = 100)
+====================================================================================================
+Method                   Bias         SD       RMSE   Coverage      Power  N Valid
+----------------------------------------------------------------------------------------------------
+ht                    -0.0135     0.7242     0.7243      0.440      0.600      100
+hajek                  0.0049     0.2108     0.2108      0.950      0.320      100
+linear                 0.0063     0.1787     0.1788      1.000      0.050      100
+lasso                  0.0072     0.1814     0.1815      0.990      0.100      100
+gat-linear            -0.0090     0.1974     0.1976      0.980      0.160      100
+gat-no-harm           -0.0115     0.1956     0.1959      0.980      0.150      100
+gat-pred              -0.0056     0.1976     0.1977      0.940      0.470      100
+pna-linear            -0.0020     0.0934     0.0934      0.990      0.400      100
+pna-no-harm           -0.0031     0.0931     0.0931      1.000      0.180      100
+pna-pred               0.0005     0.0950     0.0950      0.940      0.950      100
+====================================================================================================
+
+Results saved to dgp-2/results/out4_dgp2_parallel_20260128_062501_*
+
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']
+[GATOutcomeModel] Using device: cuda
+[GATOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[GATOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Using device: cuda
+[PNAOutcomeModel] GPU: NVIDIA A100-SXM4-80GB
+[PNAOutcomeModel] Exposure levels: 0 to 1 (2 levels)
+[PNAOutcomeModel] Aggregators: ['mean', 'sum', 'max', 'std']
+[PNAOutcomeModel] Scalers: ['identity', 'amplification', 'attenuation']

@@ -13,8 +13,21 @@ Main Functions:
 Supported Estimators:
     - Primitive: HT, Hajek, HAIPW variants
     - Standard GRR: Linear, Ridge, Lasso, ElasticNet, RF, GBM, MLP
-    - GAT-enhanced GRR: gat-linear, gat-lasso, gat-mlp
-    - PNA-enhanced GRR: pna-linear, pna-lasso, pna-mlp
+    - End-to-end PNA-GRR: 'pna' (trains PNA directly on GRR loss)
+    - GAT-enhanced GRR: gat-linear, gat-lasso, gat-mlp, gat-no-harm, gat-pred
+    - PNA-enhanced GRR: pna-linear, pna-lasso, pna-mlp, pna-no-harm, pna-pred
+    
+    End-to-end PNA-GRR ('pna'):
+        Trains a PNA network directly to minimize the GRR loss res' @ Kn @ res.
+        Uses graph structure to learn f1 and f2 adjustment functions.
+    
+    No-harm calibration methods (gat-no-harm, pna-no-harm):
+        Uses predicted potential outcomes Ypred(d1) and Ypred(d2) from the GNN
+        as covariates for GRR linear estimation.
+    
+    Doubly robust prediction methods (gat-pred, pna-pred):
+        Uses GNN predictions directly in a doubly robust estimator via _mu_from_beta
+        with the prediction as covariate and beta=1.
 """
 
 # =============================================================================
@@ -39,8 +52,9 @@ from dgp import (
     compute_exposure, 
     observed_outcome
 )
-from propensity import monte_carlo_probabilities, build_lambdas
-from GRR import grr_estimator, GAT_embedding, PNA_embedding
+from propensity import monte_carlo_probabilities, build_lambdas, build_W_pi, build_kn_matrix
+from GRR import grr_estimator, GAT_embedding, PNA_embedding, prepare_grr_inputs
+from variance_estimators import grr_variance_estimator, grr_confidence_interval
 from estimators import (
     mu_ht, mu_haj, 
     _weights, _Omega_const, _vec_const, _solve, _mu_from_c, _stack_for_reg,
@@ -56,13 +70,17 @@ from estimators import (
 PRIMITIVE_METHODS = {
     'ht', 'hajek', 
     'haipw-truth', 'haipw-one', 
-    'haipw-cov-truth', 'haipw-cov-one'
+    'haipw-cov-truth', 'haipw-cov-one',
+    'gat-pred', 'pna-pred'  # DR estimators using GNN predictions
 }
 
 # Graph neural network enhanced methods
-GAT_METHODS = {'gat-linear', 'gat-lasso', 'gat-mlp'}
-PNA_METHODS = {'pna-linear', 'pna-lasso', 'pna-mlp'}
+GAT_METHODS = {'gat-linear', 'gat-lasso', 'gat-mlp', 'gat-no-harm', 'gat-pred'}
+PNA_METHODS = {'pna-linear', 'pna-lasso', 'pna-mlp', 'pna-no-harm', 'pna-pred'}
 GNN_METHODS = GAT_METHODS | PNA_METHODS
+
+# End-to-end PNA-GRR (trains PNA directly on GRR loss)
+PNA_GRR_METHOD = {'pna'}
 
 
 # =============================================================================
@@ -99,10 +117,17 @@ def run_grr_simulation(
       - Primitive estimators: 'ht', 'hajek', 'haipw-truth', 'haipw-one',
                               'haipw-cov-truth', 'haipw-cov-one'
       - Standard GRR: 'linear', 'ridge', 'lasso', 'elasticnet', 'rf', 'gbm', 'mlp'
-      - GAT-enhanced GRR: 'gat-linear', 'gat-lasso', 'gat-mlp'
+      - End-to-end PNA-GRR: 'pna'
+        * Trains PNA network directly to minimize GRR loss res' @ Kn @ res
+        * Uses graph structure to learn adjustment functions f1, f2
+      - GAT-enhanced GRR: 'gat-linear', 'gat-lasso', 'gat-mlp', 'gat-no-harm', 'gat-pred'
         * Uses Graph Attention Network embeddings (note: softmax normalizes degree)
-      - PNA-enhanced GRR: 'pna-linear', 'pna-lasso', 'pna-mlp'
+        * gat-no-harm: uses predicted potential outcomes as covariates for GRR
+        * gat-pred: doubly robust estimator using predictions directly
+      - PNA-enhanced GRR: 'pna-linear', 'pna-lasso', 'pna-mlp', 'pna-no-harm', 'pna-pred'
         * Uses Principal Neighbourhood Aggregation (preserves degree information)
+        * pna-no-harm: uses predicted potential outcomes as covariates for GRR
+        * pna-pred: doubly robust estimator using predictions directly
 
     Args:
         n: number of nodes
@@ -176,10 +201,23 @@ def run_grr_simulation(
     A_adj = G.astype(float)
 
     # =========================================================================
+    # Step 7: Build W matrices for variance estimation
+    # =========================================================================
+    W1_pi, W2_pi = build_W_pi(pi_id_all, pi_ij_d1d1, pi_ij_d2d2, d1, d2, Kn)
+    
+    # =========================================================================
     # Storage for results
     # =========================================================================
     results = {m: np.zeros(B, dtype=float) for m in methods}
     losses = {m: np.zeros(B, dtype=float) for m in methods}
+    
+    # Coverage and power tracking (for methods with variance estimation)
+    # coverage[m][b] = 1 if CI covers true_tau, 0 otherwise
+    # power[m][b] = 1 if CI does NOT cover 0 (reject null), 0 otherwise
+    coverage = {m: np.zeros(B, dtype=float) for m in methods}
+    power = {m: np.zeros(B, dtype=float) for m in methods}
+    ci_lower = {m: np.zeros(B, dtype=float) for m in methods}
+    ci_upper = {m: np.zeros(B, dtype=float) for m in methods}
     
     # R² tracking
     r2_linear = np.zeros(B, dtype=float)
@@ -285,19 +323,67 @@ def run_grr_simulation(
         # ---------------------------------------------------------------------
         for method in methods:
             try:
-                tau_hat, loss = _run_single_method(
+                result = _run_single_method(
                     method, Y, D, X_run, d1, d2, pi_id_all, Kn, eps,
                     L1, L2, L12,
                     gat_embeddings, pna_embeddings,
-                    grr_kwargs
+                    gat_model, pna_model,
+                    grr_kwargs,
+                    A_adj=A_adj
                 )
+                tau_hat = result['tau_hat']
+                loss = result['loss']
                 results[method][b] = tau_hat
                 losses[method][b] = loss
+                
+                # Compute confidence interval if variance info is available
+                if result.get('has_variance_info', False):
+                    try:
+                        ci_lo, ci_hi = grr_confidence_interval(
+                            tau_hat=tau_hat,
+                            hatY_d1=result['hatY_d1'],
+                            hatY_d2=result['hatY_d2'],
+                            hat1_d1=result['hat1_d1'],
+                            hat1_d2=result['hat1_d2'],
+                            X1=result['X1'],
+                            X2=result['X2'],
+                            beta1=result['beta1'],
+                            beta2=result['beta2'],
+                            W1_pi=W1_pi,
+                            W2_pi=W2_pi,
+                            alpha=0.05
+                        )
+                        ci_lower[method][b] = ci_lo
+                        ci_upper[method][b] = ci_hi
+                        
+                        # Coverage: does CI contain true_tau?
+                        coverage[method][b] = 1.0 if (ci_lo <= true_tau <= ci_hi) else 0.0
+                        
+                        # Power: does CI NOT contain 0? (reject null hypothesis)
+                        power[method][b] = 1.0 if (ci_lo > 0 or ci_hi < 0) else 0.0
+                    except Exception as e_ci:
+                        if verbose:
+                            print(f"Rep {b}, method {method}, CI computation failed: {e_ci}")
+                        ci_lower[method][b] = np.nan
+                        ci_upper[method][b] = np.nan
+                        coverage[method][b] = np.nan
+                        power[method][b] = np.nan
+                else:
+                    # No variance info for primitive methods
+                    ci_lower[method][b] = np.nan
+                    ci_upper[method][b] = np.nan
+                    coverage[method][b] = np.nan
+                    power[method][b] = np.nan
+                    
             except Exception as e:
                 if verbose:
                     print(f"Rep {b}, method {method}: {e}")
                 results[method][b] = np.nan
                 losses[method][b] = np.nan
+                ci_lower[method][b] = np.nan
+                ci_upper[method][b] = np.nan
+                coverage[method][b] = np.nan
+                power[method][b] = np.nan
 
     # =========================================================================
     # Compute summaries
@@ -310,9 +396,33 @@ def run_grr_simulation(
             bias = float(np.mean(v_valid) - true_tau)
             sd = float(np.std(v_valid, ddof=1))
             rmse = float(np.sqrt(bias**2 + sd**2))
-            summary[m] = {"bias": bias, "sd": sd, "rmse": rmse, "n_valid": len(v_valid)}
+            
+            # Coverage and power (for methods with variance estimation)
+            cov_valid = coverage[m][~np.isnan(coverage[m])]
+            pow_valid = power[m][~np.isnan(power[m])]
+            
+            coverage_rate = float(np.mean(cov_valid)) if len(cov_valid) > 0 else np.nan
+            power_rate = float(np.mean(pow_valid)) if len(pow_valid) > 0 else np.nan
+            
+            summary[m] = {
+                "bias": bias, 
+                "sd": sd, 
+                "rmse": rmse, 
+                "n_valid": len(v_valid),
+                "coverage": coverage_rate,
+                "power": power_rate,
+                "n_ci_valid": len(cov_valid)
+            }
         else:
-            summary[m] = {"bias": np.nan, "sd": np.nan, "rmse": np.nan, "n_valid": 0}
+            summary[m] = {
+                "bias": np.nan, 
+                "sd": np.nan, 
+                "rmse": np.nan, 
+                "n_valid": 0,
+                "coverage": np.nan,
+                "power": np.nan,
+                "n_ci_valid": 0
+            }
 
     # R² summaries
     r2_summary = {}
@@ -337,9 +447,14 @@ def run_grr_simulation(
     return dict(
         G=G, H=H, X=X, Y_pot=Y_pot,
         pi_id_all=pi_id_all, Kn=Kn,
+        W1_pi=W1_pi, W2_pi=W2_pi,
         true_tau=true_tau,
         results=results,
         losses=losses,
+        coverage=coverage,
+        power=power,
+        ci_lower=ci_lower,
+        ci_upper=ci_upper,
         summary=summary,
         methods=methods,
         r2_linear=r2_linear,
@@ -354,27 +469,79 @@ def run_grr_simulation(
 # =============================================================================
 
 def _run_single_method(method, Y, D, X_run, d1, d2, pi_id_all, Kn, eps,
-                       L1, L2, L12, gat_embeddings, pna_embeddings, grr_kwargs):
+                       L1, L2, L12, gat_embeddings, pna_embeddings,
+                       gat_model, pna_model, grr_kwargs, A_adj=None):
     """
-    Run a single estimation method and return (tau_hat, loss).
+    Run a single estimation method and return result dict.
+    
+    Returns dict with keys:
+        tau_hat: estimated treatment effect
+        loss: GRR loss value (np.nan for primitive methods)
+        has_variance_info: whether variance estimation info is available
+        hatY_d1, hatY_d2, hat1_d1, hat1_d2, X1, X2, beta1, beta2: 
+            (only if has_variance_info=True)
     
     Internal helper for run_grr_simulation.
     """
     pi1 = pi_id_all[:, d1]
     pi2 = pi_id_all[:, d2]
+    n = len(Y)
+    
+    # Helper to build result dict without variance info
+    def _result_no_var(tau_hat, loss=np.nan):
+        return {'tau_hat': tau_hat, 'loss': loss, 'has_variance_info': False}
+    
+    # Helper to build result dict with variance info
+    def _result_with_var(tau_hat, loss, hatY_d1, hatY_d2, hat1_d1, hat1_d2, 
+                         X1, X2, beta1, beta2):
+        return {
+            'tau_hat': tau_hat, 
+            'loss': loss, 
+            'has_variance_info': True,
+            'hatY_d1': hatY_d1,
+            'hatY_d2': hatY_d2,
+            'hat1_d1': hat1_d1,
+            'hat1_d2': hat1_d2,
+            'X1': X1,
+            'X2': X2,
+            'beta1': beta1,
+            'beta2': beta2
+        }
     
     # =========================================================================
-    # Primitive estimators
+    # HT and Hajek estimators (with variance estimation)
     # =========================================================================
     if method == 'ht':
         mu1 = mu_ht(Y, D, d1, pi_id_all, eps)
         mu2 = mu_ht(Y, D, d2, pi_id_all, eps)
-        return float(mu1 - mu2), np.nan
+        tau_hat = float(mu1 - mu2)
+        # Variance estimation: use X = ones, beta = mu_ht estimates
+        X_ones = np.ones((n, 1))
+        beta1 = np.array([mu1])
+        beta2 = np.array([mu2])
+        inputs = prepare_grr_inputs(Y, D, X_run, d1, d2, pi_id_all, X1=X_ones, X2=X_ones, eps=eps)
+        return _result_with_var(
+            tau_hat, np.nan,
+            inputs['hatY_d1'], inputs['hatY_d2'],
+            inputs['hat1_d1'], inputs['hat1_d2'],
+            X_ones, X_ones, beta1, beta2
+        )
         
     elif method == 'hajek':
         mu1 = mu_haj(Y, D, d1, pi_id_all, eps)
         mu2 = mu_haj(Y, D, d2, pi_id_all, eps)
-        return float(mu1 - mu2), np.nan
+        tau_hat = float(mu1 - mu2)
+        # Variance estimation: use X = ones, beta = mu_haj estimates
+        X_ones = np.ones((n, 1))
+        beta1 = np.array([mu1])
+        beta2 = np.array([mu2])
+        inputs = prepare_grr_inputs(Y, D, X_run, d1, d2, pi_id_all, X1=X_ones, X2=X_ones, eps=eps)
+        return _result_with_var(
+            tau_hat, np.nan,
+            inputs['hatY_d1'], inputs['hatY_d2'],
+            inputs['hat1_d1'], inputs['hat1_d2'],
+            X_ones, X_ones, beta1, beta2
+        )
         
     elif method == 'haipw-truth':
         w1 = _weights(D, d1, pi1, eps)
@@ -387,7 +554,7 @@ def _run_single_method(method, Y, D, X_run, d1, d2, pi_id_all, Kn, eps,
         c1, c2 = float(c_hat[0]), float(c_hat[1])
         mu1 = _mu_from_c(Y, D, d1, pi1, c1, eps)
         mu2 = _mu_from_c(Y, D, d2, pi2, c2, eps)
-        return float(mu1 - mu2), np.nan
+        return _result_no_var(float(mu1 - mu2))
         
     elif method == 'haipw-one':
         w1 = _weights(D, d1, pi1, eps)
@@ -400,7 +567,7 @@ def _run_single_method(method, Y, D, X_run, d1, d2, pi_id_all, Kn, eps,
         c1, c2 = float(c_hat[0]), float(c_hat[1])
         mu1 = _mu_from_c(Y, D, d1, pi1, c1, eps)
         mu2 = _mu_from_c(Y, D, d2, pi2, c2, eps)
-        return float(mu1 - mu2), np.nan
+        return _result_no_var(float(mu1 - mu2))
         
     elif method == 'haipw-cov-truth':
         w1 = _weights(D, d1, pi1, eps)
@@ -416,7 +583,7 @@ def _run_single_method(method, Y, D, X_run, d1, d2, pi_id_all, Kn, eps,
         beta1, beta2 = beta_hat[:p], beta_hat[p:]
         mu1 = _mu_from_beta(Y, D, d1, pi1, X_run, beta1, eps)
         mu2 = _mu_from_beta(Y, D, d2, pi2, X_run, beta2, eps)
-        return float(mu1 - mu2), np.nan
+        return _result_no_var(float(mu1 - mu2))
         
     elif method == 'haipw-cov-one':
         w1 = _weights(D, d1, pi1, eps)
@@ -432,38 +599,55 @@ def _run_single_method(method, Y, D, X_run, d1, d2, pi_id_all, Kn, eps,
         beta1, beta2 = beta_hat[:p], beta_hat[p:]
         mu1 = _mu_from_beta(Y, D, d1, pi1, X_run, beta1, eps)
         mu2 = _mu_from_beta(Y, D, d2, pi2, X_run, beta2, eps)
-        return float(mu1 - mu2), np.nan
+        return _result_no_var(float(mu1 - mu2))
     
     # =========================================================================
-    # GAT-enhanced GRR
+    # GAT-enhanced GRR (with variance estimation)
     # =========================================================================
     elif method == 'gat-linear':
         if gat_embeddings is None:
             raise ValueError("GAT embeddings not available")
+        X1_use = gat_embeddings['X_GAT_leaf'][0]
+        X2_use = gat_embeddings['X_GAT_leaf'][1]
         res = grr_estimator(
             Y, D, X_run, d1, d2, pi_id_all, Kn,
             method='linear', eps=eps,
-            X1=gat_embeddings['X_GAT_leaf'][0],
-            X2=gat_embeddings['X_GAT_leaf'][1],
+            X1=X1_use, X2=X2_use,
             **{k: v for k, v in grr_kwargs.items() if k in ['alpha']}
         )
-        return res['tau_hat'], res['loss']
+        inputs = prepare_grr_inputs(Y, D, X_run, d1, d2, pi_id_all, X1=X1_use, X2=X2_use, eps=eps)
+        beta1, beta2 = res['model'].get_coefficients()
+        return _result_with_var(
+            res['tau_hat'], res['loss'],
+            inputs['hatY_d1'], inputs['hatY_d2'],
+            inputs['hat1_d1'], inputs['hat1_d2'],
+            X1_use, X2_use, beta1, beta2
+        )
         
     elif method == 'gat-lasso':
         if gat_embeddings is None:
             raise ValueError("GAT embeddings not available")
+        X1_use = gat_embeddings['X_GAT_leaf'][0]
+        X2_use = gat_embeddings['X_GAT_leaf'][1]
         res = grr_estimator(
             Y, D, X_run, d1, d2, pi_id_all, Kn,
             method='lasso', eps=eps,
-            X1=gat_embeddings['X_GAT_leaf'][0],
-            X2=gat_embeddings['X_GAT_leaf'][1],
+            X1=X1_use, X2=X2_use,
             **{k: v for k, v in grr_kwargs.items() if k in ['alpha']}
         )
-        return res['tau_hat'], res['loss']
+        inputs = prepare_grr_inputs(Y, D, X_run, d1, d2, pi_id_all, X1=X1_use, X2=X2_use, eps=eps)
+        beta1, beta2 = res['model'].get_coefficients()
+        return _result_with_var(
+            res['tau_hat'], res['loss'],
+            inputs['hatY_d1'], inputs['hatY_d2'],
+            inputs['hat1_d1'], inputs['hat1_d2'],
+            X1_use, X2_use, beta1, beta2
+        )
         
     elif method == 'gat-mlp':
         if gat_embeddings is None:
             raise ValueError("GAT embeddings not available")
+        # MLP methods don't have simple beta coefficients, skip variance estimation
         res = grr_estimator(
             Y, D, X_run, d1, d2, pi_id_all, Kn,
             method='mlp', eps=eps,
@@ -473,38 +657,99 @@ def _run_single_method(method, Y, D, X_run, d1, d2, pi_id_all, Kn, eps,
                if k in ['hidden_dims', 'n_epochs', 'lr', 'weight_decay', 
                        'dropout', 'early_stopping', 'patience']}
         )
-        return res['tau_hat'], res['loss']
+        return _result_no_var(res['tau_hat'], res['loss'])
+    
+    elif method == 'gat-no-harm':
+        # No-harm calibration: use predicted potential outcomes as covariates
+        if gat_model is None:
+            raise ValueError("GAT model not available")
+        Ypred_d1 = gat_model.predict(X_run, D=d1)
+        Ypred_d2 = gat_model.predict(X_run, D=d2)
+        X1_noharm = Ypred_d1.reshape(-1, 1)
+        X2_noharm = Ypred_d2.reshape(-1, 1)
+        res = grr_estimator(
+            Y, D, X_run, d1, d2, pi_id_all, Kn,
+            method='linear', eps=eps,
+            X1=X1_noharm, X2=X2_noharm,
+            **{k: v for k, v in grr_kwargs.items() if k in ['alpha']}
+        )
+        inputs = prepare_grr_inputs(Y, D, X_run, d1, d2, pi_id_all, X1=X1_noharm, X2=X2_noharm, eps=eps)
+        beta1, beta2 = res['model'].get_coefficients()
+        return _result_with_var(
+            res['tau_hat'], res['loss'],
+            inputs['hatY_d1'], inputs['hatY_d2'],
+            inputs['hat1_d1'], inputs['hat1_d2'],
+            X1_noharm, X2_noharm, beta1, beta2
+        )
+    
+    elif method == 'gat-pred':
+        # Doubly robust estimator using GAT predictions directly
+        if gat_model is None:
+            raise ValueError("GAT model not available")
+        Ypred_d1 = gat_model.predict(X_run, D=d1)
+        Ypred_d2 = gat_model.predict(X_run, D=d2)
+        X1_pred = Ypred_d1.reshape(-1, 1)
+        X2_pred = Ypred_d2.reshape(-1, 1)
+        beta1 = np.array([1.0])
+        beta2 = np.array([1.0])
+        mu1 = _mu_from_beta(Y, D, d1, pi1, X1_pred, beta1, eps)
+        mu2 = _mu_from_beta(Y, D, d2, pi2, X2_pred, beta2, eps)
+        # Can compute variance for this method
+        inputs = prepare_grr_inputs(Y, D, X_run, d1, d2, pi_id_all, X1=X1_pred, X2=X2_pred, eps=eps)
+        return _result_with_var(
+            float(mu1 - mu2), np.nan,
+            inputs['hatY_d1'], inputs['hatY_d2'],
+            inputs['hat1_d1'], inputs['hat1_d2'],
+            X1_pred, X2_pred, beta1, beta2
+        )
     
     # =========================================================================
-    # PNA-enhanced GRR
+    # PNA-enhanced GRR (with variance estimation)
     # =========================================================================
     elif method == 'pna-linear':
         if pna_embeddings is None:
             raise ValueError("PNA embeddings not available")
+        X1_use = pna_embeddings['X_PNA_leaf'][0]
+        X2_use = pna_embeddings['X_PNA_leaf'][1]
         res = grr_estimator(
             Y, D, X_run, d1, d2, pi_id_all, Kn,
             method='linear', eps=eps,
-            X1=pna_embeddings['X_PNA_leaf'][0],
-            X2=pna_embeddings['X_PNA_leaf'][1],
+            X1=X1_use, X2=X2_use,
             **{k: v for k, v in grr_kwargs.items() if k in ['alpha']}
         )
-        return res['tau_hat'], res['loss']
+        inputs = prepare_grr_inputs(Y, D, X_run, d1, d2, pi_id_all, X1=X1_use, X2=X2_use, eps=eps)
+        beta1, beta2 = res['model'].get_coefficients()
+        return _result_with_var(
+            res['tau_hat'], res['loss'],
+            inputs['hatY_d1'], inputs['hatY_d2'],
+            inputs['hat1_d1'], inputs['hat1_d2'],
+            X1_use, X2_use, beta1, beta2
+        )
         
     elif method == 'pna-lasso':
         if pna_embeddings is None:
             raise ValueError("PNA embeddings not available")
+        X1_use = pna_embeddings['X_PNA_leaf'][0]
+        X2_use = pna_embeddings['X_PNA_leaf'][1]
         res = grr_estimator(
             Y, D, X_run, d1, d2, pi_id_all, Kn,
             method='lasso', eps=eps,
-            X1=pna_embeddings['X_PNA_leaf'][0],
-            X2=pna_embeddings['X_PNA_leaf'][1],
+            X1=X1_use, X2=X2_use,
             **{k: v for k, v in grr_kwargs.items() if k in ['alpha']}
         )
-        return res['tau_hat'], res['loss']
+        inputs = prepare_grr_inputs(Y, D, X_run, d1, d2, pi_id_all, X1=X1_use, X2=X2_use, eps=eps)
+        beta1, beta2 = res['model'].get_coefficients()
+        return _result_with_var(
+            res['tau_hat'], res['loss'],
+            inputs['hatY_d1'], inputs['hatY_d2'],
+            inputs['hat1_d1'], inputs['hat1_d2'],
+            X1_use, X2_use, beta1, beta2
+        )
         
     elif method == 'pna-mlp':
         if pna_embeddings is None:
             raise ValueError("PNA embeddings not available")
+        # MLP methods don't have simple beta coefficients, skip variance estimation
         res = grr_estimator(
             Y, D, X_run, d1, d2, pi_id_all, Kn,
             method='mlp', eps=eps,
@@ -514,17 +759,93 @@ def _run_single_method(method, Y, D, X_run, d1, d2, pi_id_all, Kn, eps,
                if k in ['hidden_dims', 'n_epochs', 'lr', 'weight_decay', 
                        'dropout', 'early_stopping', 'patience']}
         )
-        return res['tau_hat'], res['loss']
+        return _result_no_var(res['tau_hat'], res['loss'])
+    
+    elif method == 'pna-no-harm':
+        # No-harm calibration: use predicted potential outcomes as covariates
+        if pna_model is None:
+            raise ValueError("PNA model not available")
+        Ypred_d1 = pna_model.predict(X_run, D=d1)
+        Ypred_d2 = pna_model.predict(X_run, D=d2)
+        X1_noharm = Ypred_d1.reshape(-1, 1)
+        X2_noharm = Ypred_d2.reshape(-1, 1)
+        res = grr_estimator(
+            Y, D, X_run, d1, d2, pi_id_all, Kn,
+            method='linear', eps=eps,
+            X1=X1_noharm, X2=X2_noharm,
+            **{k: v for k, v in grr_kwargs.items() if k in ['alpha']}
+        )
+        inputs = prepare_grr_inputs(Y, D, X_run, d1, d2, pi_id_all, X1=X1_noharm, X2=X2_noharm, eps=eps)
+        beta1, beta2 = res['model'].get_coefficients()
+        return _result_with_var(
+            res['tau_hat'], res['loss'],
+            inputs['hatY_d1'], inputs['hatY_d2'],
+            inputs['hat1_d1'], inputs['hat1_d2'],
+            X1_noharm, X2_noharm, beta1, beta2
+        )
+    
+    elif method == 'pna-pred':
+        # Doubly robust estimator using PNA predictions directly
+        if pna_model is None:
+            raise ValueError("PNA model not available")
+        Ypred_d1 = pna_model.predict(X_run, D=d1)
+        Ypred_d2 = pna_model.predict(X_run, D=d2)
+        X1_pred = Ypred_d1.reshape(-1, 1)
+        X2_pred = Ypred_d2.reshape(-1, 1)
+        beta1 = np.array([1.0])
+        beta2 = np.array([1.0])
+        mu1 = _mu_from_beta(Y, D, d1, pi1, X1_pred, beta1, eps)
+        mu2 = _mu_from_beta(Y, D, d2, pi2, X2_pred, beta2, eps)
+        # Can compute variance for this method
+        inputs = prepare_grr_inputs(Y, D, X_run, d1, d2, pi_id_all, X1=X1_pred, X2=X2_pred, eps=eps)
+        return _result_with_var(
+            float(mu1 - mu2), np.nan,
+            inputs['hatY_d1'], inputs['hatY_d2'],
+            inputs['hat1_d1'], inputs['hat1_d2'],
+            X1_pred, X2_pred, beta1, beta2
+        )
     
     # =========================================================================
-    # Standard GRR methods
+    # End-to-end PNA-GRR (trains PNA directly on GRR loss)
+    # =========================================================================
+    elif method == 'pna':
+        if A_adj is None:
+            raise ValueError("PNA method requires adjacency matrix A_adj")
+        res = grr_estimator(
+            Y, D, X_run, d1, d2, pi_id_all, Kn,
+            method='pna', eps=eps,
+            adjacency=A_adj,
+            **{k: v for k, v in grr_kwargs.items() 
+               if k in ['pna_hidden_dims', 'rep_dim', 'head_hidden_dims',
+                       'aggregators', 'scalers', 'dropout',
+                       'n_epochs', 'lr', 'weight_decay', 
+                       'early_stopping', 'patience', 'verbose']}
+        )
+        # End-to-end PNA doesn't have simple beta coefficients
+        return _result_no_var(res['tau_hat'], res['loss'])
+    
+    # =========================================================================
+    # Standard GRR methods (with variance estimation for linear methods)
     # =========================================================================
     else:
         res = grr_estimator(
             Y, D, X_run, d1, d2, pi_id_all, Kn,
             method=method, eps=eps, **grr_kwargs
         )
-        return res['tau_hat'], res['loss']
+        # Check if method has get_coefficients (linear methods do, MLP doesn't)
+        if hasattr(res['model'], 'get_coefficients'):
+            try:
+                inputs = prepare_grr_inputs(Y, D, X_run, d1, d2, pi_id_all, eps=eps)
+                beta1, beta2 = res['model'].get_coefficients()
+                return _result_with_var(
+                    res['tau_hat'], res['loss'],
+                    inputs['hatY_d1'], inputs['hatY_d2'],
+                    inputs['hat1_d1'], inputs['hat1_d2'],
+                    inputs['X1'], inputs['X2'], beta1, beta2
+                )
+            except Exception:
+                pass
+        return _result_no_var(res['tau_hat'], res['loss'])
 
 
 # =============================================================================
@@ -698,13 +1019,13 @@ def print_summary_table(out):
     Args:
         out: output dict from run_grr_simulation
     """
-    print("\n" + "="*85)
+    print("\n" + "="*110)
     print(f"Simulation Results (true_tau = {out['true_tau']:.4f})")
-    print("="*85)
+    print("="*110)
     
     # Header
-    print(f"{'Method':<18} {'Bias':>10} {'SD':>10} {'RMSE':>10} {'Mean Loss':>12} {'N Valid':>8}")
-    print("-"*85)
+    print(f"{'Method':<18} {'Bias':>10} {'SD':>10} {'RMSE':>10} {'Coverage':>10} {'Power':>10} {'Mean Loss':>12} {'N Valid':>8}")
+    print("-"*110)
     
     for method in out['methods']:
         s = out['summary'][method]
@@ -715,6 +1036,13 @@ def print_summary_table(out):
         else:
             bias_str = sd_str = rmse_str = "N/A"
         
+        # Coverage and power
+        if s.get('n_ci_valid', 0) > 0 and not np.isnan(s.get('coverage', np.nan)):
+            cov_str = f"{s['coverage']:.3f}"
+            pow_str = f"{s['power']:.3f}"
+        else:
+            cov_str = pow_str = "-"
+        
         # Mean loss
         if method not in PRIMITIVE_METHODS and s['n_valid'] > 0:
             losses = out['losses'][method]
@@ -723,9 +1051,9 @@ def print_summary_table(out):
         else:
             loss_str = "-"
         
-        print(f"{method:<18} {bias_str:>10} {sd_str:>10} {rmse_str:>10} {loss_str:>12} {s['n_valid']:>8}")
+        print(f"{method:<18} {bias_str:>10} {sd_str:>10} {rmse_str:>10} {cov_str:>10} {pow_str:>10} {loss_str:>12} {s['n_valid']:>8}")
     
-    print("="*85)
+    print("="*110)
     
     # Print R² summary
     if 'r2_summary' in out:
@@ -739,3 +1067,7 @@ def print_summary_table(out):
         if 'pna' in r2_sum:
             print(f"  PNA model:     R² = {r2_sum['pna']['mean']:.4f} ± {r2_sum['pna']['std']:.4f}")
         print("-"*55)
+    
+    # Print coverage/power note
+    print("\nNote: Coverage = proportion of 95% CIs containing true_tau")
+    print("      Power = proportion of 95% CIs not containing 0 (reject H0: tau=0)")

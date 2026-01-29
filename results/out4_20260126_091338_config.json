@@ -1,0 +1,183 @@
+{
+  "timestamp": "20260126_091338",
+  "true_tau": -0.3712560477528211,
+  "n": 2000,
+  "methods": [
+    "ht",
+    "hajek",
+    "haipw-truth",
+    "haipw-one",
+    "haipw-cov-truth",
+    "haipw-cov-one",
+    "linear",
+    "lasso",
+    "gat-linear",
+    "gat-lasso",
+    "gat-no-harm",
+    "gat-pred",
+    "pna-linear",
+    "pna-lasso",
+    "pna-no-harm",
+    "pna-pred"
+  ],
+  "summary": {
+    "ht": {
+      "bias": -0.029385033649701187,
+      "sd": 0.428739201451724,
+      "rmse": 0.4297450209880925,
+      "n_valid": 20,
+      "coverage": NaN,
+      "power": NaN,
+      "n_ci_valid": 0
+    },
+    "hajek": {
+      "bias": -0.05724283663705265,
+      "sd": 0.19246967514914556,
+      "rmse": 0.20080168873362075,
+      "n_valid": 20,
+      "coverage": NaN,
+      "power": NaN,
+      "n_ci_valid": 0
+    },
+    "haipw-truth": {
+      "bias": -0.03939154656208382,
+      "sd": 0.19666704103964328,
+      "rmse": 0.20057322595960198,
+      "n_valid": 20,
+      "coverage": NaN,
+      "power": NaN,
+      "n_ci_valid": 0
+    },
+    "haipw-one": {
+      "bias": -0.050670553142741825,
+      "sd": 0.1968776889330637,
+      "rmse": 0.2032937022030334,
+      "n_valid": 20,
+      "coverage": NaN,
+      "power": NaN,
+      "n_ci_valid": 0
+    },
+    "haipw-cov-truth": {
+      "bias": -0.06526697648355406,
+      "sd": 0.2034638469151181,
+      "rmse": 0.21367572445367633,
+      "n_valid": 20,
+      "coverage": NaN,
+      "power": NaN,
+      "n_ci_valid": 0
+    },
+    "haipw-cov-one": {
+      "bias": -0.06880516846233348,
+      "sd": 0.1899485850359638,
+      "rmse": 0.2020262759254223,
+      "n_valid": 20,
+      "coverage": NaN,
+      "power": NaN,
+      "n_ci_valid": 0
+    },
+    "linear": {
+      "bias": -0.04591138358165092,
+      "sd": 0.1814964483486693,
+      "rmse": 0.18721328987431066,
+      "n_valid": 20,
+      "coverage": 1.0,
+      "power": 0.3,
+      "n_ci_valid": 20
+    },
+    "lasso": {
+      "bias": -0.05344305247440545,
+      "sd": 0.18221043126747277,
+      "rmse": 0.18988628470866575,
+      "n_valid": 20,
+      "coverage": 0.95,
+      "power": 0.15,
+      "n_ci_valid": 20
+    },
+    "gat-linear": {
+      "bias": -0.06087302384465593,
+      "sd": 0.1879063592674898,
+      "rmse": 0.19752044168934768,
+      "n_valid": 20,
+      "coverage": 1.0,
+      "power": 0.35,
+      "n_ci_valid": 20
+    },
+    "gat-lasso": {
+      "bias": -0.02661999718302105,
+      "sd": 0.18013768067481453,
+      "rmse": 0.18209395445463175,
+      "n_valid": 20,
+      "coverage": 1.0,
+      "power": 0.1,
+      "n_ci_valid": 20
+    },
+    "gat-no-harm": {
+      "bias": -0.06146247902191082,
+      "sd": 0.186909047723771,
+      "rmse": 0.1967552501168031,
+      "n_valid": 20,
+      "coverage": 1.0,
+      "power": 0.45,
+      "n_ci_valid": 20
+    },
+    "gat-pred": {
+      "bias": -0.060006381388365115,
+      "sd": 0.1853592424445738,
+      "rmse": 0.19483021985039237,
+      "n_valid": 20,
+      "coverage": 0.95,
+      "power": 0.65,
+      "n_ci_valid": 20
+    },
+    "pna-linear": {
+      "bias": -0.017570660201754906,
+      "sd": 0.07467267475050444,
+      "rmse": 0.07671203591562512,
+      "n_valid": 20,
+      "coverage": 1.0,
+      "power": 0.6,
+      "n_ci_valid": 20
+    },
+    "pna-lasso": {
+      "bias": -0.0007478054445040905,
+      "sd": 0.07418860108864463,
+      "rmse": 0.07419236985346184,
+      "n_valid": 20,
+      "coverage": 1.0,
+      "power": 1.0,
+      "n_ci_valid": 20
+    },
+    "pna-no-harm": {
+      "bias": -0.01747205010616676,
+      "sd": 0.07392081395603238,
+      "rmse": 0.07595761496278536,
+      "n_valid": 20,
+      "coverage": 1.0,
+      "power": 0.75,
+      "n_ci_valid": 20
+    },
+    "pna-pred": {
+      "bias": -0.015968975242994454,
+      "sd": 0.07297464723417126,
+      "rmse": 0.07470145453244607,
+      "n_valid": 20,
+      "coverage": 1.0,
+      "power": 1.0,
+      "n_ci_valid": 20
+    }
+  },
+  "r2_summary": {
+    "linear": {
+      "mean": 0.14358410004147654,
+      "std": 0.0023756542270716853
+    },
+    "gat": {
+      "mean": 0.09252095090011753,
+      "std": 0.05857085214763771
+    },
+    "pna": {
+      "mean": 0.7927753262695025,
+      "std": 0.004958245926707588
+    }
+  }
+}

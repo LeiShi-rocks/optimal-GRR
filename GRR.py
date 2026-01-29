@@ -37,9 +37,11 @@ from abc import ABC, abstractmethod
 try:
     import torch
     import torch.nn as nn
+    import torch.nn.functional as F
     TORCH_AVAILABLE = True
 except ImportError:
     TORCH_AVAILABLE = False
+    F = None  # Placeholder when torch not available
 
 try:
     from sklearn.linear_model import Ridge, Lasso, ElasticNet, LinearRegression
@@ -185,6 +187,22 @@ class BaseGRR(ABC):
         f1_hat, f2_hat = self.predict(X1, X2)
         res = dHY - f1_hat * tilde1_d1 + f2_hat * tilde1_d2
         return float(res @ Kn @ res)
+
+    def get_coefficients(self):
+        """
+        Get the fitted coefficients (theta1, theta2).
+        
+        Returns:
+            theta1: coefficients for f1 (p1,)
+            theta2: coefficients for f2 (p2,)
+        
+        Raises:
+            AttributeError: if model doesn't have theta1_/theta2_ attributes
+        """
+        if hasattr(self, 'theta1_') and hasattr(self, 'theta2_'):
+            return self.theta1_, self.theta2_
+        raise AttributeError("Model does not have theta1_/theta2_ coefficients. "
+                           "This may be a non-linear model (MLP, PNA, etc.).")
 
 
 # =============================================================================
@@ -735,6 +753,299 @@ if TORCH_AVAILABLE:
 
 
 # =============================================================================
+# PNA-based GRR (End-to-End PNA for GRR Loss)
+# =============================================================================
+
+if TORCH_AVAILABLE:
+    
+    class PNAGRR_Head(nn.Module):
+        """Simple MLP head for f1 or f2 prediction in PNA-GRR."""
+        
+        def __init__(self, input_dim: int, hidden_dims: list = [32], dropout: float = 0.0):
+            super().__init__()
+            
+            layers = []
+            prev_dim = input_dim
+            
+            for h_dim in hidden_dims:
+                layers.append(nn.Linear(prev_dim, h_dim))
+                layers.append(nn.ReLU())
+                if dropout > 0:
+                    layers.append(nn.Dropout(dropout))
+                prev_dim = h_dim
+            
+            layers.append(nn.Linear(prev_dim, 1))
+            self.net = nn.Sequential(*layers)
+        
+        def forward(self, x):
+            return self.net(x).squeeze(-1)
+    
+    
+    class TorchPNAGRR(BaseGRR, nn.Module):
+        """
+        PNA-based GRR estimator that trains end-to-end on the GRR loss.
+        
+        Unlike PNA_embedding (which trains PNA on MSE for Y, then uses embeddings in GRR),
+        this class trains the PNA directly to minimize:
+            res' @ Kn @ res
+        where res = dHY - f1(X; A) * tilde1_d1 + f2(X; A) * tilde1_d2
+        
+        Architecture:
+            Input X (n x p) + Adjacency A (n x n)
+                        ↓
+            ┌──────────────────────┐
+            │   PNA Encoder        │  ← pna_hidden_dims, uses graph structure
+            │   (aggregates        │
+            │    neighborhood)     │
+            └──────────────────────┘
+                        ↓
+            Φ (n x rep_dim)  ← shared backbone representation
+                        ↓
+            ┌───────────┬───────────┐
+            │  Head 1   │  Head 2   │  ← head_hidden_dims
+            │  (MLP)    │  (MLP)    │
+            └───────────┴───────────┘
+                ↓             ↓
+            f1_hat        f2_hat    ← adjustment predictions
+        
+        The key difference from GAT:
+            - PNA preserves degree information via sum aggregator + degree scalers
+            - This is crucial when treatment effects depend on network degree
+        """
+        
+        def __init__(self, input_dim: int, adjacency: np.ndarray,
+                     pna_hidden_dims: list = [64, 32],
+                     rep_dim: int = 16,
+                     head_hidden_dims: list = [32],
+                     aggregators: list = ['mean', 'sum', 'max', 'std'],
+                     scalers: list = ['identity', 'amplification', 'attenuation'],
+                     dropout: float = 0.0,
+                     device=None):
+            """
+            Args:
+                input_dim: number of input features (p)
+                adjacency: adjacency matrix (n x n), numpy array
+                pna_hidden_dims: hidden dimensions for PNA encoder
+                rep_dim: dimension of PNA output representations
+                head_hidden_dims: hidden dimensions for f1, f2 heads
+                aggregators: PNA aggregation functions
+                scalers: PNA degree scalers
+                dropout: dropout rate
+                device: 'cuda', 'cpu', or None (auto-detect)
+            """
+            nn.Module.__init__(self)
+            
+            # Import PNA components
+            try:
+                from torch_geometric.nn import PNAConv
+                from torch_geometric.utils import dense_to_sparse, degree
+            except ImportError:
+                raise ImportError(
+                    "torch_geometric is required for PNA-GRR. "
+                    "Install with: pip install torch-geometric"
+                )
+            
+            # Auto-detect device
+            if device is None:
+                self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+            else:
+                self.device = torch.device(device)
+            
+            # Print device info once
+            if not hasattr(TorchPNAGRR, '_device_printed'):
+                print(f"[TorchPNAGRR] Using device: {self.device}")
+                if self.device.type == 'cuda':
+                    print(f"[TorchPNAGRR] GPU: {torch.cuda.get_device_name(0)}")
+                TorchPNAGRR._device_printed = True
+            
+            # Convert adjacency to edge_index (COO format)
+            A_tensor = torch.tensor(adjacency, dtype=torch.float32)
+            edge_index, _ = dense_to_sparse(A_tensor)
+            self.register_buffer('edge_index', edge_index)
+            
+            # Compute degree histogram for PNA normalization
+            num_nodes = adjacency.shape[0]
+            deg = degree(edge_index[1], num_nodes=num_nodes, dtype=torch.long)
+            # Create histogram: deg[i] = count of nodes with degree i
+            max_deg = int(deg.max().item()) + 1
+            deg_hist = torch.zeros(max_deg, dtype=torch.long)
+            for d in deg:
+                deg_hist[d] += 1
+            
+            self.aggregators = aggregators
+            self.scalers = scalers
+            
+            # Build PNA encoder
+            self.pna_layers = nn.ModuleList()
+            self.pna_norms = nn.ModuleList()
+            
+            prev_dim = input_dim
+            for h_dim in pna_hidden_dims:
+                self.pna_layers.append(
+                    PNAConv(
+                        in_channels=prev_dim,
+                        out_channels=h_dim,
+                        aggregators=aggregators,
+                        scalers=scalers,
+                        deg=deg_hist,
+                        edge_dim=None,
+                        towers=1,
+                        pre_layers=1,
+                        post_layers=1,
+                        divide_input=False
+                    )
+                )
+                self.pna_norms.append(nn.LayerNorm(h_dim))
+                prev_dim = h_dim
+            
+            # Final projection to rep_dim
+            self.output_proj = nn.Sequential(
+                nn.Linear(pna_hidden_dims[-1], rep_dim),
+                nn.LayerNorm(rep_dim)
+            )
+            
+            self.dropout = nn.Dropout(dropout)
+            self.rep_dim = rep_dim
+            
+            # Two heads for f1 and f2
+            self.f1_head = PNAGRR_Head(rep_dim, head_hidden_dims, dropout)
+            self.f2_head = PNAGRR_Head(rep_dim, head_hidden_dims, dropout)
+            
+            # Move to device
+            self.to(self.device)
+            
+            self._fitted = False
+        
+        def encode(self, X: torch.Tensor) -> torch.Tensor:
+            """Encode nodes using PNA."""
+            x = X
+            for layer, norm in zip(self.pna_layers, self.pna_norms):
+                x = layer(x, self.edge_index)
+                x = norm(x)
+                x = F.elu(x)
+                x = self.dropout(x)
+            
+            phi = self.output_proj(x)
+            return phi
+        
+        def forward(self, X):
+            """Forward pass returning (f1, f2) predictions."""
+            if isinstance(X, np.ndarray):
+                X = torch.tensor(X, dtype=torch.float32, device=self.device)
+            elif X.device != self.device:
+                X = X.to(self.device)
+            
+            # Encode with PNA
+            phi = self.encode(X)
+            
+            # Predict f1 and f2
+            f1 = self.f1_head(phi)
+            f2 = self.f2_head(phi)
+            
+            return f1, f2
+        
+        def compute_loss(self, X, tilde1_d1, tilde1_d2, dHY, Kn):
+            """Compute weighted L2 loss: res' @ Kn @ res"""
+            f1, f2 = self(X)
+            
+            # res = dHY - f1 * tilde1_d1 + f2 * tilde1_d2
+            res = dHY - f1 * tilde1_d1 + f2 * tilde1_d2
+            
+            # loss = res' @ Kn @ res
+            Kn_res = torch.mv(Kn, res)
+            loss = torch.dot(res, Kn_res)
+            
+            return loss
+        
+        def fit(self, X, tilde1_d1, tilde1_d2, dHY, Kn,
+                lr=0.001, n_epochs=500, weight_decay=1e-4,
+                early_stopping=True, patience=50, min_delta=1e-6,
+                verbose=False):
+            """
+            Fit PNA-GRR using gradient descent.
+            
+            Args:
+                X: node covariates (n x p), same for both d1 and d2
+                   (the graph structure differentiates the adjustment)
+                tilde1_d1, tilde1_d2: demeaned weights (n,)
+                dHY: target (n,)
+                Kn: weight matrix (n x n)
+                lr: learning rate
+                n_epochs: max epochs
+                weight_decay: L2 regularization
+                early_stopping: stop if loss plateaus
+                patience: epochs to wait before stopping
+                min_delta: minimum improvement threshold
+                verbose: print progress
+            
+            Returns:
+                self
+            """
+            # Convert to tensors
+            X_t = torch.tensor(X, dtype=torch.float32, device=self.device)
+            tilde1_d1_t = torch.tensor(tilde1_d1, dtype=torch.float32, device=self.device)
+            tilde1_d2_t = torch.tensor(tilde1_d2, dtype=torch.float32, device=self.device)
+            dHY_t = torch.tensor(dHY, dtype=torch.float32, device=self.device)
+            Kn_t = torch.tensor(Kn, dtype=torch.float32, device=self.device)
+            
+            optimizer = torch.optim.Adam(self.parameters(), lr=lr, weight_decay=weight_decay)
+            
+            best_loss = float('inf')
+            patience_counter = 0
+            
+            self.train()
+            for epoch in range(n_epochs):
+                optimizer.zero_grad()
+                loss = self.compute_loss(X_t, tilde1_d1_t, tilde1_d2_t, dHY_t, Kn_t)
+                loss.backward()
+                optimizer.step()
+                
+                loss_val = loss.item()
+                
+                if early_stopping:
+                    if loss_val < best_loss - min_delta:
+                        best_loss = loss_val
+                        patience_counter = 0
+                    else:
+                        patience_counter += 1
+                    
+                    if patience_counter >= patience:
+                        if verbose:
+                            print(f"[TorchPNAGRR] Early stopping at epoch {epoch+1}")
+                        break
+                
+                if verbose and (epoch + 1) % 100 == 0:
+                    print(f"[TorchPNAGRR] Epoch {epoch+1}/{n_epochs}, Loss: {loss_val:.6f}")
+            
+            self._fitted = True
+            return self
+        
+        def predict(self, X1, X2):
+            """
+            Predict f1 and f2.
+            
+            Note: For PNA-GRR, we use the same X for both since the graph
+            structure already provides the differentiation. X1 is used.
+            """
+            if not self._fitted:
+                raise ValueError("Model not fitted. Call fit() first.")
+            
+            self.eval()
+            with torch.no_grad():
+                if isinstance(X1, np.ndarray):
+                    X_t = torch.tensor(X1, dtype=torch.float32, device=self.device)
+                else:
+                    X_t = X1.to(self.device)
+                
+                f1, f2 = self(X_t)
+                
+                f1 = f1.cpu().numpy()
+                f2 = f2.cpu().numpy()
+            
+            return f1, f2
+
+
+# =============================================================================
 # Main GRR Interface
 # =============================================================================
 
@@ -757,7 +1068,10 @@ def fit_grr(X1, X2, tilde1_d1, tilde1_d2, dHY, Kn,
             - 'rf': Random Forest via SklearnGRR
             - 'gbm': Gradient Boosting via SklearnGRR
             - 'mlp': Neural network via TorchGRR
+            - 'pna': PNA-based GRR via TorchPNAGRR (requires 'adjacency' in kwargs)
         **kwargs: method-specific arguments
+            For 'pna': adjacency (required), pna_hidden_dims, rep_dim, head_hidden_dims,
+                       aggregators, scalers, dropout, lr, n_epochs, etc.
     
     Returns:
         Fitted GRR model
@@ -811,6 +1125,25 @@ def fit_grr(X1, X2, tilde1_d1, tilde1_d2, dHY, Kn,
             activation=kwargs.get('activation', 'relu'),
             dropout=kwargs.get('dropout', 0.0)
         )
+    elif method == 'pna':
+        if not TORCH_AVAILABLE:
+            raise ImportError("PyTorch required for PNA")
+        
+        # PNA requires adjacency matrix
+        adjacency = kwargs.get('adjacency')
+        if adjacency is None:
+            raise ValueError("PNA method requires 'adjacency' matrix in kwargs")
+        
+        model = TorchPNAGRR(
+            input_dim=X1.shape[1],
+            adjacency=adjacency,
+            pna_hidden_dims=kwargs.get('pna_hidden_dims', [64, 32]),
+            rep_dim=kwargs.get('rep_dim', 16),
+            head_hidden_dims=kwargs.get('head_hidden_dims', [32]),
+            aggregators=kwargs.get('aggregators', ['mean', 'sum', 'max', 'std']),
+            scalers=kwargs.get('scalers', ['identity', 'amplification', 'attenuation']),
+            dropout=kwargs.get('dropout', 0.0)
+        )
     else:
         raise ValueError(f"Unknown method: {method}")
     
@@ -820,6 +1153,15 @@ def fit_grr(X1, X2, tilde1_d1, tilde1_d2, dHY, Kn,
                  lr=kwargs.get('lr', 0.001),
                  n_epochs=kwargs.get('n_epochs', 1000),
                  weight_decay=kwargs.get('weight_decay', 0.0),
+                 early_stopping=kwargs.get('early_stopping', True),
+                 patience=kwargs.get('patience', 50),
+                 verbose=kwargs.get('verbose', False))
+    elif method == 'pna':
+        # PNA uses X1 as the node features (graph structure provides differentiation)
+        model.fit(X1, tilde1_d1, tilde1_d2, dHY, Kn,
+                 lr=kwargs.get('lr', 0.001),
+                 n_epochs=kwargs.get('n_epochs', 500),
+                 weight_decay=kwargs.get('weight_decay', 1e-4),
                  early_stopping=kwargs.get('early_stopping', True),
                  patience=kwargs.get('patience', 50),
                  verbose=kwargs.get('verbose', False))
