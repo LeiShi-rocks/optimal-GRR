@@ -1,2 +1,20 @@
 # Paper draft directory
 GAUGER_Interference/
+
+# Virtual environments
+venv/
+terra-env/
+long-cate/
+
+# Ephemeral outputs backed up to S3
+results/
+datasets/
+data/
+runs/
+
+# Local workspace snapshots
+old-version/
+submitted-version/
+
+# AWS credentials
+.env

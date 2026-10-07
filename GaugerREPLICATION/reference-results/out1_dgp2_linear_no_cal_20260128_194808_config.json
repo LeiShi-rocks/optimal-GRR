@@ -1,0 +1,21 @@
+{
+  "timestamp": "20260128_194808",
+  "true_tau": -0.5939274545753773,
+  "n": 2000,
+  "B": 100,
+  "n_jobs": 3,
+  "elapsed_seconds": 18.848159,
+  "methods": [
+    "linear-no-cal"
+  ],
+  "summary": {
+    "linear-no-cal": {
+      "bias": -0.01651662929167841,
+      "sd": 0.2018258713362827,
+      "rmse": 0.20250057131723964,
+      "n_valid": 100,
+      "coverage": 0.99,
+      "power": 0.82
+    }
+  }
+}

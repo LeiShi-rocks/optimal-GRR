@@ -1,0 +1,30 @@
+{
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.latex.recipe.default": "first",
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "/home/colligo/texlive/2026/bin/x86_64-linux/latexmk",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-pdf",
+        "-outdir=%OUTDIR%",
+        "%DOC%"
+      ],
+      "env": {
+        "PATH": "/home/colligo/texlive/2026/bin/x86_64-linux:/home/colligo/.local/bin:/home/colligo/bin:/opt/venv/bin:/usr/local/bin:/usr/bin:/bin"
+      }
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "TeX Live latexmk (SyncTeX)",
+      "tools": ["latexmk"]
+    }
+  ],
+  "latex-workshop.latex.outDir": "%DIR%",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.synctex.afterBuild.enabled": true
+}
