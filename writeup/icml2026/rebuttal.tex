@@ -1,0 +1,899 @@
+
+\documentclass{article}
+
+% Recommended, but optional, packages for figures and better typesetting:
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{booktabs} % for professional tables
+\usepackage{natbib}
+% hyperref makes hyperlinks in the resulting PDF.
+% If your build breaks (sometimes temporarily if a hyperlink spans a page)
+% please comment out the following usepackage line and replace
+% \usepackage{icml2026} with \usepackage[nohyperref]{icml2026} above.
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+% Attempt to make hyperref and algorithmic work together better:
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+
+% Use the following line for the initial blind version submitted for review:
+% For preprint, use
+% \usepackage[preprint]{icml2026}
+
+% If accepted, instead use the following line for the camera-ready submission:
+% \usepackage[accepted]{icml2026}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{bbm}
+
+\usepackage[left = 1in, right = 1in]{geometry}
+
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs=true}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% THEOREMS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+% Todonotes is useful during development; simply uncomment the next line
+%    and comment out the line below the next line to turn off comments
+%\usepackage[disable,textsize=tiny]{todonotes}
+\usepackage[textsize=tiny]{todonotes}
+
+% Define math operators
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\vect}{vec}
+\DeclareMathOperator{\Rank}{Rank}
+
+% Define shortcut
+% Define math operators
+% \DeclareMathOperator*{\argmax}{argmax}
+% \DeclareMathOperator*{\argmin}{argmin}
+% \DeclareMathOperator{\tr}{tr}
+% \DeclareMathOperator{\vect}{vec}
+% \DeclareMathOperator{\Rank}{Rank}
+
+% Define shortcut
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\B}{B}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\bbm}[1]{\mathbbm{#1}}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\sq}[1]{\textquoteleft #1 \textquoteright}
+\newcommand{\dq}[1]{\textquotedblleft #1 \textquotedblright}
+\newcommand{\red}{\color{red}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\def\T{{\textsc{t}}}
+
+\newcommand{\pr}{\textup{pr}}
+\newcommand{\cov}{\textup{cov}}
+\newcommand{\var}{\textup{var}}
+\newcommand{\avar}{\textup{avar}}
+\newcommand{\acov}{\textup{acov}}
+\newcommand{\kprime}{k^{\prime}}
+\newcommand{\adj}{\textup{adj}}
+\newcommand{\cat}{\textup{cat}}
+
+\newcommand{\bOneZ}{\boldsymbol{1}_{m}}
+\newcommand{\bZeroZ}{\boldsymbol{0}_{m}}
+\newcommand{\bOneA}{\boldsymbol{1}_{n}}
+\newcommand{\bZeroA}{\boldsymbol{0}_{n}}
+\newcommand{\Yt}[1]{Y_{#1}(\boldsymbol{1}_{m})}
+\newcommand{\Yc}[1]{Y_{#1}(\boldsymbol{0}_{m})}
+
+\newcommand{\bY}{\boldsymbol{Y}}
+\newcommand{\bz}{\boldsymbol{z}}
+\newcommand{\bZ}{\boldsymbol{Z}}
+\newcommand{\ba}{\boldsymbol{a}}
+\newcommand{\bA}{\boldsymbol{A}}
+\newcommand{\bG}{\boldsymbol{G}}
+\newcommand{\bW}{\boldsymbol{W}}
+\newcommand{\bV}{\boldsymbol{V}}
+\newcommand{\bX}{\boldsymbol{X}}
+\newcommand{\bH}{\boldsymbol{H}}
+\newcommand{\bF}{\boldsymbol{F}}
+\newcommand{\bK}{\boldsymbol{K}}
+\newcommand{\bI}{\boldsymbol{I}}
+\newcommand{\bM}{\boldsymbol{M}}
+\newcommand{\Davg}{D_{\textup{avg}}}
+\newcommand{\bOmega}{\boldsymbol{\Omega}}
+\newcommand{\bLambda}{\boldsymbol{\Lambda}}
+\newcommand{\bSigma}{\boldsymbol{\Sigma}}
+\newcommand{\bPhi}{\boldsymbol{\Phi}}
+\newcommand{\bDelta}{\boldsymbol{\Delta}}
+\newcommand{\bPi}{\boldsymbol{\Pi}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cF}{\mathscr{F}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cD}{\mathcal{D}}
+
+\newcommand{\allt}{\left(\prod_{k\in \mathcal{G}_{+i}} Z_k\right)}
+\newcommand{\alltj}{\left(\prod_{k\in \mathcal{G}_{+j}} Z_k\right)}
+\newcommand{\allc}{\left\{\prod_{k\in \mathcal{G}_{+i}} (1-Z_k)\right\}}
+\newcommand{\allcj}{\left\{\prod_{k\in \mathcal{G}_{+j}} (1-Z_k)\right\}}
+
+\newcommand{\bepsilon}{\boldsymbol{\varepsilon}}
+\newcommand{\indicator}{\mathbbm{1}}
+\newcommand{\plim}{\textup{plim}}
+
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cGijcap}{\cG_{+i} \cap \cG_{+j}}
+\newcommand{\cGijcup}{\cG_{+i} \cup \cG_{+j}}
+
+\newcommand{\Smax}{{\max_{1\leq i\leq n}\G_{+i}}}
+\newcommand{\Dmax}{{\max_{1\leq k\leq m}\G_{k+}}}
+\newcommand{\Smaxsupp}{{\bar{D}_\textup{O}}}
+\newcommand{\Dmaxsupp}{{\bar{D}_\textup{I}}}
+
+\newcommand{\sumi}{\sum_{i=1}^n}
+\newcommand{\sumj}{\sum_{j=1}^n}
+\newcommand{\sumk}{\sum_{k=1}^m}
+\newcommand{\sumij}{\sum_{i=1}^{n} \sum_{j=1}^{n}}
+\newcommand{\sumrs}{\sum_{r=1}^{n} \sum_{s=1}^{n}}
+\newcommand{\sumjneqi}{\sum_{j\neq i}}
+\newcommand{\sumu}{\sum_{u=1}^n}
+\newcommand{\sumv}{\sum_{v=1}^n}
+\newcommand{\maxi}{\max_{1\leq i\leq n}}
+
+\newcommand{\hort}{\textup{ht}}
+\newcommand{\haj}{\textup{haj}}
+\newcommand{\bOne}{\boldsymbol{1}}
+\newcommand{\bZero}{\boldsymbol{0}}
+\newcommand{\bXaug}{\bX^{\oplus}}
+\newcommand{\bHaug}{\bH^{\oplus}}
+\newcommand{\bFaug}{\bF^{(d_1\oplus d_2)}}
+\newcommand{\indep}{{~\perp\!\!\!\perp~}}
+\newcommand{\nonindep}{{~\not\!\perp\!\!\!\perp~}}
+% The \icmltitle you define below is probably too long as a header.
+% Therefore, a short form for the running title is supplied here:
+
+
+\begin{document}
+\section{Reviewer 1}
+Major Weaknesses:
+
+\noindent\textbf{Comment:}
+
+W1. The paper often relies on very general and unspecific statements in the introduction and overview of the method. This makes spotting the motivation of the paper concretely early on difficult. For instance, the writing around “building a good estimator,” and “balancing predictive fit with a variance reduction target” sounds too broad.
+
+\noindent \textbf{Response:} Thank you for this helpful comment. We agree that parts of the introduction and method overview were written at too high a level, which made the concrete motivation harder to identify early in the paper.
+
+Our actual goal is more specific than “building a good estimator” in a generic sense. The main problem we study is that, under interference, a prediction model that fits outcomes well does not necessarily lead to the largest variance reduction for a design-based estimator. In other words, predictive accuracy and design-based efficiency are not aligned objectives in general. This mismatch is the central motivation for our method. GAUGER is designed to address exactly this issue: it first learns useful outcome-predictive structure, and then calibrates that structure toward the quantity that matters for asymptotic variance reduction in the final estimator.
+
+We agree that this point should be stated much more concretely and much earlier. In the revision, we will rewrite the introduction and overview to make the motivation more explicit from the beginning, emphasizing that the paper is not proposing a generic “better estimator,” but rather a design-based covariate adjustment strategy that targets efficiency under interference, where naive prediction-oriented adjustment can be suboptimal. We will also replace broad phrases such as “building a good estimator” and “balancing predictive fit with a variance reduction target” with more precise language tied directly to the variance characterization developed later in the paper.
+
+
+\vskip 2em 
+
+\noindent\textbf{Comment:} 
+
+W2. The paper frames the mismatch between prediction accuracy and estimator variance as a key and surprising finding. However, two crucial preludes are missing: why this mismatch is surprising, and why the reader should care about this mismatch in the first place. The motivation for the entire framework relies on this, but the paper does not clearly articulate the practical consequences of the mismatch before proposing the solution.
+ 
+\noindent\textbf{Response:} Thank you for this very helpful comment. We agree that the paper currently moves too quickly from stating the mismatch to proposing the solution, without first explaining clearly why the mismatch is nontrivial and why it matters in practice.
+
+The reason this mismatch can appear surprising is that, in many applied workflows, one naturally expects a better outcome model to produce a better adjusted estimator. This intuition is especially tempting in our setting because the adjustment is built from predicted potential outcomes, so it is easy to think that improving predictive accuracy should automatically improve the final estimator. Our theoretical analysis shows that this is not generally true under interference: the asymptotic variance depends not only on residual size, but also on how those residuals interact with the design-induced weighting structure. As a result, two adjustment schemes with similar predictive quality can behave differently from the perspective of design-based efficiency, and a prediction-optimal adjustment need not be variance-optimal.
+
+We also agree that the practical consequence should be made much more explicit. The reason the reader should care is that, if one ignores this mismatch and uses a purely prediction-oriented adjustment, one may leave substantial efficiency gains on the table, and in some cases may even obtain an adjustment that is less favorable for variance reduction than a calibrated alternative. Since the entire purpose of outcome adjustment in the design-based framework is to improve precision rather than to impose a data-generating model, this distinction is practically important: better predictive fit alone is not the right operational target if the scientific goal is a more precise causal estimator. This is exactly why GAUGER adds a second calibration step after prediction, to align the adjustment with the variance target of the final estimator.
+
+In the revision, we will strengthen the introduction and method overview to make these two points explicit before presenting the framework: first, why the mismatch is not obvious a priori, and second, why it matters for practitioners who want more efficient design-based inference under interference. We will also add a clearer transition explaining that the paper’s main contribution is not merely to improve prediction, but to resolve this prediction-efficiency misalignment in a principled way.
+
+\vskip 2em 
+
+
+\noindent\textbf{Comment:}
+
+W3. The empirical validation is somewhat limited. The empirical section is mostly composed of internal comparisons within the proposed pipeline, rather than broader comparisons against other interference estimators from prior literature. Moreover, there is only a single empirical example on real-world data. Using semi-synthetic data, e.g., using empirical network data with simulated treatments and spillover effects, could substantially strengthen the empirical case.
+
+\noindent\textbf{Response:} Thank you for the question. We added a new semi-synthetic study with real networks and unit covariates, motivated by the real student friendship network from the ICPSR 37070 dataset
+\citep{aronow2017estimating}, consisting of $n = 2{,}983$ nodes with an average
+degree of approximately 2.5 (sparse). To construct exposure mapping, each student's fraction of treated neighbors is bucketed into $k = 3$ levels,
+$d \in \{0, 1, 2\}$ (low / medium / high neighborhood treatment). Individual
+treatment is assigned i.i.d.\ $\mathrm{Bernoulli}(1/3)$. 
+Potential outcomes are generated as
+\begin{align}
+  Y_i(d) \;=\;
+    &\;\alpha
+     + \beta_1 \cdot \tfrac{d}{2}
+     + \beta_2 \cdot \bigl(\tfrac{d}{2}\bigr)^2 \notag \\
+    &+ \gamma_1 \cdot w_i
+     + \gamma_2 \cdot \tilde{r}_i
+     + \gamma_3 \cdot \tilde{r}_i^2 \notag \\
+    &+ \delta \cdot \tfrac{d}{2} \cdot w_i \notag \\
+    &+ \gamma_4 \cdot \bar{w}_i^{(1)}
+     + \gamma_5 \cdot \bar{r}_i^{(1)}
+     + \delta_2 \cdot \tfrac{d}{2} \cdot \bar{w}_i^{(1)} \notag \\
+    &+ \gamma_6 \cdot \bar{w}_i^{(2)}
+     + \gamma_7 \cdot \overline{\mathrm{gpa}}_i^{(2)}
+     + \delta_3 \cdot \tfrac{d}{2} \cdot \bar{w}_i^{(2)}
+     + \varepsilon_i, \label{eq:dgp}
+\end{align}
+where $\varepsilon_i \sim \mathcal{N}(0, \sigma^2)$,
+$w_i$ is student $i$'s baseline wrist measurement,
+$\tilde{r}_i$ is normalized degree,
+$\bar{w}_i^{(1)}$ and $\bar{r}_i^{(1)}$ are 1-hop neighbor averages of
+wristbase and degree, and $\bar{w}_i^{(2)}$ and
+$\overline{\mathrm{gpa}}_i^{(2)}$ are 2-hop neighbor averages of wristbase and
+GPA. Parameters are set to
+$\alpha=0.30$, $\beta_1=0.40$, $\beta_2=-0.10$,
+$\gamma_1=0.10$, $\gamma_2=0.03$, $\gamma_3=0.05$,
+$\delta=0.15$, $\gamma_4=0.30$, $\gamma_5=0.10$, $\delta_2=0.20$,
+$\gamma_6=0.50$, $\gamma_7=0.20$, $\delta_3=0.30$, $\sigma=0.20$. 
+The true causal quantity of interest is the peer effect
+\begin{equation}
+  \tau^* \;=\; \mathbb{E}[Y_i(d{=}2)] - \mathbb{E}[Y_i(d{=}0)]
+         \;\approx\; 0.4623,
+\end{equation}
+i.e., the average outcome difference between full versus zero neighborhood
+exposure, holding own treatment fixed at zero.
+
+% -----------------------------------------------------------------------
+\textbf{GER Methods: Full Results} Table~\ref{tab:grr_full} reports bias, standard deviation (SD), and root mean
+squared error (RMSE) for all GER estimators over $B = 25$ randomizations.
+
+\begin{table}[ht]
+  \centering
+  \caption{GER estimator performance ($B = 25$, $\tau^* = 0.4623$).
+           All entries shown as point estimate $\pm$ 95\% Monte Carlo CI\@.}
+  \label{tab:grr_full}
+  \begin{tabular}{lccc}
+    \toprule
+    Method
+      & Bias (95\% CI)
+      & SD (95\% CI)
+      & RMSE (95\% CI) \\
+    \midrule
+    HT
+      & $-0.032 \pm 0.036$
+      & $0.091 \pm 0.026$
+      & $0.096 \pm 0.027$ \\
+    H\'{a}jek
+      & $-0.012 \pm 0.021$
+      & $0.052 \pm 0.015$
+      & $0.054 \pm 0.015$ \\
+    Linear GER
+      & $+0.006 \pm 0.012$
+      & $0.030 \pm 0.008$
+      & $0.030 \pm 0.009$ \\
+    \midrule
+    GAT-linear GER
+      & $+0.001 \pm 0.005$
+      & $0.013 \pm 0.004$
+      & $0.013 \pm 0.004$ \\
+    GAT-pred GER
+      & $+0.000 \pm 0.005$
+      & $0.012 \pm 0.003$
+      & $0.012 \pm 0.003$ \\
+    GAT-raw GER
+      & $-0.003 \pm 0.005$
+      & $0.013 \pm 0.004$
+      & $0.014 \pm 0.004$ \\
+    PNA-linear GER
+      & $-0.002 \pm 0.005$
+      & $0.012 \pm 0.003$
+      & $0.012 \pm 0.003$ \\
+    PNA-pred GER
+      & $-0.002 \pm 0.004$
+      & $0.011 \pm 0.003$
+      & $0.011 \pm 0.003$ \\
+    PNA-raw GER
+      & $-0.004 \pm 0.004$
+      & $0.010 \pm 0.003$
+      & $0.011 \pm 0.003$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+GAT- and PNA-enhanced GER variants achieve approximately $2.5\times$ RMSE
+reduction relative to the linear GER baseline, confirming the gains that is achieved across the settings. 
+
+% -----------------------------------------------------------------------
+\textbf{External GNN Baselines. } We compare against three GNN-based causal inference methods from the literature,
+each adapted to our exposure-mapping framework.
+
+\paragraph{NetEstimator \citep{jiang2022estimating}.}
+An adversarial representation-learning approach. A GCN encoder is trained
+jointly with two discriminators---one for own treatment $T_i$ and one for
+neighbor treatment fraction $Z_i$---to remove treatment confounding from
+the learned representation. The outcome predictor is fit on the balanced
+embeddings. The estimand is the peer effect
+$\mathbb{E}[Y_i(T{=}0, Z{=}1)] - \mathbb{E}[Y_i(T{=}0, Z{=}0)]$.
+
+\paragraph{GCN-Deconfounder \citep{guo2020learning}.}
+A GCN model that balances representations between treated and control groups
+via Wasserstein distance regularization. Designed for individual treatment
+effect estimation; we report the ATE
+$\mathbb{E}[Y_i(T{=}1)] - \mathbb{E}[Y_i(T{=}0)]$.
+This method does not model peer or spillover effects directly.
+
+\paragraph{RRNet \citep{cai2023generalization}.}
+Motivated by a generalization bound for causal effect estimation on networks.
+Trains a one-layer GCN encoder jointly with two sparse propensity networks:
+$g_{\mathrm{dvib}}$ for $p(G_i \mid \mathbf{X}, \mathcal{G})$ via a
+VCNet-style density grid, and $t_{\mathrm{dvib}}$ for
+$p(T_i \mid \mathbf{X}, \mathcal{G})$ via binary cross-entropy.
+A weighted outcome network is then fit with Wasserstein IPM regularization,
+with weights softmax-normalized for stability. The estimand is the peer effect
+$\mathbb{E}[Y_i(T{=}0, G{=}1)] - \mathbb{E}[Y_i(T{=}0, G{=}0)]$,
+where $G_i \in [0,1]$ is the continuous fraction of treated neighbors.
+
+% -----------------------------------------------------------------------
+
+
+Table~\ref{tab:comparison} reports results over $B = 200$ randomizations.
+
+\begin{table}[ht]
+  \centering
+  \caption{Performance comparison across methods ($B = 200$, $\tau^* = 0.4623$).
+           All entries shown as point estimate $\pm$ 95\% Monte Carlo CI\@.}
+  \label{tab:comparison}
+  \begin{tabular}{lccc}
+    \toprule
+    Method
+      & Bias (95\% CI)
+      & SD (95\% CI)
+      & RMSE (95\% CI) \\
+    \midrule
+    Linear GER
+      & $-0.009 \pm 0.004$
+      & $0.031 \pm 0.003$
+      & $0.033 \pm 0.003$ \\
+    GAT-linear GER
+      & $+0.001 \pm 0.002$
+      & $0.014 \pm 0.001$
+      & $0.014 \pm 0.001$ \\
+    PNA-linear GER
+      & $+0.003 \pm 0.002$
+      & $0.012 \pm 0.001$
+      & $0.012 \pm 0.001$ \\
+    \midrule
+    NetEstimator \citep{jiang2022estimating}
+      & $+0.044 \pm 0.004$
+      & $0.031 \pm 0.003$
+      & $0.053 \pm 0.004$ \\
+    GCN-Deconf \citep{guo2020learning}
+      & $-0.197 \pm 0.002$
+      & $0.018 \pm 0.002$
+      & $0.198 \pm 0.002$ \\
+    RRNet \citep{cai2023generalization}
+      & $+0.022 \pm 0.006$
+      & $0.042 \pm 0.004$
+      & $0.047 \pm 0.005$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+GNN-enhanced GER (GAT-linear, PNA-linear) achieves the lowest RMSE at
+$0.012$--$0.014$, roughly $3.5$--$4\times$ better than the best external
+baseline (RRNet, RMSE$\,{=}\,0.047$). GCN-Deconf exhibits severe negative
+bias ($-0.197$) because its ATE estimand does not capture the spillover effect induced by peer treatments.
+NetEstimator and RRNet are competitive with each other. The problem with these methods is that they did not build estimators with propensity score weighting which makes them highly dependent on 
+the outcome model correctness and often encounter bias.  Linear GER is
+essentially unbiased but shows approximately $2.5\times$ higher variance than
+its GNN-augmented counterparts, confirming the value of stronger embedding models. 
+\vskip 2em 
+
+\noindent\textbf{Comment:}
+
+W4. Some parts of the methodology remain unclear. The “model-agnostic” point appears to be tied to Fact F1 (please correct me if I’m wrong), but this is not explained clearly enough in the text. Similarly, the Stage-3 IPM term is under-specified in the main paper with a confusing notation: the notation suggests a single conditional distribution 
+, while IPM is a distributional distance. The authors should clarify these points.
+
+\noindent\textbf{Response:}
+
+\noindent\textbf{Response:} Thank you very much for this helpful comment. We agree that these two points are not explained clearly enough in the current draft.
+
+For the first point, yes, the “model-agnostic” statement is indeed tied to Fact (F1), and we will make this connection much more explicit in the revision. What we mean is the following: for the AIPW estimator studied in Theorem 3.1, unbiasedness holds for any choice of adjustment features and coefficients, so the validity of the estimator does not rely on correct specification of the outcome model. In this sense, the framework is “model-agnostic” at the level of design-based validity. At the same time, this does \emph{not} mean the choice of model is irrelevant: Fact (F2) and Fact (F3) show that the model still matters for efficiency, since different features and coefficients can lead to very different residual structure and therefore different asymptotic variance. We agree that the current text does not separate these two roles sharply enough, and we will revise the exposition to distinguish more clearly between \emph{validity} (guaranteed by design, as emphasized by Fact (F1)) and \emph{efficiency} (which depends on the chosen adjustment and motivates GER). 
+
+For the second point, we also agree that the Stage-3 IPM notation is currently imprecise and may be misleading. As written, the notation $(\mathrm{IPM}(\widehat P(H\mid D)))$ incorrectly suggests that IPM is being applied to a single conditional distribution, whereas IPM is a distance between \emph{two} distributions. Our intention was to encourage balance between the representation distributions corresponding to different target exposure levels. Therefore, the more precise notation should be something like
+\[
+\mathrm{IPM}\bigl(\widehat P(H \mid D=d_1),, \widehat P(H \mid D=d_2)\bigr),
+\]
+or, more generally, the relevant pairwise version across target exposure groups. We appreciate the reviewer catching this, and we will correct both the notation and the surrounding explanation in the main text so that it is clear that Stage 3 is enforcing balance across exposure-specific representation distributions, not evaluating a functional of a single conditional law.
+
+% More broadly, we will revise this part of the paper to make the logic of the framework easier to follow: Stage 1 learns predictive structure, Stage 2 uses GER to calibrate toward variance reduction, and the representation-balancing component is intended to encourage features that are simultaneously informative and comparable across exposure groups. This should make both the “model-agnostic” claim and the role of the IPM term much more transparent.
+
+\vskip 2em 
+
+\noindent Minor Weaknesses:
+
+\noindent\textbf{Comment:}
+N1. Related to W1, “efficiency” is not defined clearly enough early on (the paper appears to mean statistical efficiency via variance reduction, but this should be more clearly stated).
+
+\noindent\textbf{Response:} Thank you for the point. We do mean variance reduction by saying statistical efficiency and will state this more clearly in revision. 
+
+\vskip 2em 
+
+
+\noindent\textbf{Comment:}
+N2. The assumptions are clearly stated but their practical implications and restrictiveness are not sufficiently discussed.
+
+\noindent\textbf{Response:} Our goal in Assumption 4.2 is to encode a standard sparse-interference asymptotic regime under which both the GER coefficient estimator and the final calibrated AIPW estimator are well behaved. More specifically, Assumptions 4.2(a) and 4.2(b) are positivity-type conditions ensuring that the relevant exposure events and joint exposure events are not too rare; Assumption 4.2(c) controls the scale of the outcomes and features; Assumption 4.2(d) restricts the effective dependency degree induced by the interference structure; and Assumption 4.2(e) is a stability condition ensuring that the weighted second-order quantities do not degenerate after normalization. The paper already notes that these conditions are most natural in settings with logarithmically bounded network degree and exposure mappings depending on finite-order neighborhoods, but we agree that this practical interpretation is currently too compressed. We will revise this part to discuss more directly what these assumptions permit and exclude.  
+
+\vskip 2em 
+
+\noindent\textbf{Comment:}
+N3. Remark 4.1 promises to showcase the computational advantage of GER in the appendix without even briefly stating what that advantage is. This should be stated in the main text at least briefly.
+
+\noindent\textbf{Response:}
+Thank you for pointing this out. We agree that Remark 4.1 currently refers the reader to the appendix too abruptly. We did this to give space to other contexts within the page limit. 
+We agree that this should be stated briefly in the main text. In the revision, we will move the key message of Remark 4.1 into the narrative right after GER is introduced, and then leave the appendix for the more detailed complexity discussion.  
+
+\vskip 2em
+
+\noindent\textbf{Comment:}
+
+
+N4. The synthetic data generating process is deferred largely to the appendix, while the main text gives only a high-level description.
+
+\noindent\textbf{Response:} Thank you for pointing this out. We again did this to give space to other contexts within the page limit. 
+In the revision, we will move the detailed data generating process to Section 6.1. Also, we will incorporate the additional semi-synthetic experiment results following your advice.  
+
+
+\vskip 2em 
+
+\noindent\textbf{Comment:}
+
+
+N5. Remark 3.2 would be better placed as part of the main narrative rather than as a remark. Why is it stated as a remark?
+
+\noindent\textbf{Response:} Thank you for this suggestion. 
+
+Our original reason for placing it as a remark was to keep the main line of argument in Section 3 focused on the variance formula in Theorem 3.1 and the three resulting facts (F1)--(F3), while using Remark 3.2 to connect our discussion to related “no-harm” and misalignment phenomena already known in the no-interference literature. But we agree that Remark 3.2 is conceptually important and could be integrated more directly into the main narrative. In the revision, we will incorporate Remark 3.2 into the main narrative immediately after the discussion of Facts (F1)--(F3), so that the reader sees this contextual point as part of the central motivation rather than as a side note.  
+
+\paragraph{Key Questions For Authors:}
+
+Q1. Regarding W2: can the authors articulate more precisely why the mismatch should be surprising to the reader, and what practical consequences it has if left unaddressed? A concrete example would help.
+
+\noindent\textbf{Response:} Thank you for this helpful follow-up. We agree that this point should be stated more concretely.
+
+The mismatch can seem surprising because a natural intuition is that a better outcome model should automatically yield a more efficient adjusted estimator. In our setting, this intuition is especially tempting since the AIPW estimator is unbiased for any choice of adjustment, so one may think the only remaining goal is to improve prediction. However, Theorem 3.1 shows that the variance is not determined by prediction error alone; it depends on how the residuals interact with the design-induced weighting structure. As a result, the adjustment that is best for prediction need not be the one that is best for variance reduction. 
+
+Why does this matter in practice? Because if one uses a purely prediction-oriented adjustment, one may still leave substantial efficiency gains on the table. A simple way to see this is to imagine two adjustments with similar prediction accuracy: one reduces average residual error overall, while the other reduces residuals more effectively in the directions that receive larger design weights. The second can have a smaller estimator variance even if its raw prediction loss is not better. This is exactly why we introduce GER: to recalibrate the adjustment toward the variance target of the final design-based estimator, rather than relying on predictive fit alone. In Table 5 of the paper, we actually evaluated another experiment, and the direct prediction-based methods (marked with \texttt{pred} in the superscript) achieve a significantly less variance reduction compared with calibrated approaches. In the revision, we will add more detailed clarification to these points.
+
+
+\vskip 2em 
+
+Q2. The claim of model-agnosticity (line 216) appears to follow from Fact F1. Could the authors make this connection more explicit?
+
+\noindent\textbf{Response:} See Weakness 4. 
+\vskip 2em 
+
+Q3. The IPM term is confusing to me. Since IPM is a distance between distributions, what exactly is the object denoted by 
+ in the loss? Is the intent to compare representation distributions across exposure groups, and if so, could the authors define this term more explicitly (perhaps with a better notation) in the main text?
+
+\noindent\textbf{Response:} See Weakness 4. 
+
+\vskip 2em 
+
+Limitations:
+The authors mention extensions to continuous exposure mappings and experimental design as future work, but the paper would benefit from a clearer discussion of the limitations. In particular, the practical implications of the assumptions and the scope of the empirical validation deserve more explicit treatment.
+
+\noindent\textbf{Response:} Thank you for this helpful comment. We agree that the paper should discuss its limitations more explicitly.
+
+On the theory side, our assumptions are most appropriate for sparse-interference settings with sufficient overlap and controlled dependence, and are less suited to dense networks or highly global spillovers. On the empirical side, the current experiments provide an initial validation, but do not cover the full range of interference structures, exposure mappings, and model classes that may arise in practice.
+
+We will revise the paper to state these limitations more clearly and position the paper as a first step toward calibrated model-assisted adjustment under interference, rather than a complete solution.
+
+\vskip 2em 
+   
+
+\newpage 
+
+\section{Reviewer 2}
+
+Weaknesses
+
+\noindent\textbf{Comment:}
+The authors cite numerous recent state-of-the-art works applying GNNs to causal inference in their related work, but exclude these methods in their experiments. Without comparison with state-of-the-art methods, readers cannot determine whether GAUGER truly achieves the lowest statistical error in practical applications.
+
+\noindent\textbf{Response:}
+Thank you for the question. We added a comparison with some of the cited works. We added a new semi-synthetic study with real networks and unit covariates, motivated by the real student friendship network from the ICPSR 37070 dataset
+\citep{aronow2017estimating}, consisting of $n = 2{,}983$ nodes with an average
+degree of approximately 2.5 (sparse). To construct exposure mapping, each student's fraction of treated neighbors is bucketed into $k = 3$ levels,
+$d \in \{0, 1, 2\}$ (low / medium / high neighborhood treatment). Individual
+treatment is assigned i.i.d.\ $\mathrm{Bernoulli}(1/3)$. 
+Potential outcomes are generated as
+\begin{align}
+  Y_i(d) \;=\;
+    &\;\alpha
+     + \beta_1 \cdot \tfrac{d}{2}
+     + \beta_2 \cdot \bigl(\tfrac{d}{2}\bigr)^2 \notag \\
+    &+ \gamma_1 \cdot w_i
+     + \gamma_2 \cdot \tilde{r}_i
+     + \gamma_3 \cdot \tilde{r}_i^2 \notag \\
+    &+ \delta \cdot \tfrac{d}{2} \cdot w_i \notag \\
+    &+ \gamma_4 \cdot \bar{w}_i^{(1)}
+     + \gamma_5 \cdot \bar{r}_i^{(1)}
+     + \delta_2 \cdot \tfrac{d}{2} \cdot \bar{w}_i^{(1)} \notag \\
+    &+ \gamma_6 \cdot \bar{w}_i^{(2)}
+     + \gamma_7 \cdot \overline{\mathrm{gpa}}_i^{(2)}
+     + \delta_3 \cdot \tfrac{d}{2} \cdot \bar{w}_i^{(2)}
+     + \varepsilon_i, \label{eq:dgp}
+\end{align}
+where $\varepsilon_i \sim \mathcal{N}(0, \sigma^2)$,
+$w_i$ is student $i$'s baseline wrist measurement,
+$\tilde{r}_i$ is normalized degree,
+$\bar{w}_i^{(1)}$ and $\bar{r}_i^{(1)}$ are 1-hop neighbor averages of
+wristbase and degree, and $\bar{w}_i^{(2)}$ and
+$\overline{\mathrm{gpa}}_i^{(2)}$ are 2-hop neighbor averages of wristbase and
+GPA. Parameters are set to
+$\alpha=0.30$, $\beta_1=0.40$, $\beta_2=-0.10$,
+$\gamma_1=0.10$, $\gamma_2=0.03$, $\gamma_3=0.05$,
+$\delta=0.15$, $\gamma_4=0.30$, $\gamma_5=0.10$, $\delta_2=0.20$,
+$\gamma_6=0.50$, $\gamma_7=0.20$, $\delta_3=0.30$, $\sigma=0.20$. 
+The true causal quantity of interest is the peer effect
+\begin{equation}
+  \tau^* \;=\; \mathbb{E}[Y_i(d{=}2)] - \mathbb{E}[Y_i(d{=}0)]
+         \;\approx\; 0.4623,
+\end{equation}
+i.e., the average outcome difference between full versus zero neighborhood
+exposure, holding own treatment fixed at zero.
+
+
+GAT- and PNA-enhanced GER variants achieve approximately $2.5\times$ RMSE
+reduction relative to the linear GER baseline, confirming the gains that is achieved across the settings. 
+
+% -----------------------------------------------------------------------
+\textbf{External GNN Baselines. } We compare against three GNN-based causal inference methods from the literature,
+each adapted to our exposure-mapping framework.
+
+\paragraph{NetEstimator \citep{jiang2022estimating}.}
+An adversarial representation-learning approach. A GCN encoder is trained
+jointly with two discriminators---one for own treatment $T_i$ and one for
+neighbor treatment fraction $Z_i$---to remove treatment confounding from
+the learned representation. The outcome predictor is fit on the balanced
+embeddings. The estimand is the peer effect
+$\mathbb{E}[Y_i(T{=}0, Z{=}1)] - \mathbb{E}[Y_i(T{=}0, Z{=}0)]$.
+
+\paragraph{GCN-Deconfounder \citep{guo2020learning}.}
+A GCN model that balances representations between treated and control groups
+via Wasserstein distance regularization. Designed for individual treatment
+effect estimation; we report the ATE
+$\mathbb{E}[Y_i(T{=}1)] - \mathbb{E}[Y_i(T{=}0)]$.
+This method does not model peer or spillover effects directly.
+
+\paragraph{RRNet \citep{cai2023generalization}.}
+Motivated by a generalization bound for causal effect estimation on networks.
+Trains a one-layer GCN encoder jointly with two sparse propensity networks:
+$g_{\mathrm{dvib}}$ for $p(G_i \mid \mathbf{X}, \mathcal{G})$ via a
+VCNet-style density grid, and $t_{\mathrm{dvib}}$ for
+$p(T_i \mid \mathbf{X}, \mathcal{G})$ via binary cross-entropy.
+A weighted outcome network is then fit with Wasserstein IPM regularization,
+with weights softmax-normalized for stability. The estimand is the peer effect
+$\mathbb{E}[Y_i(T{=}0, G{=}1)] - \mathbb{E}[Y_i(T{=}0, G{=}0)]$,
+where $G_i \in [0,1]$ is the continuous fraction of treated neighbors.
+
+% -----------------------------------------------------------------------
+
+
+Table~\ref{tab:comparison} reports results over $B = 200$ randomizations.
+ 
+
+GNN-enhanced GER (GAT-linear, PNA-linear) achieves the lowest RMSE at
+$0.012$--$0.014$, roughly $3.5$--$4\times$ better than the best external
+baseline (RRNet, RMSE$\,{=}\,0.047$). GCN-Deconf exhibits severe negative
+bias ($-0.197$) because its ATE estimand does not capture the spillover effect induced by peer treatments.
+NetEstimator and RRNet are competitive with each other. The problem with these methods is that they did not build estimators with propensity score weighting which makes them highly dependent on 
+the outcome model correctness and often encounter bias.  Linear GER is
+essentially unbiased but shows approximately $2.5\times$ higher variance than
+its GNN-augmented counterparts, confirming the value of stronger embedding models. 
+\vskip 2em 
+
+\noindent\textbf{Comment:}
+
+The problem addressed in this paper has limited innovation. Existing causal effect estimation methods in network interference scenarios, besides minimizing prediction error, also minimize constraint terms to ensure the effectiveness of causal effect estimation. The authors' consideration of only the shortcomings of backbone networks like GCNs in this scenario is unreasonable. This is because backbone networks like GCNs are designed to serve downstream tasks, i.e., learning representations. In downstream tasks, constraints are typically imposed on these backbone networks to conform to the characteristics of the downstream task.
+
+
+\noindent\textbf{Response:} We thank the reviewer for this important comment. We agree that many existing methods combine prediction objectives with additional constraint terms. Our point is not that adding constraints is new, but that the \emph{target} of our calibration is different.
+
+In much of the existing literature, such constraints are introduced mainly to aid identification, for example by balancing representations across treatment groups in observational settings. In our setting, identification is already guaranteed by the known experimental design. The challenge we address is instead \emph{efficiency}: under interference, better predictive fit does not in general imply smaller design-based variance.
+
+This is the role of GER. GER is not a generic regularizer on the backbone model, but a post-hoc calibration step derived to target the variance of the final estimator. More specifically, it recalibrates the output of a predictive model toward the design-based efficiency objective, which standard backbone training does not directly optimize. For this reason, the GNN in our paper is only one possible implementation for learning useful features; it is not the core contribution itself.
+
+We will revise the paper to make this distinction clearer and to avoid giving the impression that our contribution is a criticism of GNN backbones themselves. Our contribution is instead a design-based calibration framework that can be applied on top of strong predictive representations, including but not limited to GNNs.
+
+
+
+\section{Reviewer 3}
+
+
+\noindent\textbf{Comment:} - to existing generalized regression or transformation models.
+
+\noindent\textbf\noindent\textbf{Response:} Thank you for this comment. We agree that our method is related in spirit to generalized regression and transformation-based adjustment methods. Our goal is not to deny these connections, but to extend this line of thinking to the interference setting, where the design-based variance has a substantially different structure. In particular, our contribution is to characterize the mismatch between prediction and efficiency under interference, and to develop GER as a calibration step that targets the corresponding variance objective. We will revise the paper to position this connection more explicitly and clarify the novel element relative to classical generalized regression ideas.
+
+\vskip 2em 
+
+\noindent\textbf{Comment:} Stronger non linear baseline is not compared here.
+
+\noindent\textbf{Response:}  Thank you. We agree that stronger nonlinear baselines would further strengthen the empirical study. Our current experiments already compare raw GNN-based adjustment against its GER-calibrated versions, which is meant to isolate the value of the calibration step itself. That said, we agree that including additional nonlinear baselines would improve the comparison, and we will expand the discussion accordingly and add stronger baselines where feasible in the revision.
+
+\vskip 2em 
+
+\noindent\textbf{Comment:} Theoretical analysis can be further analyzed.
+
+
+
+\noindent\textbf{Response:} Thank you for this suggestion. We agree that the theoretical analysis can be strengthened further. In the current paper, our main goal is to establish design-based validity, characterize the variance target, and prove consistency and asymptotic normality for the GER-calibrated estimator. We agree that there is room for deeper analysis, for example on broader interference regimes, weaker conditions, and sharper finite-sample or efficiency comparisons. We will clarify this as a limitation and discuss these directions more explicitly in the revision.
+
+\vskip 2em 
+
+
+
+
+\section{Reviewer 4}
+\noindent\textbf{Comment:}
+
+W1. While the authors acknowledge that most GNN-based causal inference work takes a "model-based or observational perspective" (Section 1.3), they do not engage deeply with this literature. Papers like Guo et al. (2020), Jiang \& Sun (2022), and others are merely listed without discussing how their approaches differ conceptually or why a design-based perspective is superior.
+
+\noindent\textbf{Response:} Thank you for this helpful comment. We agree that the related work discussion is currently too brief.
+
+Our intent was to distinguish our paper from prior GNN-based causal inference work by perspective rather than by model class. Many existing approaches are developed for observational settings, where treatment assignment is not controlled by the analyst and identification relies heavily on modeling assumptions, often through outcome modeling, propensity modeling, or representation balancing. As a result, these approaches can be sensitive to model misspecification and may be subject to bias if those assumptions fail. By contrast, our paper works in a design-based setting, where the treatment assignment mechanism is known from the experiment itself. In this setting, design information can be used to obtain an unbiased estimation through propensity score reweighting without relying on the correct specification of the outcome model. The main challenge is therefore different: not identification, but improving efficiency through variance reduction. 
+
+To illustrate this bias issue, we added a semisynthetic experiment that compares those general GNN estimators with our design-based estimators. We use real networks and unit covariates to generate data, motivated by the real student friendship network from the ICPSR 37070 dataset
+\citep{aronow2017estimating}, consisting of $n = 2{,}983$ nodes with an average
+degree of approximately 2.5 (sparse). To construct exposure mapping, each student's fraction of treated neighbors is bucketed into $k = 3$ levels,
+$d \in \{0, 1, 2\}$ (low / medium / high neighborhood treatment). Individual
+treatment is assigned i.i.d.\ $\mathrm{Bernoulli}(1/3)$. 
+Potential outcomes are generated as
+\begin{align}
+  Y_i(d) \;=\;
+    &\;\alpha
+     + \beta_1 \cdot \tfrac{d}{2}
+     + \beta_2 \cdot \bigl(\tfrac{d}{2}\bigr)^2 \notag \\
+    &+ \gamma_1 \cdot w_i
+     + \gamma_2 \cdot \tilde{r}_i
+     + \gamma_3 \cdot \tilde{r}_i^2 \notag \\
+    &+ \delta \cdot \tfrac{d}{2} \cdot w_i \notag \\
+    &+ \gamma_4 \cdot \bar{w}_i^{(1)}
+     + \gamma_5 \cdot \bar{r}_i^{(1)}
+     + \delta_2 \cdot \tfrac{d}{2} \cdot \bar{w}_i^{(1)} \notag \\
+    &+ \gamma_6 \cdot \bar{w}_i^{(2)}
+     + \gamma_7 \cdot \overline{\mathrm{gpa}}_i^{(2)}
+     + \delta_3 \cdot \tfrac{d}{2} \cdot \bar{w}_i^{(2)}
+     + \varepsilon_i, \label{eq:dgp}
+\end{align}
+where $\varepsilon_i \sim \mathcal{N}(0, \sigma^2)$,
+$w_i$ is student $i$'s baseline wrist measurement,
+$\tilde{r}_i$ is normalized degree,
+$\bar{w}_i^{(1)}$ and $\bar{r}_i^{(1)}$ are 1-hop neighbor averages of
+wristbase and degree, and $\bar{w}_i^{(2)}$ and
+$\overline{\mathrm{gpa}}_i^{(2)}$ are 2-hop neighbor averages of wristbase and
+GPA. 
+
+The true causal quantity of interest is the peer effect
+\begin{equation}
+  \tau^* \;=\; \mathbb{E}[Y_i(d{=}2)] - \mathbb{E}[Y_i(d{=}0)]
+         \;\approx\; 0.4623,
+\end{equation}
+i.e., the average outcome difference between full versus zero neighborhood
+exposure, holding own treatment fixed at zero.
+
+
+We compare against three GNN-based causal inference methods from the literature,
+each adapted to our exposure-mapping framework: (i) NetEstimator \citep{jiang2022estimating}. (ii) GCN-Deconfounder \citep{guo2020learning}.  (iii) RRNet \citep{cai2023generalization}. 
+
+Table~\ref{tab:comparison} reports results over $B = 200$ randomizations. GNN-enhanced GER (GAT-linear, PNA-linear) achieves the lowest RMSE at
+$0.012$--$0.014$, roughly $3.5$--$4\times$ better than the best external
+baseline (RRNet, RMSE$\,{=}\,0.047$). We can see that GCN-Deconf exhibits severe negative
+bias ($-0.197$) because its ATE estimand does not capture the spillover effect induced by peer treatments.
+NetEstimator and RRNet are competitive with each other but also have large bias compared with our design-based estimators. The problem with these methods is that they did not build estimators with propensity score weighting, which makes them highly dependent on 
+the outcome model's correctness and often results in bias.  
+
+
+We agree, however, that this conceptual distinction is not explained clearly enough in the current draft. We will revise Section 1.3 to engage this literature more directly, including a clearer discussion of how these observational/model-based approaches differ from ours and why a design-based perspective is especially appropriate in randomized experiments under interference.  
+
+\vskip 2em 
+
+\noindent\textbf{Comment:}
+W2. The synthetic data generation, while including some realistic elements like neighbor spillovers, is not particularly complex. The network is randomly generated rather than reflecting real social structures, treatment assignment is simple Bernoulli randomization, and the spillover effects are linear in neighbor averages. More challenging scenarios are not explored. This limits the strength of the empirical claims about the method's generalizability.
+
+\noindent\textbf{Response:} Thank you for this helpful comment. We agree that the original synthetic study is stylized, and we will tone down the generalizability claims accordingly.
+
+At the same time, as we have mentioned above, we have now added a semisynthetic experiment that directly addresses the concerns you raise. Unlike the original simulation, this study uses a \emph{real} student friendship network with observed covariates, so the graph reflects an actual social structure rather than a randomly generated one. The outcome model is also more complex: it includes nonlinear exposure effects, interactions, and both 1-hop and 2-hop neighborhood summaries, rather than only a simple linear average-neighbor spillover term.
+
+In this more realistic setting, our GAT-linear GER and PNA-linear GER estimators still perform best, with RMSE (0.014) and (0.012), compared with (0.033) for linear GER and (0.047)–(0.198) for external GNN baselines such as RRNet, NetEstimator, and GCN-Deconf.
+
+We also note that while Bernoulli randomization is simple, it is not artificial: it is a standard gold-standard design in randomized experiments, and it is also the type of assignment used in our real-data study in Section 6.2.
+
+In the revision, we will present the empirical section more carefully as an initial but strengthened validation, rather than a comprehensive demonstration across all interference settings.
+
+
+\subsection{Key Questions For Authors:}
+\noindent\textbf{Comment:} The paper focuses on discrete exposure mappings. For continuous, the proposed calibration step using the dependency graph $\Delta$ may not directly apply. What modifications would be needed to extend GAUGER to continuous exposures, and do you have preliminary thoughts on how the theoretical guarantees would change?
+
+\noindent\textbf{Response:} Thank you for this important question. We agree that our current framework is developed for discrete exposure mappings, and extending it to continuous exposures would require nontrivial changes.
+
+At a high level, the main modification would be to replace the discrete exposure-specific calibration with a smoother, function-based version. Instead of calibrating separately across finitely many exposure levels, one would likely need to model the adjustment as a function of the continuous exposure, for example through basis expansions, sieves, or kernel smoothing. Correspondingly, the GER step would need to be reformulated from a finite-dimensional coefficient calibration into a functional or growing-dimensional calibration problem.
+
+The dependency graph would still play a role in controlling dependence induced by interference, but the technical analysis would become more involved because the target would no longer be indexed by a finite set of exposure categories. In particular, the asymptotic theory would likely require stronger smoothness and complexity control conditions, together with uniform convergence arguments over the exposure domain, rather than the fixed-dimensional arguments used here. We view this as an important direction for future work, but do not want to overclaim beyond the discrete setting studied in the current paper.
+
+\vskip 2em 
+
+\noindent\textbf{Comment:} The related work section lists several GNN-based causal inference papers, but does not provide a detailed comparison. Could you clarify how GAUGER differs from these approaches beyond the design-based versus model-based distinction? For example, would GAUGER outperform these methods in a head-to-head comparison on a common benchmark dataset?
+
+\noindent\textbf{Response:} Thank you for this helpful comment. We agree that the related work discussion should go beyond the broad design-based versus model-based distinction.
+
+More specifically, many existing GNN-based causal inference methods are trained end-to-end to optimize prediction, balance, or counterfactual reconstruction objectives. By contrast, GAUGER is built around a different target: design-based efficiency of a randomized estimator under interference. This leads to two concrete differences. First, our estimator remains unbiased by construction under the experimental design, regardless of whether the predictive model is correctly specified. Second, the calibration step in GAUGER is explicitly derived from the asymptotic variance of the final estimator, rather than from a generic prediction or balancing loss. In this sense, our method is not simply another GNN architecture, but a post-hoc calibration framework that can be applied on top of strong learned representations.
+
+Regarding head-to-head comparison, we agree that this is an important empirical question. We do include comparisons with existing GNN-based baselines, and we have further added semisynthetic experiments on a real student friendship network with observed covariates. In that setting, our GER-calibrated GNN estimators still outperform the competing baselines, which provides additional evidence beyond the stylized synthetic study. That said, we would be cautious about claiming that GAUGER will uniformly outperform all prior methods on every benchmark, since its main advantage is in randomized interference settings where design-based unbiasedness is available and efficiency becomes the key target. We will revise the related work and empirical discussion to make these distinctions clearer.
+\section{Rebuttal}
+\subsection{Reviewer1 (5026 characters  with space)}
+ We thank the reviewer for the insightful comments on motivation and theory. 
+\vspace{0.5em}
+\noindent\textbf{W1, W2, Q1, Q2: Motivation \& Theory.}
+We agree the motivation was too abstract. We clarify the core mismatch: under interference,  predictive accuracy does not align with design-based statistical efficiency (i.e., achieving the largest variance reduction). 
+
+\textit{Why Surprising?} Practitioners naturally expect a better outcome model to yield a better adjusted estimator. This intuition is tempting because AIPW is unbiased for \emph{any} adjustment (Fact F1), suggesting one should simply optimize prediction MSE for variance reduction. However, Thm 3.1 shows asymptotic variance depends on \emph{design-weighted} residuals ($\Lambda$), not just residual size. A model minimizing unweighted MSE may fail on high-leverage units, increasing variance.
+
+\textit{Why this matters in practice:} Ignoring this mismatch means potentially leaving substantial efficiency gains on the table. A prediction-optimal adjustment is not necessarily variance-optimal. As a \textit{concrete example}, consider two adjustment models with similar overall prediction accuracy. One reduces average residual error across all units, while the other is slightly less accurate overall but excels at reducing residuals for units that receive larger design weights. The second model will yield a more efficient final estimator, even if its raw prediction loss is not superior. This is precisely why GAUGER introduces a calibration step: to align the adjustment with the true variance target, rather than relying on predictive fit alone.
+\textit{Concrete Example:} Imagine two adjustments with similar prediction accuracy. One reduces average residual error overall; the other reduces residuals more effectively in directions receiving larger design weights. The second yields smaller estimator variance despite similar raw loss. This is why GER calibrates adjustments toward the variance target, not just predictive fit. 
+
+\textit{Evidence:} Our experiments confirm this. As shown below (and in detail in our response to Review2), prediction-only methods (e.g., GAT-pred) consistently show higher variance than their GER-calibrated counterparts (GAT-linear), empirically validating the practical cost of this misalignment.
+
+\textit{Revision:} We will rewrite Intro to state this mismatch early, distinguishing \emph{validity} (model-agnostic, Fact F1) from \emph{efficiency} (adjustment-dependent, Fact F2/F3). Remark 3.2 will be integrated into the main narrative. "Efficiency" is defined as variance reduction.
+
+\vspace{0.5em}
+\noindent\textbf{W4, Q2, Q3: Methodology \& IPM.}
+\textit{Model-Agnostic:} We will clarify that the "model-agnostic" claim refers to the design-based validity of the final estimator (Fact F1), which holds for any adjustment, while acknowledging that the choice of adjustment model is critical for efficiency (Facts F2/F3). We will also correct the IPM notation to clarify it measures the distance between representation distributions \emph{across} exposure groups, e.g. measures distance between representation distributions \emph{across} exposure groups, e.g., $\mathrm{IPM}(\widehat P(H \mid D=d_1), \widehat P(H \mid D=d_2))$. Revision will correct notation and explain Stage 3 enforces balance across exposure-specific representations by using this penalty term.
+
+\vspace{0.5em}
+\noindent\textbf{W3: Empirical Validation.}
+To isolate the value of GER calibration, we compare raw GNN adjustments vs. GER-calibrated ones on ICPSR network ($n=2983$).
+\begin{center}\small
+\begin{tabular}{lccc}
+\toprule
+Method & Bias & SD & RMSE \\
+\midrule
+Linear GER & $+0.006$ & $0.030$ & $0.030$ \\
+GAT-raw GER & $-0.003$ & $0.013$ & $0.014$ \\
+\textbf{GAT-linear GER} & $+0.001$ & $0.013$ & $\mathbf{0.013}$ \\
+\textbf{PNA-linear GER} & $-0.002$ & $0.012$ & $\mathbf{0.012}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+GER calibration reduces variance by $\approx 2.5\times$ vs. Linear GER. See \textbf{Reviewer 2 response} for full comparison against external SOTA baselines (NetEstimator, RRNet, etc.), where our method achieves $3.5\times$ better RMSE than the best baseline.
+
+\vspace{0.5em}
+\noindent\textbf{N1--N5 \& Limitations.}
+Efficiency (N1): We will clarify that "efficiency" refers to statistical efficiency (variance reduction).
+Assumptions (N2): We will expand the discussion on Assumption 4.2, explaining that it defines a standard sparse-interference regime (e.g., ensuring non-rare events, bounded outcomes, and limited dependency) and clarifying its practical implications.
+Clarity (N3-N5): We will move the discussion of GER's computational advantage (N3), the DGP details (N4), and the content of Remark 3.2 (N5) into the main narrative for better readability.
+Limitations: We will add a dedicated section acknowledging that our theory is best suited for sparse-interference settings and our empirical validation, while strengthened, is not exhaustive. We will position the paper as a foundational step.
+\subsection{Reviewer 2 (5805 characters with space)}
+ We thank the reviewer for emphasizing the need for SOTA comparisons. We provide the full empirical study here.
+
+\vspace{0.5em}
+\noindent\textbf{W1: Missing Baselines \& Empirical Setup.}
+Thank you for the question. We added a comparison with some of the cited works. We added a new semi-synthetic study with real networks and unit covariates, motivated by the real student friendship network from the ICPSR 37070 dataset
+\citep{aronow2017estimating}, consisting of $n = 2{,}983$ nodes with an average
+degree of approximately 2.5 (sparse). To construct exposure mapping, each student's fraction of treated neighbors is bucketed into $k = 3$ levels,
+$d \in \{0, 1, 2\}$ (low / medium / high neighborhood treatment). Individual
+treatment is assigned i.i.d.\ $\mathrm{Bernoulli}(1/3)$. 
+Potential outcomes are generated as
+\begin{align}
+  Y_i(d) \;=\;
+    &\;\alpha
+     + \beta_1 \cdot \tfrac{d}{2}
+     + \beta_2 \cdot \bigl(\tfrac{d}{2}\bigr)^2 \notag \\
+    &+ \gamma_1 \cdot w_i
+     + \gamma_2 \cdot \tilde{r}_i
+     + \gamma_3 \cdot \tilde{r}_i^2 \notag \\
+    &+ \delta \cdot \tfrac{d}{2} \cdot w_i \notag \\
+    &+ \gamma_4 \cdot \bar{w}_i^{(1)}
+     + \gamma_5 \cdot \bar{r}_i^{(1)}
+     + \delta_2 \cdot \tfrac{d}{2} \cdot \bar{w}_i^{(1)} \notag \\
+    &+ \gamma_6 \cdot \bar{w}_i^{(2)}
+     + \gamma_7 \cdot \overline{\mathrm{gpa}}_i^{(2)}
+     + \delta_3 \cdot \tfrac{d}{2} \cdot \bar{w}_i^{(2)}
+     + \varepsilon_i, \label{eq:dgp}
+\end{align}
+where $\varepsilon_i \sim \mathcal{N}(0, \sigma^2)$,
+$w_i$ is student $i$'s baseline wrist measurement,
+$\tilde{r}_i$ is normalized degree,
+$\bar{w}_i^{(1)}$ and $\bar{r}_i^{(1)}$ are 1-hop neighbor averages of
+wristbase and degree, and $\bar{w}_i^{(2)}$ and
+$\overline{\mathrm{gpa}}_i^{(2)}$ are 2-hop neighbor averages of wristbase and
+GPA. Parameters are set to
+$\alpha=0.30$, $\beta_1=0.40$, $\beta_2=-0.10$,
+$\gamma_1=0.10$, $\gamma_2=0.03$, $\gamma_3=0.05$,
+$\delta=0.15$, $\gamma_4=0.30$, $\gamma_5=0.10$, $\delta_2=0.20$,
+$\gamma_6=0.50$, $\gamma_7=0.20$, $\delta_3=0.30$, $\sigma=0.20$. 
+The true causal quantity of interest is the peer effect
+\begin{equation}
+  \tau^* \;=\; \mathbb{E}[Y_i(d{=}2)] - \mathbb{E}[Y_i(d{=}0)]
+         \;\approx\; 0.4623,
+\end{equation}
+i.e., the average outcome difference between full versus zero neighborhood
+exposure, holding own treatment fixed at zero.
+
+
+GAT- and PNA-enhanced GER variants achieve approximately $2.5\times$ RMSE
+reduction relative to the linear GER baseline, confirming the gains that is achieved across the settings. 
+
+% -----------------------------------------------------------------------
+\textbf{External GNN Baselines.} We compare against three methods adapted to our framework: \paragraph{NetEstimator \citep{jiang2022estimating}.} Adversarial representation learning with discriminators for own and neighbor treatment to remove confounding. Estimand: peer effect. \paragraph{GCN-Deconfounder \citep{guo2020learning}.} GCN balancing representations via Wasserstein regularization. Designed for ATE; does not model spillovers directly. \paragraph{RRNet \citep{cai2023generalization}.} GCN encoder with sparse propensity networks and Wasserstein IPM regularization. Estimand: peer effect with continuous neighbor fraction. Results are as below:
+ 
+
+Our GNN-GER variants achieve the lowest RMSE (0.012--0.014 ), roughly 3.5--4x better than the best baseline (RRNet). GCN-Deconf exhibits severe bias (-0.197 ) as its ATE estimand misses spillover effects. NetEstimator and RRNet lack propensity weighting, making them dependent on outcome model correctness and prone to bias. Linear GER is unbiased but shows 2.5x higher variance than GNN-augmented counterparts, confirming the value of stronger embeddings.
+
+\vspace{0.5em}
+\noindent\textbf{W2: Innovation.}
+We agree existing methods combine prediction with constraints. Our distinction is the \emph{target}: 
+1. \textbf{Existing Constraints:} Mostly aid \emph{identification} (e.g., balancing representations in observational settings).
+2. \textbf{Our Calibration (GER):} Targets \emph{efficiency} in \emph{design-based} settings (where identification is guaranteed by randomization). 
+GER is a post-hoc calibration step derived to target the variance of the final estimator. Standard backbone training does not directly optimize this design-based variance objective. We will revise the paper to make this distinction clearer.
+3. \textbf{Generalization.}
+While our study uses a specific network, the theoretical framework (Thm 3.1) holds for general sparse-interference regimes. The empirical results confirm that calibrated adjustments consistently outperform raw predictions across GNN architectures (GAT, PNA).
+\subsection{Reviewer 3 (4580 characters)}
+ We thank the reviewer for the concise and helpful comments.
+
+\vspace{0.5em}
+\noindent\textbf{W1: Relation to Generalized Regression.}
+We agree on the spirit connection. Our contribution extends this to interference, where design-based variance has a different structure. We characterize the prediction-efficiency mismatch under interference and develop GER to target the corresponding variance objective. We will clarify this positioning in the revision.
+
+\vspace{0.5em}
+\noindent\textbf{W2: Nonlinear Baselines.}
+Thank you for this valuable suggestion. We agree that comparing against stronger nonlinear baselines is crucial for validating the robustness of our method. We would like to clarify that our current experimental design actually incorporates strong nonlinear baselines in two distinct ways, though we acknowledge this was not sufficiently highlighted in the original draft.
+\textit{1. Internal Nonlinear Backbones (Ablation Study):} Our experiments explicitly compare \textbf{raw GNN-based adjustments} (e.g., \texttt{GAT-raw}, \texttt{PNA-raw}) against their \textbf{GER-calibrated counterparts} (e.g., \texttt{GAT-linear GER}). Here, the raw GNN adjustment serves as a strong nonlinear baseline that utilizes the same expressive backbone architecture but lacks the efficiency-oriented calibration. The results (see Reviewer 1 \& 2 responses) show that calibrated versions consistently outperform raw nonlinear adjustments (e.g., RMSE 0.012 vs. 0.014 ). This comparison isolates the value of the GER calibration step itself, demonstrating that nonlinearity alone is insufficient for optimal efficiency under interference.
+\textit{2. External Nonlinear Methods (SOTA Comparison):} In response to reviewer 2 feedback, we added comparisons with three state-of-the-art nonlinear GNN causal inference methods: \textbf{NetEstimator}, \textbf{GCN-Deconfounder}, and \textbf{RRNet}. These are highly competitive nonlinear baselines that employ adversarial learning, Wasserstein balancing, and sparse propensity networks, respectively. Our adding semi-synthetic results (detailed in Reviewer 2 response) show that GAUGER outperforms these strong nonlinear baselines by a significant margin (e.g., 3.5× lower RMSE than RRNet). This confirms that our method gains are not merely due to using a GNN, but due to the design-based calibration strategy.
+\textit{3. Theoretical Justification:} The reason nonlinear backbones alone do not suffice is central to our theoretical contribution (Theorem 3.1). Under interference, minimizing prediction error (which nonlinear models excel at) does not align with minimizing estimator variance. A highly expressive nonlinear model may still produce suboptimal weights if it is not calibrated to the design-based variance structure. This explains why our calibrated linear GER often outperforms uncalibrated nonlinear adjustments.
+\textit{Revision Plan:} We will revise Section 6 to explicitly frame the raw GNN adjustments as strong nonlinear baselines and discuss the external GNN methods more prominently. We will also add a brief discussion on why calibration complements nonlinearity, ensuring readers understand that these are orthogonal improvements. If space permits, we will include one additional deep outcome model baseline (e.g., a multi-layer perceptron adjustment) to further strengthen this comparison.
+\vspace{0.5em}
+
+
+\noindent\textbf{W3: Theoretical Analysis.}
+Thank you for this suggestion. We agree that deeper theoretical analysis is valuable. Our current work prioritizes establishing the \emph{foundational} asymptotic theory for design-based adjustment under interference, which is non-trivial due to the complex dependency structure induced by spillovers. Specifically, we establish design-based validity, characterize the exact variance target (Thm 3.1), and prove consistency and asymptotic normality for the GER-calibrated estimator.
+
+However, we acknowledge that extensions such as \emph{finite-sample concentration bounds}, \emph{minimax optimality rates}, or relaxing the sparse-interference assumption to denser graphs are important directions. These require different technical tools (e.g., matrix Bernstein inequalities for dependent variables) beyond the current scope. We will add a dedicated paragraph in the \textbf{Limitations \& Future Work} section to explicitly discuss these theoretical boundaries and outline the specific steps needed to extend our analysis in these directions. We believe this clarifies the contribution while acknowledging the path for deeper theoretical work.
+\subsection{Reviewer 4 (4690 characters)}
+ We thank the reviewer for the deep engagement with related work and limitations.
+
+\vspace{0.5em}
+\noindent\textbf{W1: Related Work Engagement.}
+Our intent was to distinguish our paper from prior GNN-based causal inference work by perspective rather than by model class. Many existing approaches are developed for observational settings, where treatment assignment is not controlled by the analyst and identification relies heavily on modeling assumptions, often through outcome modeling, propensity modeling, or representation balancing. As a result, these approaches can be sensitive to model misspecification and may be subject to bias if those assumptions fail. By contrast, our paper works in a design-based setting, where the treatment assignment mechanism is known from the experiment itself. In this setting, design information can be used to obtain an unbiased estimation through propensity score reweighting without relying on the correct specification of the outcome model. The main challenge is therefore different: not identification, but improving efficiency through variance reduction. 
+
+To illustrate this bias issue, we added a semisynthetic experiment (see reviewer 2 response) that compares those general GNN estimators with our design-based estimators. Our results show model-based baselines suffer bias when assumptions fail, while GER remains unbiased and efficient. We will revise Section 1.3 to engage this literature more deeply.
+
+\vspace{0.5em}
+\noindent\textbf{W2: Empirical Complexity.}
+We have now added a semisynthetic experiment that directly addresses the concerns you raise. Unlike the original simulation, this study uses a \emph{real} student friendship network with observed covariates, so the graph reflects an actual social structure rather than a randomly generated one. The outcome model is also more complex: it includes nonlinear exposure effects, interactions, and both 1-hop and 2-hop neighborhood summaries, rather than only a simple linear average-neighbor spillover term.
+
+In this more realistic setting, our GAT-linear GER and PNA-linear GER estimators still perform best, with RMSE (0.014) and (0.012), compared with (0.033) for linear GER and (0.047)–(0.198) for external GNN baselines such as RRNet, NetEstimator, and GCN-Deconf.
+
+We also note that while Bernoulli randomization is simple, it is not artificial: it is a standard gold-standard design in randomized experiments, and it is also the type of assignment used in our real-data study in Section 6.2.
+
+In the revision, we will present the empirical section more carefully as an initial but strengthened validation, rather than a comprehensive demonstration across all interference settings.
+
+\vspace{0.5em}
+\noindent\textbf{Q1: Continuous Exposure.}
+At a high level, the main modification would be to replace the discrete exposure-specific calibration with a smoother, function-based version. Instead of calibrating separately across finitely many exposure levels, one would likely need to model the adjustment as a function of the continuous exposure, for example through basis expansions, sieves, or kernel smoothing. Correspondingly, the GER step would need to be reformulated from a finite-dimensional coefficient calibration into a functional or growing-dimensional calibration problem.
+
+The dependency graph would still play a role in controlling dependence induced by interference, but the technical analysis would become more involved because the target would no longer be indexed by a finite set of exposure categories. In particular, the asymptotic theory would likely require stronger smoothness and complexity control conditions, together with uniform convergence arguments over the exposure domain, rather than the fixed-dimensional arguments used here. We view this as an important direction for future work, but do not want to overclaim beyond the discrete setting studied in the current paper.
+
+
+\vspace{0.5em}
+\noindent\textbf{Q2: Head-to-Head Comparison.} As detailed in our Weakness 1 response, the core distinction lies in the objective: existing GNN methods optimize prediction/balance for identification, while GAUGER targets design-based efficiency. This makes GAUGER a post-hoc calibration framework (unbiased by construction) rather than just a new architecture. Specifically, our calibration step minimizes asymptotic variance directly, unlike generic balancing losses. Our head-to-head results (see W1 response and Reviewer 2) on real networks confirm GER-calibrated estimators outperform baselines in this setting. We caution that advantages are specific to randomized interference settings and will revise the related work to clarify these distinctions.
+\bibliographystyle{apalike}
+\bibliography{icml2026/example_paper}
+\end{document}

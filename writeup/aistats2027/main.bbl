@@ -1,0 +1,271 @@
+\begin{thebibliography}{}
+
+\bibitem[Aronow and Samii, 2017]{aronow2017estimating}
+Aronow, P.~M. and Samii, C. (2017).
+\newblock Estimating average causal effects under general interference, with
+  application to a social network experiment.
+\newblock {\em The Annals of Applied Statistics}, 11(4):1912--1947.
+
+\bibitem[Basse and Feller, 2018]{basse2018analyzing}
+Basse, G. and Feller, A. (2018).
+\newblock Analyzing two-stage experiments in the presence of interference.
+\newblock {\em Journal of the American Statistical Association},
+  113(521):41--55.
+
+\bibitem[Cai et~al., 2023]{cai2023generalization}
+Cai, R., Yang, Z., Chen, W., Yan, Y., and Hao, Z. (2023).
+\newblock Generalization bound for estimating causal effects from observational
+  network data.
+\newblock In {\em Proceedings of the 32nd ACM International Conference on
+  Information and Knowledge Management}, pages 163--172.
+
+\bibitem[Chang, 2023]{chang2023design}
+Chang, H. (2023).
+\newblock Design-based estimation theory for complex experiments.
+\newblock {\em arXiv preprint arXiv:2311.06891}.
+
+\bibitem[Chen and Shao, 2004]{chen2004normal}
+Chen, L.~H. and Shao, Q.-M. (2004).
+\newblock Normal approximation under local dependence.
+\newblock {\em The Annals of Probability}, 32(3):1985--2028.
+
+\bibitem[Chen et~al., 2024]{chen2024doubly}
+Chen, W., Cai, R., Yang, Z., Qiao, J., Yan, Y., Li, Z., and Hao, Z. (2024).
+\newblock Doubly robust causal effect estimation under networked interference
+  via targeted learning.
+\newblock In {\em Proceedings of the 41st International Conference on Machine
+  Learning}, volume 235 of {\em Proceedings of Machine Learning Research},
+  pages 6457--6485. PMLR.
+
+\bibitem[Corso et~al., 2020]{corso2020principal}
+Corso, G., Cavalleri, L., Beaini, D., Li{\`o}, P., and Veli{\v{c}}kovi{\'c}, P.
+  (2020).
+\newblock Principal neighbourhood aggregation for graph nets.
+\newblock In {\em Advances in Neural Information Processing Systems},
+  volume~33, pages 13260--13271.
+
+\bibitem[Ding, 2024]{ding2024first}
+Ding, P. (2024).
+\newblock {\em A First Course in Causal Inference}.
+\newblock London: Chapman and Hall.
+
+\bibitem[Du et~al., 2025]{du2025telling}
+Du, X., Li, J., Cheng, D., Liu, L., Gao, W., Chen, X., and Xu, Z. (2025).
+\newblock Telling peer direct effects from indirect effects in observational
+  network data.
+\newblock In {\em Forty-second International Conference on Machine Learning}.
+
+\bibitem[Egger et~al., 2022]{egger2022general}
+Egger, D., Haushofer, J., Miguel, E., Niehaus, P., and Walker, M. (2022).
+\newblock General equilibrium effects of cash transfers: experimental evidence
+  from kenya.
+\newblock {\em Econometrica}, 90(6):2603--2643.
+
+\bibitem[Fiedler, 1973]{fiedler1973algebraic}
+Fiedler, M. (1973).
+\newblock Algebraic connectivity of graphs.
+\newblock {\em Czechoslovak Mathematical Journal}, 23(2):298--305.
+
+\bibitem[Fogarty, 2018]{fogarty2018regression}
+Fogarty, C.~B. (2018).
+\newblock Regression-assisted inference for the average treatment effect in
+  paired experiments.
+\newblock {\em Biometrika}, 105(4):994--1000.
+
+\bibitem[Freeman, 2004]{freeman2004development}
+Freeman, L.~C. (2004).
+\newblock {\em The development of social network analysis: A study in the
+  sociology of science}.
+\newblock Empirical Press.
+
+\bibitem[Gao and Ding, 2025]{gao2023causal}
+Gao, M. and Ding, P. (2025).
+\newblock Causal inference in network experiments: regression-based analysis
+  and design-based properties.
+\newblock {\em Journal of Econometrics}, 252:106119.
+
+\bibitem[Guo and Basse, 2023]{guo2023generalized}
+Guo, K. and Basse, G. (2023).
+\newblock The generalized oaxaca-blinder estimator.
+\newblock {\em Journal of the American Statistical Association},
+  118(541):524--536.
+
+\bibitem[Guo et~al., 2020a]{guo2021ignite}
+Guo, R., Li, J., Li, Y., Candan, K.~S., Raglin, A., and Liu, H. (2020a).
+\newblock {IGNITE}: A minimax game toward learning individual treatment effects
+  from networked observational data.
+\newblock In {\em Proceedings of the Twenty-Ninth International Joint
+  Conference on Artificial Intelligence ({IJCAI-20})}, pages 4534--4540.
+
+\bibitem[Guo et~al., 2020b]{guo2020learning}
+Guo, R., Li, J., and Liu, H. (2020b).
+\newblock Learning individual causal effects from networked observational data.
+\newblock In {\em Proceedings of the 13th international conference on web
+  search and data mining}, pages 232--240.
+
+\bibitem[Hinkelmann and Kempthorne, 2007]{hinkelmann2007design}
+Hinkelmann, K. and Kempthorne, O. (2007).
+\newblock {\em Design and analysis of experiments, {Volume} 1: Introduction to
+  experimental design}.
+\newblock John Wiley \& Sons, 2 edition.
+
+\bibitem[Hudgens and Halloran, 2008]{hudgens2008toward}
+Hudgens, M.~G. and Halloran, M.~E. (2008).
+\newblock Toward causal inference with interference.
+\newblock {\em Journal of the American Statistical Association},
+  103(482):832--842.
+
+\bibitem[Imbens and Rubin, 2015]{imbens2015causal}
+Imbens, G.~W. and Rubin, D.~B. (2015).
+\newblock {\em Causal Inference in Statistics, Social, and Biomedical
+  Sciences}.
+\newblock Cambridge: Cambridge University Press.
+
+\bibitem[Jang et~al., 2017]{jang2016categorical}
+Jang, E., Gu, S., and Poole, B. (2017).
+\newblock Categorical reparameterization with {G}umbel-softmax.
+\newblock In {\em International Conference on Learning Representations}.
+
+\bibitem[Jiang and Sun, 2022]{jiang2022estimating}
+Jiang, S. and Sun, Y. (2022).
+\newblock Estimating causal effects on networked observational data via
+  representation learning.
+\newblock In {\em Proceedings of the 31st ACM International Conference on
+  Information \& Knowledge Management}, pages 852--861.
+
+\bibitem[Kernighan and Lin, 1970]{kernighan1970efficient}
+Kernighan, B.~W. and Lin, S. (1970).
+\newblock An efficient heuristic procedure for partitioning graphs.
+\newblock {\em The Bell System Technical Journal}, 49(2):291--307.
+
+\bibitem[Kipf and Welling, 2017]{kipf2016semi}
+Kipf, T.~N. and Welling, M. (2017).
+\newblock Semi-supervised classification with graph convolutional networks.
+\newblock In {\em International Conference on Learning Representations}.
+
+\bibitem[Leung, 2022]{leung2022causal}
+Leung, M.~P. (2022).
+\newblock Causal inference under approximate neighborhood interference.
+\newblock {\em Econometrica}, 90(1):267--293.
+
+\bibitem[Leung and Loupos, 2022]{leung2022graph}
+Leung, M.~P. and Loupos, P. (2022).
+\newblock Graph neural networks for causal inference under network confounding.
+\newblock {\em arXiv preprint arXiv:2211.07823}.
+
+\bibitem[Lu et~al., 2025a]{lu2025design}
+Lu, S., Shi, L., Fang, Y., Zhang, W., and Ding, P. (2025a).
+\newblock Design-based causal inference in bipartite experiments.
+\newblock {\em arXiv preprint arXiv:2501.09844}.
+
+\bibitem[Lu et~al., 2025b]{lu2025conditional}
+Lu, X., Shi, L., Liu, H., and Ding, P. (2025b).
+\newblock Conditional cross-fitting for unbiased machine-learning-assisted
+  covariate adjustment in randomized experiments.
+\newblock {\em arXiv preprint arXiv:2508.15664}.
+
+\bibitem[Ma et~al., 2022]{ma2022learning}
+Ma, J., Wan, M., Yang, L., Li, J., Hecht, B., and Teevan, J. (2022).
+\newblock Learning causal effects on hypergraphs.
+\newblock In {\em Proceedings of the 28th ACM SIGKDD Conference on Knowledge
+  Discovery and Data Mining}, pages 1202--1212.
+
+\bibitem[Ma and Tresp, 2021]{ma2021causal}
+Ma, Y. and Tresp, V. (2021).
+\newblock Causal inference under networked interference and intervention policy
+  enhancement.
+\newblock In {\em International Conference on Artificial Intelligence and
+  Statistics}, pages 3700--3708. PMLR.
+
+\bibitem[Maddison et~al., 2017]{maddison2016concrete}
+Maddison, C.~J., Mnih, A., and Teh, Y.~W. (2017).
+\newblock The concrete distribution: A continuous relaxation of discrete random
+  variables.
+\newblock In {\em International Conference on Learning Representations}.
+
+\bibitem[Masoero et~al., 2026]{Masoero2026multiple}
+Masoero, L., Vijaykumar, S., Richardson, T.~S., McQueen, J., Rosen, I.,
+  Burdick, B., Bajari, P., and Imbens, G. (2026).
+\newblock Multiple randomization designs: estimation and inference with
+  interference.
+\newblock {\em Journal of the Royal Statistical Society Series B: Statistical
+  Methodology}, 88(3):958--977.
+
+\bibitem[Middleton, 2018]{middleton2018unified}
+Middleton, J.~A. (2018).
+\newblock A unified theory of regression adjustment for design-based inference.
+\newblock {\em arXiv preprint arXiv:1803.06011}.
+
+\bibitem[Neyman, 1990]{neyman1923application}
+Neyman, J. (1923/1990).
+\newblock {On the application of probability theory to agricultural
+  experiments. Essay on principles. Section 9.}
+\newblock {\em Statistical Science}, pages 465--472.
+
+\bibitem[Papadogeorgou et~al., 2025]{papadogeorgou2025causal}
+Papadogeorgou, G., Song, Z., Imbens, G., and Mealli, F. (2025).
+\newblock Causal inference when intervention units and outcome units differ.
+\newblock {\em arXiv preprint arXiv:2507.20231}.
+
+\bibitem[Rolnick et~al., 2019]{rolnick2019randomized}
+Rolnick, D., Aydin, K., Pouget-Abadie, J., Kamali, S., Mirrokni, V., and Najmi,
+  A. (2019).
+\newblock Randomized experimental design via geographic clustering.
+\newblock In {\em Proceedings of the 25th ACM SIGKDD International Conference
+  on Knowledge Discovery \& Data Mining}, pages 2745--2753.
+
+\bibitem[Rubin, 2005]{rubin2005causal}
+Rubin, D.~B. (2005).
+\newblock Causal inference using potential outcomes: Design, modeling,
+  decisions.
+\newblock {\em Journal of the American statistical Association},
+  100(469):322--331.
+
+\bibitem[Shaw, 1964]{shaw1964communication}
+Shaw, M.~E. (1964).
+\newblock Communication networks.
+\newblock In {\em Advances in experimental social psychology}, volume~1, pages
+  111--147. Elsevier.
+
+\bibitem[Shi and Ding, 2026]{shi2025berry}
+Shi, L. and Ding, P. (2026).
+\newblock {Berry--Esseen} bounds for design-based causal inference with
+  possibly diverging treatment levels and varying group sizes.
+\newblock {\em The Annals of Statistics}, 54(1):324--349.
+
+\bibitem[Su and Ding, 2021]{su2021model}
+Su, F. and Ding, P. (2021).
+\newblock Model-assisted analyses of cluster-randomized experiments.
+\newblock {\em Journal of the Royal Statistical Society Series B: Statistical
+  Methodology}, 83(5):994--1015.
+
+\bibitem[Veli{\v{c}}kovi{\'c} et~al., 2018]{velivckovic2017graph}
+Veli{\v{c}}kovi{\'c}, P., Cucurull, G., Casanova, A., Romero, A., Li{\`o}, P.,
+  and Bengio, Y. (2018).
+\newblock Graph attention networks.
+\newblock In {\em International Conference on Learning Representations}.
+
+\bibitem[Wedin, 1973]{wedin1973perturbation}
+Wedin, P.-{\AA}. (1973).
+\newblock Perturbation theory for pseudo-inverses.
+\newblock {\em BIT Numerical Mathematics}, 13(2):217--232.
+
+\bibitem[Wu et~al., 2025]{wu2025causal}
+Wu, A., Qiu, H., Chen, Z., Li, Z., Xiong, R., Wu, F., and Zhang, K. (2025).
+\newblock Causal graph transformer for treatment effect estimation under
+  unknown interference.
+\newblock In {\em The Thirteenth International Conference on Learning
+  Representations}.
+
+\bibitem[Wu et~al., 2021]{wu2020comprehensive}
+Wu, Z., Pan, S., Chen, F., Long, G., Zhang, C., and Yu, P.~S. (2021).
+\newblock A comprehensive survey on graph neural networks.
+\newblock {\em IEEE Transactions on Neural Networks and Learning Systems},
+  32(1):4--24.
+
+\bibitem[Xu et~al., 2019]{xu2018powerful}
+Xu, K., Hu, W., Leskovec, J., and Jegelka, S. (2019).
+\newblock How powerful are graph neural networks?
+\newblock In {\em International Conference on Learning Representations}.
+
+\end{thebibliography}

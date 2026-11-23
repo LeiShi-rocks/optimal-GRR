@@ -1,0 +1,422 @@
+\usepackage{etoolbox}
+\usepackage{tabularx, booktabs, graphicx}
+
+% symbols
+\makeatletter
+\newcommand{\ostar}{\mathbin{\mathpalette\make@circled\star}}
+\newcommand{\make@circled}[2]{%
+  \ooalign{$\m@th#1\smallbigcirc{#1}$\cr\hidewidth$\m@th#1#2$\hidewidth\cr}%
+}
+\newcommand{\smallbigcirc}[1]{%
+  \vcenter{\hbox{\scalebox{0.77778}{$\m@th#1\bigcirc$}}}%
+}
+\makeatother
+
+% commands
+\newcommand{\lt}{\left}
+\newcommand{\rt}{\right}
+\newcommand{\bd}[1]{\boldsymbol{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\commenting}[1]{}
+
+
+% renew
+\renewcommand{\hat}{\widehat}
+\renewcommand{\tilde}{\widetilde}
+
+% functions
+\newcommand{\MSE}[1]{{\operatorname{MSE}\left\{#1\right\}}}
+\newcommand{\Bias}[1]{{\operatorname{Bias}\left\{#1\right\}}}
+\newcommand{\Var}[1]{{\operatorname{Var}\left\{#1\right\}}}
+\newcommand{\COV}[1]{{\operatorname{Cov}\left\{#1\right\}}}
+\newcommand{\Cov}[2]{{\operatorname{Cov}\left\{#1,#2\right\}}}
+
+% \usepackage{xargs}
+\newcommand{\CondCov}[3]{{\operatorname{Cov}\left\{#1,#2\mid #3\right\}}}
+
+\newcommand{\Corr}[2]{{\operatorname{Corr}\left\{#1,#2\right\}}}
+\newcommand{\myvec}[1]{{\operatorname{vec}(#1)}}
+\newcommand{\E}[1]{{\mathbb{E}\left\{#1\right\}}}
+\newcommand{\Prob}[1]{{\mathbb{P}\left\{#1\right\}}}
+\newcommand{\trace}[1]{{\operatorname{Tr}\left(#1\right)}}
+\newcommand{\tr}[2]{\left\langle#1\, ,\, #2\right\rangle}
+\newcommand{\ind}[1]{\boldsymbol{1}\left\{#1\right\}}
+\newcommand{\rank}[1]{\text{rank}{\left\{#1\right\}}}
+\newcommand{\norm}[2]{\left\|#1\right\|_{#2}}
+\newcommand{\normo}[1]{\left\|#1\right\|} % omitting subscript
+\newcommand{\vc}[1]{\text{vec}\left\{#1\right\}}
+\newcommand{\cnp}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}} % choose p from n
+\newcommand{\innerprod}[2]{\left\langle#1\, ,\, #2\right\rangle}
+\newcommand{\indep}{\perp \!\!\! \perp}
+%\newcommand{\limsup}{\underset{{N\to\infty}}{\lim\sup}~}
+\newcommand{\rev}[1]{\textup{Rev}\lt(#1\rt)}
+
+
+\ifdef{\see}{\renewcommand{\see}[1]{\text{ (#1)}}}{\newcommand{\see}[1]{\text{ (#1)}}}
+
+
+\newcommand{\diag}[1]{\mathrm{Diag}\left\{#1\right\}}
+
+\def\boxit#1{\vbox{\hrule\hbox{\vrule\kern6pt\vbox{\kern6pt#1\kern6pt}\kern6pt\vrule}\hrule}}
+\newcommand{\quickcomment}[2]{\vskip 2mm\boxit{\vskip 2mm{\color{red}\bf#1} {\color{red}\bf -- COMMENT: #2\vskip 2mm}}\vskip 2mm}
+\newcommand{\modify}[2]{\vskip 2mm\boxit{\vskip 2mm{\color{blue}\bf#1} {\color{blue}\bf -- MODIFICATION: #2\vskip 2mm}}\vskip 2mm}
+\newcommand{\inlinemod}[2]{{\color{#1} {(#2)}}}
+%\usepackage{showkeys}
+
+% require to load array package 
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+% ================ \mathcal =================
+\newcommand{\cA}{{\mathcal{A}}}
+\newcommand{\cB}{{\mathcal{B}}}
+\newcommand{\cD}{{\mathcal{D}}}
+\newcommand{\cE}{{\mathcal{E}}}
+\newcommand{\cJ}{{\mathcal{J}}}
+\newcommand{\cH}{{\mathcal{H}}}
+\newcommand{\cX}{{\mathcal{X}}}
+\newcommand{\cY}{{\mathcal{Y}}}
+\newcommand{\cZ}{{\mathcal{Z}}}
+\newcommand{\cC}{{\mathcal{C}}}
+\newcommand{\cG}{{\mathcal{G}}}
+\newcommand{\cL}{{\mathcal{L}}}
+\newcommand{\cT}{{\mathcal{T}}}
+\newcommand{\cM}{{\mathcal{M}}}
+\newcommand{\cN}{{\mathcal{N}}}
+\newcommand{\cP}{{\mathcal{P}}}
+\newcommand{\cQ}{{\mathcal{Q}}}
+\newcommand{\cS}{{\mathcal{S}}}
+\newcommand{\cK}{{\mathcal{K}}}
+\newcommand{\cI}{{\mathcal{I}}}
+\newcommand{\cF}{{\mathcal{F}}}
+\newcommand{\cW}{{\mathcal{W}}}
+
+% ================ \mathfrak =================
+\newcommand{\fX}{{\mathfrak{X}}}
+\newcommand{\fS}{{\mathfrak{S}}}
+
+% ================ \mathbb ===================
+\newcommand{\bbH}{{\mathbb{H}}}
+\newcommand{\bbI}{{\mathbb{I}}}
+\newcommand{\bbP}{{\mathbb{P}}}
+\newcommand{\bbQ}{{\mathbb{Q}}}
+\newcommand{\bbT}{{\mathbb{T}}}
+\newcommand{\bbS}{{\mathbb{S}}}
+\newcommand{\bbR}{{\mathbb{R}}}
+\newcommand{\bbV}{{\mathbb{V}}}
+\newcommand{\bbB}{{\mathbb{B}}}
+\newcommand{\bbE}{{\mathbb{E}}}
+\newcommand{\bbN}{{\mathbb{N}}}
+\newcommand{\bbM}{{\mathbb{M}}}
+\newcommand{\bbK}{{\mathbb{K}}}
+\newcommand{\bbX}{{\mathbb{X}}}
+\newcommand{\bbZ}{{\mathbb{Z}}}
+
+% ========== \boldsymbol ==========
+\newcommand{\bone}{{\boldsymbol{1}}}
+\newcommand{\bzero}{{\boldsymbol{0}}}
+
+% small letter
+\newcommand{\bsb}{{\boldsymbol{b}}}
+\newcommand{\bc}{{\boldsymbol{c}}}
+\newcommand{\bse}{{\boldsymbol{e}}}
+\newcommand{\bg}{{\boldsymbol{g}}}
+\newcommand{\by}{{\boldsymbol{y}}}
+\newcommand{\bsf}{{\boldsymbol{f}}}
+\newcommand{\bh}{{\boldsymbol{h}}}
+\newcommand{\bq}{{\boldsymbol{q}}}
+\newcommand{\br}{{\boldsymbol{r}}}
+\newcommand{\bst}{{\boldsymbol{t}}}
+\newcommand{\bss}{{\boldsymbol{s}}}
+\newcommand{\bu}{{\boldsymbol{u}}}
+\newcommand{\bv}{{\boldsymbol{v}}}
+\newcommand{\bw}{{\boldsymbol{w}}}
+\newcommand{\bx}{{\boldsymbol{x}}}
+\newcommand{\bz}{{\boldsymbol{z}}}
+
+% capital letter
+\newcommand{\bA}{{\boldsymbol{A}}}
+\newcommand{\bB}{{\boldsymbol{B}}}
+\newcommand{\bC}{{\boldsymbol{C}}}
+\newcommand{\bD}{{\boldsymbol{D}}}
+\newcommand{\bE}{{\boldsymbol{E}}}
+\newcommand{\bF}{{\boldsymbol{F}}}
+\newcommand{\bG}{{\boldsymbol{G}}}
+\newcommand{\bH}{{\boldsymbol{H}}}
+\newcommand{\bI}{{\boldsymbol{I}}}
+\newcommand{\bJ}{{\boldsymbol{J}}}
+\newcommand{\bK}{{\boldsymbol{K}}}
+\newcommand{\bL}{{\boldsymbol{L}}}
+\newcommand{\bM}{{\boldsymbol{M}}}
+\newcommand{\bN}{{\boldsymbol{N}}}
+\newcommand{\bO}{{\boldsymbol{O}}}
+\newcommand{\bP}{{\boldsymbol{P}}}
+\newcommand{\bQ}{{\boldsymbol{Q}}}
+\newcommand{\bR}{{\boldsymbol{R}}}
+\newcommand{\bS}{{\boldsymbol{S}}}
+\newcommand{\bT}{{\boldsymbol{T}}}
+\newcommand{\bU}{{\boldsymbol{U}}}
+\newcommand{\bV}{{\boldsymbol{V}}}
+\newcommand{\bW}{{\boldsymbol{W}}}
+\newcommand{\bX}{{\boldsymbol{X}}}
+\newcommand{\bY}{{\boldsymbol{Y}}}
+\newcommand{\bZ}{{\boldsymbol{Z}}}
+
+% small greek
+\newcommand{\bepsilon}{{\boldsymbol{\epsilon}}}
+\newcommand{\bmu}{{\boldsymbol{\mu}}}
+\newcommand{\btau}{{\boldsymbol{\tau}}}
+\newcommand{\btheta}{{\boldsymbol{\theta}}}
+\newcommand{\bseta}{{\boldsymbol{\eta}}}
+\newcommand{\bgamma}{{\boldsymbol{\gamma}}}
+\newcommand{\bxi}{{\boldsymbol{\xi}}}
+
+% capital greek
+\newcommand{\bTheta}{{\boldsymbol{\Theta}}}
+\newcommand{\bGamma}{{\boldsymbol{\Gamma}}}
+\newcommand{\bSigma}{{\boldsymbol{\Sigma}}}
+\newcommand{\bDelta}{{\boldsymbol{\Delta}}}
+\newcommand{\bOmega}{{\boldsymbol{\Omega}}}
+\newcommand{\bLambda}{{\boldsymbol{\Lambda}}}
+
+% ============== \overline ================
+
+% small greek
+\newcommand{\oepsilon}{{\overline{\epsilon}}}
+\newcommand{\otau}{{\overline{\tau}}}
+\newcommand{\orho}{{\overline{\rho}}}
+\newcommand{\ophi}{{\overline{\phi}}}
+\newcommand{\opsi}{{\overline{\psi}}}
+\newcommand{\otheta}{{\overline{\theta}}}
+\newcommand{\ogamma}{{\overline{\gamma}}}
+\newcommand{\osigma}{{\overline{\sigma}}}
+\newcommand{\oxi}{{\overline{\xi}}}
+\newcommand{\ozeta}{{\overline{\zeta}}}
+\newcommand{\oalpha}{{\overline{\alpha}}}
+
+% big greek
+\newcommand{\oOmega}{{\overline{\Omega}}}
+
+% small letter
+\newcommand{\oa}{{\overline{a}}}
+\newcommand{\ob}{{\overline{b}}}
+\newcommand{\oc}{{\overline{c}}}
+\newcommand{\od}{{\overline{d}}}
+\newcommand{\ove}{{\overline{e}}}
+\newcommand{\of}{{\overline{f}}}
+\newcommand{\og}{{\overline{g}}}
+\newcommand{\oh}{{\overline{h}}}
+\newcommand{\oi}{{\overline{i}}}
+\newcommand{\oj}{{\overline{j}}}
+\newcommand{\ok}{{\overline{k}}}
+\newcommand{\ol}{{\overline{l}}}
+\newcommand{\om}{{\overline{m}}}
+\newcommand{\on}{{\overline{n}}}
+\newcommand{\oo}{{\overline{o}}}
+\newcommand{\op}{{\overline{p}}}
+\newcommand{\os}{{\overline{s}}}
+\newcommand{\ov}{{\overline{v}}}
+\newcommand{\oy}{{\overline{y}}}
+\newcommand{\oz}{{\overline{z}}}
+
+
+% capital letter
+\newcommand{\oS}{{\overline{S}}}
+\newcommand{\oZ}{{\overline{Z}}}
+\newcommand{\oY}{{\overline{Y}}}
+\newcommand{\oX}{{\overline{X}}}
+\newcommand{\ooY}{{\overline{\overline{Y}}}}
+
+
+
+% ============== \underline ================
+
+% small letter
+\newcommand{\ua}{{\underline{a}}}
+\newcommand{\ub}{{\underline{b}}}
+\newcommand{\uc}{{\underline{c}}}
+\newcommand{\ud}{{\underline{d}}}
+\newcommand{\ue}{{\underline{e}}}
+\newcommand{\uf}{{\underline{f}}}
+\newcommand{\ug}{{\underline{g}}}
+\newcommand{\uh}{{\underline{h}}}
+\newcommand{\ui}{{\underline{i}}}
+\newcommand{\uj}{{\underline{j}}}
+\newcommand{\uk}{{\underline{k}}}
+\newcommand{\ul}{{\underline{l}}}
+\newcommand{\um}{{\underline{m}}}
+\newcommand{\un}{{\underline{n}}}
+\newcommand{\uo}{{\underline{o}}}
+\newcommand{\up}{{\underline{p}}}
+\newcommand{\us}{{\underline{s}}}
+\newcommand{\uv}{{\underline{v}}}
+\newcommand{\uy}{{\underline{y}}}
+\newcommand{\uz}{{\underline{z}}}
+
+% capital letter
+\newcommand{\uY}{{\underline{Y}}}
+\newcommand{\uX}{{\underline{X}}}
+
+% greek letter
+\newcommand{\uzeta}{{\underline{\zeta}}}
+
+% =============== tilde ==================
+
+% small letter
+\newcommand{\ta}{{\tilde{a}}}
+\newcommand{\tb}{{\tilde{b}}}
+\newcommand{\td}{{\tilde{d}}}
+\newcommand{\tm}{{\tilde{m}}}
+\newcommand{\ty}{{\tilde{y}}}
+
+% capital letter
+\newcommand{\tA}{{\tilde{A}}}
+\newcommand{\tB}{{\tilde{B}}}
+\newcommand{\tC}{{\tilde{C}}}
+\newcommand{\tD}{{\tilde{D}}}
+\newcommand{\tE}{{\tilde{E}}}
+\newcommand{\tF}{{\tilde{F}}}
+\newcommand{\tG}{{\tilde{G}}}
+\newcommand{\tH}{{\tilde{H}}}
+\newcommand{\tI}{{\tilde{I}}}
+\newcommand{\tJ}{{\tilde{J}}}
+\newcommand{\tK}{{\tilde{K}}}
+\newcommand{\tL}{{\tilde{L}}}
+\newcommand{\tM}{{\tilde{M}}}
+\newcommand{\tN}{{\tilde{N}}}
+\newcommand{\tO}{{\tilde{O}}}
+\newcommand{\tP}{{\tilde{P}}}
+\newcommand{\tQ}{{\tilde{Q}}}
+\newcommand{\tR}{{\tilde{R}}}
+\newcommand{\tS}{{\tilde{S}}}
+\newcommand{\tT}{{\tilde{T}}}
+\newcommand{\tU}{{\tilde{U}}}
+\newcommand{\tV}{{\tilde{V}}}
+\newcommand{\tW}{{\tilde{W}}}
+\newcommand{\tX}{{\tilde{X}}}
+\newcommand{\tY}{{\tilde{Y}}}
+\newcommand{\tZ}{{\tilde{Z}}}
+
+% cap greek
+\newcommand{\tDelta}{{\tilde{\Delta}}}
+
+% small greek
+\newcommand{\tzeta}{{\tilde{\zeta}}}
+
+
+% ================= \mathbf ====================
+\newcommand{\bfD}{{\mathbf{D}}}
+\newcommand{\bfP}{\mathbf{P}}
+
+
+% ================== \hat ======================
+
+\newcommand{\halpha}{{\hat{\alpha}}}
+\newcommand{\hgamma}{{\hat{\gamma}}}
+\newcommand{\hbeta}{{\hat{\beta}}}
+\newcommand{\heta}{{\hat{\eta}}}
+\newcommand{\hepsilon}{{\hat{\epsilon}}}
+\newcommand{\htau}{{\hat{\tau}}}
+\newcommand{\hphi}{{\hat{\phi}}}
+\newcommand{\hmu}{{\hat{\mu}}}
+\newcommand{\hrho}{{\hat{\rho}}}
+\newcommand{\hsigma}{{\hat{\sigma}}}
+\newcommand{\htheta}{{\hat{\theta}}}
+\newcommand{\hvartheta}{{\hat{\vartheta}}}
+\newcommand{\hvarrho}{{\hat{\varrho}}}
+\newcommand{\hlambda}{{\hat{\lambda}}}
+
+\newcommand{\hc}{{\hat{c}}}
+\newcommand{\hd}{{\hat{d}}}
+\newcommand{\hk}{{\hat{k}}}
+\newcommand{\hatm}{{\hat{m}}}
+\newcommand{\hn}{{\hat{n}}}
+\newcommand{\hr}{{\hat{r}}}
+\newcommand{\hs}{{\hat{s}}}
+\newcommand{\hu}{{\hat{u}}}
+\newcommand{\hv}{{\hat{v}}}
+\newcommand{\hw}{{\hat{w}}}
+\newcommand{\hy}{{\hat{y}}}
+\newcommand{\hp}{{\hat{p}}}
+
+\newcommand{\hD}{{\hat{D}}}
+\newcommand{\hH}{{\hat{H}}}
+\newcommand{\hK}{{\hat{K}}}
+\newcommand{\hQ}{{\hat{Q}}}
+\newcommand{\hS}{{\hat{S}}}
+\newcommand{\hU}{{\hat{U}}}
+\newcommand{\hV}{{\hat{V}}}
+\newcommand{\hX}{{\hat{X}}}
+\newcommand{\hY}{{\hat{Y}}}
+
+
+\newcommand{\hGamma}{{\hat{\Gamma}}}
+\newcommand{\hTheta}{{\hat{\Theta}}}
+\newcommand{\hDelta}{{\hat{\Delta}}}
+\newcommand{\hSigma}{{\hat{\Sigma}}}
+
+% ===================== \star ==================
+
+% small greek
+\newcommand{\stau}{{\tau^\star}}
+\newcommand{\seta}{\eta^\star}
+\newcommand{\srho}{\rho^\star}
+\newcommand{\sphi}{{\phi^\star}}
+\newcommand{\spsi}{{\psi^\star}}
+
+% capital greek
+\newcommand{\sGamma}{{{\Gamma^\star}}}
+\newcommand{\sTheta}{{\Theta^\star}}
+\newcommand{\sDelta}{{\Delta^\star}}
+
+
+
+% ================ \tilde ====================
+\newcommand{\talpha}{{\tilde{\alpha}}}
+\newcommand{\tbeta}{{\tilde{\beta}}}
+\newcommand{\tgamma}{{\tilde{\gamma}}}
+\newcommand{\teta}{{\tilde{\eta}}}
+\newcommand{\tphi}{{\tilde{\phi}}}
+\newcommand{\ttau}{{\tilde{\tau}}}
+
+\newcommand{\tPhi}{{\tilde{\Phi}}}
+
+
+
+
+% ================== \textsc ====================
+\newcommand{\sce}{{\textsc{e}}}
+\newcommand{\scf}{{\textsc{f}}}
+\newcommand{\scn}{{\textsc{n}}}
+\newcommand{\scl}{{\textsc{l}}}
+
+
+\newcommand{\scS}{{\textsc{S}}}
+\newcommand{\scM}{{\textsc{M}}}
+
+
+% ========= mathrm =========
+\newcommand{\rmA}{{\mathrm{A}}}
+\newcommand{\rmB}{{\mathrm{B}}}
+\newcommand{\rmC}{{\mathrm{C}}}
+\newcommand{\rmS}{{\mathrm{S}}}
+\newcommand{\rmT}{{\mathrm{T}}}
+
+\newcommand{\rmc}{{\mathrm{c}}}
+\newcommand{\rmt}{{\mathrm{t}}}
+
+
+% ========== dot ============
+\newcommand{\dY}{\dot{Y}}
+
+
+
+
+% ========== prime ==========
+\newcommand{\pI}{{I'}}
+\newcommand{\pJ}{{J'}}
