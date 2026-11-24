@@ -1,0 +1,371 @@
+\documentclass{article}
+\usepackage[left=1in, right=1in, bottom = 1in, top = 1in]{geometry}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{bbm}
+\usepackage{amsmath}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[authoryear]{natbib}
+%\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+
+%\setlength{\parskip}{1em}
+%\onehalfspacing
+%\linespread{1.45}
+
+% Math Packages
+\usepackage{amsmath}
+%\numberwithin{equation}{section}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+%\usepackage{bbm}
+\usepackage{amstext}
+\usepackage{comment}
+\usepackage{epsfig}
+\usepackage{latexsym}
+\usepackage{epstopdf}
+\usepackage{bm}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+%\usepackage[capposition=top]{floatrow}
+
+
+% For drawing graph
+\usepackage{tikz}
+\usetikzlibrary{positioning,chains,fit,shapes,calc}
+\definecolor{myblue}{RGB}{80,80,160}
+\definecolor{mygreen}{RGB}{80,160,80}
+
+\usepackage{url}
+\usepackage[colorlinks = true, linkcolor = blue]{hyperref}
+\hypersetup{
+        urlcolor = blue,
+	colorlinks = true,
+	linkcolor = blue,
+	citecolor = blue,
+}
+\usepackage{paralist}
+\usepackage{enumitem}
+\setlist[enumerate]{topsep=0pt,noitemsep}
+
+% For Tables
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{babel}
+\usepackage{array}
+\usepackage{rotating}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{lscape}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{afterpage}
+% \usepackage{showkeys}
+\usepackage{authblk}
+
+% Theorem Environment
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{assumption}{Assumption}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{notation}{Notation}
+\newtheorem{example}{Example}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{prediction}{Prediction}
+\newtheorem{regression}{Regression}
+
+% Custom environment for continuance
+\newenvironment{continuance}[1]
+{%
+  \newcommand{\continuanceref}{\ref{#1}}% Define reference to original example
+  \continuancex % Begin the non-numbered theorem-like environment
+}
+{\endcontinuancex}
+
+% Define a non-numbered continuation environment
+\newtheorem*{continuancex}{Example \continuanceref \ (continued)}
+
+% \makeatletter
+% \renewenvironment{proof}[1][\proofname]{%
+%   \par\pushQED{\qed}\normalfont%
+%   \topsep6\p@\@plus6\p@\relax
+%   \trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]%
+%   \ignorespaces
+% }{%
+%   \popQED\endtrivlist\@endpefalse
+% }
+% \makeatother
+%\numberwithin{theorem}{section}
+%\numberwithin{corollary}{section}
+%\numberwithin{proposition}{section}
+%\numberwithin{lemma}{section}
+%\numberwithin{assumption}{section}
+
+% Formatting 
+\linespread{1.4}
+% \mathtoolsset{showonlyrefs=true}
+
+\allowdisplaybreaks
+
+
+% Define math operators
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\vect}{vec}
+\DeclareMathOperator{\Rank}{Rank}
+
+% Define shortcut
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\B}{B}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\bbm}[1]{\mathbbm{#1}}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\sq}[1]{\textquoteleft #1 \textquoteright}
+\newcommand{\dq}[1]{\textquotedblleft #1 \textquotedblright}
+\newcommand{\red}{\color{red}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\def\T{{\textsc{t}}}
+
+\newcommand{\pr}{\textup{pr}}
+\newcommand{\cov}{\textup{cov}}
+\newcommand{\var}{\textup{var}}
+\newcommand{\avar}{\textup{avar}}
+\newcommand{\acov}{\textup{acov}}
+\newcommand{\kprime}{k^{\prime}}
+\newcommand{\adj}{\textup{adj}}
+
+\newcommand{\bOneZ}{\boldsymbol{1}_{m}}
+\newcommand{\bZeroZ}{\boldsymbol{0}_{m}}
+\newcommand{\bOneA}{\boldsymbol{1}_{n}}
+\newcommand{\bZeroA}{\boldsymbol{0}_{n}}
+\newcommand{\Yt}[1]{Y_{#1}(\boldsymbol{1}_{m})}
+\newcommand{\Yc}[1]{Y_{#1}(\boldsymbol{0}_{m})}
+
+\newcommand{\bY}{\boldsymbol{Y}}
+\newcommand{\bz}{\boldsymbol{z}}
+\newcommand{\bZ}{\boldsymbol{Z}}
+\newcommand{\ba}{\boldsymbol{a}}
+\newcommand{\bA}{\boldsymbol{A}}
+\newcommand{\bW}{\boldsymbol{W}}
+\newcommand{\bV}{\boldsymbol{V}}
+\newcommand{\bX}{\boldsymbol{X}}
+\newcommand{\Davg}{D_{\textup{avg}}}
+\newcommand{\bOmega}{\boldsymbol{\Omega}}
+
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cF}{\mathscr{F}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cS}{\mathcal{S}}
+
+\newcommand{\allt}{\left(\prod_{k\in \mathcal{G}_{+i}} Z_k\right)}
+\newcommand{\alltj}{\left(\prod_{k\in \mathcal{G}_{+j}} Z_k\right)}
+\newcommand{\allc}{\left\{\prod_{k\in \mathcal{G}_{+i}} (1-Z_k)\right\}}
+\newcommand{\allcj}{\left\{\prod_{k\in \mathcal{G}_{+j}} (1-Z_k)\right\}}
+
+\newcommand{\indicator}{\mathbbm{1}}
+\newcommand{\plim}{\textup{plim}}
+
+\newcommand{\bG}{\boldsymbol{G}}
+\newcommand{\G}{G}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cGijcap}{\cG_{+i} \cap \cG_{+j}}
+\newcommand{\cGijcup}{\cG_{+i} \cup \cG_{+j}}
+
+\newcommand{\Smax}{{\max_{1\leq i\leq n}\G_{+i}}}
+\newcommand{\Dmax}{{\max_{1\leq k\leq m}\G_{k+}}}
+\newcommand{\Smaxsupp}{{\bar{D}_\textup{O}}}
+\newcommand{\Dmaxsupp}{{\bar{D}_\textup{I}}}
+
+\newcommand{\sumi}{\sum_{i=1}^n}
+\newcommand{\sumj}{\sum_{j=1}^n}
+\newcommand{\sumk}{\sum_{k=1}^m}
+\newcommand{\sumij}{\sum_{i=1}^{n} \sum_{j=1}^{n}}
+\newcommand{\sumu}{\sum_{u=1}^n}
+\newcommand{\sumv}{\sum_{v=1}^n}
+\newcommand{\maxi}{\max_{1\leq i\leq n}}
+
+\newcommand{\sz}[1]{{\textcolor{olive}{(Sizhu: #1)}}}
+
+\makeatletter
+\newcommand{\ostar}{\mathbin{\mathpalette\make@circled\star}}
+\newcommand{\make@circled}[2]{%
+  \ooalign{$\m@th#1\smallbigcirc{#1}$\cr\hidewidth$\m@th#1#2$\hidewidth\cr}%
+}
+\newcommand{\smallbigcirc}[1]{%
+  \vcenter{\hbox{\scalebox{0.77778}{$\m@th#1\bigcirc$}}}%
+}
+\makeatother
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\title{Estimating within-cluster and between-cluster spillover effects in randomized saturation designs}
+
+% \author[1]{Sizhu Lu\thanks{The first two authors contributed equally to this work.}}
+% \author[2]{Lei Shi$^{*}$}
+% \author[1]{Peng Ding}
+
+% \affil[1]{Department of Statistics, University of California, Berkeley}
+% \affil[2]{Division of Biostatistics, University of California, Berkeley}
+
+
+\date{}
+
+\begin{document}
+
+\maketitle
+\begin{abstract}
+    Randomized saturation designs are two-stage experiments: they first randomly assign treatment probabilities over the clusters and then randomly assign the treatment to the units within the clusters. The existing literature on randomized saturation designs focuses on estimating within-cluster spillover effects by assuming away between-cluster spillover effects. However, the units may interact across clusters in practice. A leading example is that some units are geographically close to each other, so spillover effects arise across clusters. Based on the potential outcomes framework, we formulate the causal inference problem of estimating within-cluster and between-cluster spillover effects in randomized saturation designs. We clarify the causal estimands and establish rigorous statistics theory for inference. We also apply our theory to analyze a recent randomized saturation design of cash transfer on household expenditure in Kenya.
+\end{abstract}
+{\small\hspace{2em} \textbf{Key Words: } }
+
+
+\section{04/29/2025 meeting notes}
+We decided to focus on the \cite{egger2022general} paper setting for this social networks paper, and leave the more general discussion for a separate, more statistical and theoretical paper.
+
+We need to modify the bipartite graph to incorporate the information on which sublocation each village belongs to.  There are two types of links between sublocations and villages. The first type, denoted by $w_{ki}=1$, is if village $i$ belongs to the sublocation $k$, while the second type, denoted by $w_{ki} = 2$, is if village $i$ is close enough to sublocation $k$ so that there is spillover effect across the sublocation boundary.
+
+We can assume a simplified 
+
+\section{Examples}
+\label{sec::examples}
+There are many two-sided experiments. 
+
+\begin{example}[Cash Transfer]
+\label{exmp::egger}
+    \cite{egger2022general} introduced a randomized experiment to evaluate the effect of a cash transfer program in rural Kenya. The design is two-level randomization design: first, the authors 
+    randomly assigned sublocations to high- or low-saturation groups. Within high- (low-) saturation groups, we then randomly assigned two-thirds (one-third) of villages to treatment status. Within treatment villages, all eligible households received a transfer. In this example, the groups are the sublocations and the units are the villages. 
+\end{example} 
+
+\begin{example}[Air Pollution]
+\label{exmp::power_plant}
+    \cite{zigler2021bipartite} studied the causal effect of installing selective noncatalytic reduction systems in upwind power plants on neighborhood hospitalization rates. The treatment is whether the installation is implemented and the intervention units are the upwind power plants. The outcome is the hospitalization rate, and the outcome units are the zip code-level areas. In their setting, a neighborhood may be affected by the treatment of multiple power plants, while a power plant may affect multiple neighborhoods. If some policy intervention (such as giving discounts to air purifiers) is also adopted in the zip code-level areas, then it involves a two-sided design.  
+\end{example} 
+
+
+
+\begin{example}[Split-plot design with spillover]
+\label{exmp::split_plot}
+    We also consider a two-level split-plot design with within-whole-plot spillover. A split-plot design is characterized by separate random assignments of factors, where some factors are assigned to larger experimental units called whole plots. Each whole plot is divided into smaller units, called split-plots, and levels of another factor are randomly assigned to split-plots. Different split-plots within the same whole-plot are dependent on each other. 
+    We can define the whole-plots as the groups and the split-plots as the units. 
+\end{example} 
+There are two possible sources of interference: (i) from the group side, one unit may connect to multiple groups, so that the outcome of the unit depends on multiple group treatments (cross-group interference); (ii) from the unit side, one unit is also impacted by other units within the same group (within-group interence).  
+
+
+\section{Notation and exposure mapping}
+
+A bipartite graph connecting groups and units. Consider $m$ groups and $n$ units in the population, and randomization happens on both the groups and units sides. Let $Z_j$ denote the treatment on the group side for $k=1,\ldots,m$ and $A_i$ denote the treatment on the unit side for $i=1,\ldots,n$. The outcome, $Y_i$, is measured at the unit level. Denote $\bZ=(Z_1,\ldots,Z_m)^{\T}$ and $\bA=(A_1,\ldots,A_n)^{\T}$.
+
+The potential outcomes are $Y_i(\bz, \ba)$, where $\bz$ is the realized group-level treatment and $\ba$ is the realized unit-level treatment. In general, each unit has $2^{m+n}$ potential outcomes, with the observed outcome $Y_i=Y_i(\bZ,\bA)$. We need to make further assumptions to make progress. 
+
+Introduce the exposure mapping $d_i(\bz,\ba)$ as a function of $(\bz,\ba)$ such that $Y_i(d_i(\bz,\ba))=Y_i(d_i(\bz^{\prime},\ba^{\prime}))$ as long as $d_i(\bz,\ba) = d_i(\bz^{\prime},\ba^{\prime})$ \citep{aronow2017estimating}. The trivial, most general exposure mapping would be $d_i(\bz,\ba)=(\bz,\ba)$, and it is automatically correctly specified.
+
+Leveraging the structure of the bipartite network, denoted by $\cG$, we can further make the following bipartite graph-limited interference (GB-SUTVA?):
+
+\sz{need to add a paragraph introducing the graph, similar to the bipartite paper}
+
+\begin{assumption}[Nonparametric exposure mapping]
+\label{assump::exposure}
+    $d_i(\bz,\ba) = (\bz_{\cG_{+i}},\ba_{j:j\in\cG_{+i}})$, where $\bz_{\cG_{+i}}$ denotes the subvector of $\bz$ corresponding to all groups $i$ belongs to and $\ba_{j:j\in\cG_{+i}}$ denotes the subvector of $\ba$ corresponding to all units connected with $i$, where we define two units $i$ and $j$ as connected if $\cG_{+i} \cap \cG_{+j} \neq \emptyset$.
+\end{assumption}
+Here, the dimension of the exposure mapping varies across $i$, depending on how many groups $i$ belongs to, and how many units $i$ connects to.
+
+We can introduce a more restricted, parametric exposure mapping, where we assume the dependence of potential outcomes on $(\bz,\ba)$ can be summarized to a low-dimensional vector $d_i(\bz,\ba)$ with the same dimension across $i$. The specific form of such an exposure mapping will depend on the context of the example. We revisit the examples introduced in Section~\ref{sec::examples}.
+
+\begin{continuance}{exmp::egger}
+    In the setup of \cite{egger2022general}, the first-stage treatment on the sublocations only affects the outcome of the villages by affecting the village-level treatment probabilities. This is more similar to a generalization of two-stage randomization with interference across the clusters, in this example, sublocations \citep{hudgens2008toward, basse2018analyzing}. Therefore, the exposure mapping simplifies to 
+    \begin{eqnarray*}
+        d_i(\bZ,\bA) &=& (A_i(\bZ),\bA_{j:j\in\cG_{+i}}(\bZ)).
+    \end{eqnarray*}
+    If we further assume the potential outcomes depend linearly on other units that $i$ connects to, the exposure mapping becomes
+    \begin{eqnarray*}
+        d_i(\bZ,\bA) &=& \left(A_i,\frac{\sumj A_j \indicator\{\cG_{+i} \cap \cG_{+j} \neq \emptyset\}}{\sumj \indicator\{\cG_{+i} \cap \cG_{+j} \neq \emptyset\}} \right).
+    \end{eqnarray*}
+    It assumes the potential outcome for unit $i$ depends on its own treatment and the average of the treatments of all units it connects to.
+\end{continuance}
+
+\begin{continuance}{exmp::power_plant}
+    In the power plant example, the health level of the cities is likely to depend on the treatment of nearby power plants, whether the city itself got masks distributed, and whether nearby cities got masks distributed. In this case, the exposure mapping is 
+    \begin{eqnarray*}
+        d_i(\bZ,\bA) &=& (\bZ_{\cG_{+i}}, A_i,\bA_{j:j\in\cG_{+i}}).
+    \end{eqnarray*}
+    Again, if we further assume the dependence on the nearby power plants and that on the nearby cities are both linear, we can specify the exposure mapping as
+    \begin{eqnarray*}
+        d_i(\bZ,\bA) &=& \left(\frac{\sumk G_{ki}Z_{k}}{\sumk G_{ki}},A_i,\frac{\sumj A_j \indicator\{\cG_{+i} \cap \cG_{+j} \neq \emptyset\}}{\sumj \indicator\{\cG_{+i} \cap \cG_{+j} \neq \emptyset\}} \right).
+    \end{eqnarray*}
+    It assumes the potential outcome for city $i$ depends on the average of treatment of all power plants nearby, its own treatment (whether masks were assigned to city $i$), and the average of treatment of all nearby cities.
+
+    We can also consider the interaction effect of the group-level treatment and the unit-level treatment, leading to an exposure mapping of the form, for instance, 
+    \begin{eqnarray*}
+        d_i(\bZ,\bA) &=& \left(\frac{\sumk G_{ki}Z_{k}}{\sumk G_{ki}},A_i,\frac{\sumj A_j \indicator\{\cG_{+i} \cap \cG_{+j} \neq \emptyset\}}{\sumj \indicator\{\cG_{+i} \cap \cG_{+j} \neq \emptyset\}}, \frac{\sumk G_{ki}Z_{k}}{\sumk G_{ki}}\cdot\frac{\sumj A_j \indicator\{\cG_{+i} \cap \cG_{+j} \neq \emptyset\}}{\sumj \indicator\{\cG_{+i} \cap \cG_{+j} \neq \emptyset\}} \right).
+    \end{eqnarray*}
+\end{continuance}
+
+\begin{continuance}{exmp::split_plot}
+    not sure how we should write it? discussion about split plot with interference: with interference across both rows and columns, hard to describe it using a bipartite graph? more suitable if just use a network graph for all plots?
+\end{continuance}
+
+One special case would be assuming no interaction effect of the group-level treatment and the unit-level treatment, $d_i(\bZ,\bA)=(d_{i}^{\textup{group}}(\bZ),d_{i}^{\textup{unit}}(\bA))$.
+
+\section{Causal parameters of interest}
+\sz{everything in this section needs better names...}
+
+Now that we have randomization on both sides, we can generalize the total treatment effect parameter in the previous bipartite experiment setup. We first define the overall total treatment effect, which is defined as the comparison of the two potential outcomes when all treatments on both the group and unit sides are equal to $1$ versus when all are equal to $0$,
+\begin{eqnarray*}
+    \tau^{\textup{overall}} &=& n^{-1} \sumi Y_{i}(\bZ=\bOneZ, \bA=\bOneA) - n^{-1} \sumi Y_{i}(\bZ=\bZeroZ, \bA=\bZeroA).
+\end{eqnarray*}
+Second, we can consider the main total treatment effect of the group (unit) side treatments as a function of the unit (group) side treatments.
+\begin{eqnarray*}
+    \tau^{\textup{group}}(\ba) &=& n^{-1} \sumi Y_{i}(\bZ=\bOneZ, \bA=\ba) - n^{-1} \sumi Y_{i}(\bZ=\bZeroZ, \bA=\ba), \\
+    \tau^{\textup{unit}}(\bz) &=& n^{-1} \sumi Y_{i}(\bZ=\bz, \bA=\bOneA) - n^{-1} \sumi Y_{i}(\bZ=\bz, \bA=\bZeroA).
+\end{eqnarray*}
+Third, we can define the interaction effect of treatments on the two sides,
+\begin{eqnarray*}
+    \tau^{\textup{inter}} &=& n^{-1} \sumi Y_{i}(\bZ=\bOneZ, \bA=\bOneA) - n^{-1} \sumi Y_{i}(\bZ=\bZeroZ, \bA=\bOneA) \\
+    &&- n^{-1} \sumi Y_{i}(\bZ=\bOneZ, \bA=\bZeroA) + n^{-1} \sumi Y_{i}(\bZ=\bZeroZ, \bA=\bZeroA) \\
+    &=& \tau^{\textup{group}}(\bOneA) - \tau^{\textup{group}}(\bZeroA) \ =\  \tau^{\textup{unit}}(\bOneZ) - \tau^{\textup{unit}}(\bZeroZ).
+\end{eqnarray*}
+
+We can consider more general estimands similar to \cite{hudgens2008toward} paper. Specifically, for the setup in Example~\ref{exmp::egger} where $\bZ$ only affects the potential outcomes through affecting the propensity score of $A_i$'s, we can consider
+\begin{eqnarray*}
+    \tau(e_h,e_l) &=& E\left\{n^{-1}\sumi Y_i(\bA_{e=e_h}) - n^{-1}\sumi Y_i(\bA_{e=e_l})\right\},
+\end{eqnarray*}
+where $\bA_{e=e_*}$ denotes the treatment realization of $\bA$ under the propensity score $e_*$ for $*=h,l$, and the expectation over all possible realizations of $\bA$ given the propensity score, i.e., marginalizing over the distribution of $\bA$. For instance, in their current setup, sublocations were randomly assigned to high-saturation and low-saturation groups, with $e_h=2/3$ and $e_l=1/3$. One parameter of interest can be $\tau(2/3,1/3)$. The total average treatment effect is $\tau(1,0)$.
+
+For continuous propensity scores, we can also define the total average partial effect, e.g.,
+\begin{eqnarray*}
+    \textsc{tape}(p) &=& \frac{\partial}{\partial e} E\left\{n^{-1}\sumi Y_i(\bA_{e=p})\right\}
+\end{eqnarray*}
+
+\sz{we can then discuss all parameters in the special case of example 1}
+
+
+\section{Estimation}
+\sz{to add: propose ad-hoc weighting estimators with the linear exposure mapping}
+
+\section{Property of the estimator}
+\sz{under the linear exposure mapping assumption, when treatment mechanisms on both sides are known, the weighting estimator should be unbiased and asymptotically normal.}
+
+\section{Variance estimation and inference}
+
+\section{Covariate adjustment}
+
+
+\section*{Manuscript submission information}
+
+Submissions for extended abstracts will be available at https://forms.gle/iR89uPwuSHT973oR7 until April 30th, 2025. Each submitted abstract should be less than 800 words (with up to 2 tables and 2 figures), including contact details for all authors (names, institutions, and email addresses). The abstract is expected to describe the research question, data and methods, and ideally, any preliminary findings. The guest editors aim to make decisions on the submitted abstracts by May 15th, 2025 and plan to invite authors with an accepted abstract to participate in a workshop on the same subject at Emory University (Atlanta, GA, USA) on August 14th, 2025 to seek feedback on research. The full paper should be submitted at the journal’s submission website (select the corresponding special issue) by November 15th, 2025 and will go through peer review that is to be concluded by May 15th, 2026.
+
+
+\bibliographystyle{apalike}
+\bibliography{ref}
+\end{document}

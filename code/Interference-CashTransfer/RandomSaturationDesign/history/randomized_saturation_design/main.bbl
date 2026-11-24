@@ -1,0 +1,33 @@
+\begin{thebibliography}{}
+
+\bibitem[Aronow and Samii, 2017]{aronow2017estimating}
+Aronow, P.~M. and Samii, C. (2017).
+\newblock Estimating average causal effects under general interference, with application to a social network experiment.
+\newblock {\em The Annals of Applied Statistics}, 11(4):1912 -- 1947.
+
+\bibitem[Egger et~al., 2022]{egger2022general}
+Egger, D., Haushofer, J., Miguel, E., Niehaus, P., and Walker, M. (2022).
+\newblock General equilibrium effects of cash transfers: experimental evidence from kenya.
+\newblock {\em Econometrica}, 90(6):2603--2643.
+
+\bibitem[Hudgens and Halloran, 2008]{hudgens2008toward}
+Hudgens, M.~G. and Halloran, M.~E. (2008).
+\newblock Toward causal inference with interference.
+\newblock {\em Journal of the American Statistical Association}, 103(482):832--842.
+
+\bibitem[Imbens, 2000]{imbens2000role}
+Imbens, G.~W. (2000).
+\newblock The role of the propensity score in estimating dose-response functions.
+\newblock {\em Biometrika}, 87(3):706--710.
+
+\bibitem[Zhao and Ding, 2022a]{zhao2022reconciling}
+Zhao, A. and Ding, P. (2022a).
+\newblock Reconciling design-based and model-based causal inferences for split-plot experiments.
+\newblock {\em The Annals of Statistics}, 50(2):1170--1192.
+
+\bibitem[Zhao and Ding, 2022b]{zhao2022regression}
+Zhao, A. and Ding, P. (2022b).
+\newblock Regression-based causal inference with factorial experiments: estimands, model specifications and design-based properties.
+\newblock {\em Biometrika}, 109(3):799--815.
+
+\end{thebibliography}

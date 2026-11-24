@@ -1,0 +1,97 @@
+n & \sumi A_i & \sumi \tS_i & \sumi \tH_i & \sumi A_i \tS_i & \sumi A_i \tH_i \\
+    \sumi A_i & \sumi A_i^2 & \sumi A_i \tS_i & \sumi A_i \tH_i & \sumi A_i^2 \tS_i & \sumi A_i^2 \tH_i \\
+    \sumi \tS_i & \sumi A_i \tS_i & \sumi \tS_i^2 & \sumi \tS_i \tH_i & \sumi A_i \tS_i^2 & \sumi A_i \tS_i \tH_i \\
+    \sumi \tH_i & \sumi A_i \tH_i & \sumi \tS_i \tH_i & \sumi \tH_i^2 & \sumi A_i \tS_i \tH_i & \sumi A_i \tH_i^2 \\
+    \sumi A_i \tS_i & \sumi A_i^2 \tS_i & \sumi A_i \tS_i^2 & \sumi A_i \tS_i \tH_i & \sumi A_i^2 \tS_i^2 & \sumi A_i^2 \tS_i \tH_i \\
+    \sumi A_i \tH_i & \sumi A_i^2 \tH_i & \sumi A_i \tS_i \tH_i & \sumi A_i \tH_i^2 & \sumi A_i^2 \tS_i \tH_i & \sumi A_i^2 \tH_i^2
+
+
+    \section{Previous asymptotic variance results}
+    We compute the variances of the building blocks, $\hat{Y}^{*}(a,s,h)$, $\hat{Y}^{*}(a)$, $\hat{Y}^{*}(a,s)$, and $\hat{Y}^{*}(a,h)$ for $*\in\{\horthom,\haj\}$.
+    
+    \subsection{Average potential outcomes $\hat{Y}^{*}(a,s,h)$}
+    (results in this subsection are identical to those in \citet{aronow2017estimating})
+    
+    First, compute the variances for $\hat{Y}^{*}(a,s,h)$.
+    \begin{eqnarray*}
+        \var\{\hat{Y}^{\horthom}(a,s,h)\} &=& \var \left[ n^{-1}\sumi\frac{ \bbI_{i}(a,s,h) }{ \pr(A_{i}=a, S_{i}=s, H_{i}=h)}Y_{i}\right] \\
+        &=& n^{-2}\sumi \frac{1 - \pscore{i}(a, s, h)}{\pscore{i}(a, s, h)}\{Y_i(a, s, h)\}^2 \\
+        &&+ n^{-2}\sumi\sumjneqi\frac{\pscore{ij}(a, s, h; a, s, h) - \pscore{i}(a, s, h)\pscore{j}(a, s, h)}{\pscore{i}(a, s, h)\pscore{j}(a, s, h)}Y_i(a, s, h)Y_j(a, s, h) \\
+        &=& n^{-2} \bY(a,s,h)^{\T} \bOmega(a,s,h) \bY(a,s,h),
+    \end{eqnarray*}
+    
+    For $(a,s,h) \neq (\ashprime)$, the covariance term is
+    \begin{eqnarray*}
+        && \cov\{\hat{Y}^{\horthom}(a,s,h), \hat{Y}^{\horthom}(\ashprime)\} \\
+        &=& -n^{-2}\sumi  Y_i(a, s, h) Y_i(\ashprime) \\ &&+ n^{-2}\sumi\sumjneqi \frac{\pscore{ij}(a, s, h; \ashprime) - \pscore{i}(a, s, h)\pscore{j}(\ashprime)}{\pscore{i}(a, s, h)\pscore{j}(\ashprime)} Y_i(a, s, h) Y_j(\ashprime) \\
+        &=& n^{-2} \bY(a,s,h)^{\T} \bOmega(a,s,h;\ashprime) \bY(\ashprime),
+    \end{eqnarray*}
+    where $\bOmega(a,s,h;\ashprime)$ is an $n\times n$ matrix with elements
+    \begin{eqnarray*}
+        \bOmega_{(i,j)}(a,s,h;\ashprime) &=& -\indicator\{j=i\}+ \indicator\{j\neq i\}\frac{\pscore{ij}(a, s, h; \ashprime) - \pscore{i}(a, s, h)\pscore{j}(\ashprime)}{\pscore{i}(a, s, h)\pscore{j}(\ashprime)}.
+    \end{eqnarray*}
+    For the Hajek estimator, we have
+    \begin{eqnarray*}
+        \avar\{\hat{Y}^{\haj}(a,s,h)\} &=& \var \left[ n^{-1}\sumi\frac{ \bbI_{i}(a,s,h) }{ \pr(A_{i}=a, S_{i}=s, H_{i}=h)}\{Y_{i}(a,s,h)-\bar Y(a,s,h)\}\right] \\
+        &=& n^{-2}\sumi \frac{1 - \pscore{i}(a, s, h)}{\pscore{i}(a, s, h)}\{\tilde Y_i(a, s, h)\}^2 \\
+        &&+ n^{-2}\sumi\sumjneqi\frac{\pscore{ij}(a, s, h; a, s, h) - \pscore{i}(a, s, h)\pscore{j}(a, s, h)}{\pscore{i}(a, s, h)\pscore{j}(a, s, h)}\tilde Y_i(a, s, h)\tilde Y_j(a, s, h), \\
+        &=& n^{-2} \tilde\bY(a,s,h)^{\T} \bOmega(a,s,h)\tilde\bY(a,s,h),
+    \end{eqnarray*}
+    where $\tilde Y_i(a,s,h) = Y_i(a,s,h) - \bar Y(a,s,h)$ denotes the centered potential outcome for unit $i$ and $\tilde\bY(a,s,h)=(\tilde Y_1(a,s,h),\ldots,\tilde Y_n(a,s,h))^{\T}$ denotes the vector of centered potential outcomes, and
+    \begin{eqnarray*}
+        && \cov\{\hat{Y}^{\haj}(a,s,h), \hat{Y}^{\haj}(\ashprime)\} \\
+        &=& -n^{-2}\sumi  \tilde Y_i(a, s, h) \tilde Y_i(\ashprime) \\ &&+ n^{-2}\sumi\sumjneqi \frac{\pscore{ij}(a, s, h; \ashprime) - \pscore{i}(a, s, h)\pscore{j}(\ashprime)}{\pscore{i}(a, s, h)\pscore{j}(\ashprime)} \tilde Y_i(a, s, h) \tilde Y_j(\ashprime) \\
+        &=& n^{-2} \tilde\bY(a,s,h)^{\T} \bOmega(a,s,h;\ashprime)\tilde\bY(\ashprime).
+    \end{eqnarray*}
+    
+    It is therefore easy to compute the variance estimators for the direct effect estimators $\hat{\de}^{*}(s,h)$, the within-cluster indirect effect estimators $\hat{\wie}^{*}(s,s^{\prime},h)$, and the between-cluster indirect effect estimators $\hat{\bie}^{*}(s,h,h^{\prime})$, for $*\in\{\horthom,\haj\}$.
+
+
+    \subsection{Average marginalized potential outcomes $\hat Y^{*}(a,s)$ and $\hat Y^{*}(a,h)$}
+For the indirect effect moment estimators, we compute the variances for $\hat{Y}^{*}(a,s)$.
+\begin{eqnarray*}
+    \var\{\hat{Y}^{\horthom}(a,s)\} &=& \var \left[ n^{-1}\sumi\frac{ \indicator\{A_{i}=a, S_{i}=s\} }{ \pr(A_{i}=a, S_{i}=s)}Y_{i}\right] \\
+    &=& \var \left[ n^{-1}\sumi\sum_{h=0,1}\frac{ \indicator\{A_{i}=a, S_{i}=s,H_i=h\} }{ \pr(A_{i}=a, S_{i}=s)}Y_{i}(a,s,h)\right] \\
+    &=& \var \left[ n^{-1}\sumi\sum_{h=0,1}\frac{ \indicator\{A_{i}=a, S_{i}=s,H_i=h\} }{ \pr(A_{i}=a, S_{i}=s, H_{i}=h)}\pscore{i}{H}(h)Y_{i}(a,s,h)\right] \\
+    &=& n^{-2} \sum_{h=0,1}\bY(a,s,h)^{\T}\bpi^{H}(h)\bOmega(a,s,h)\bpi^{H}(h)\bY(a,s,h) \\
+    &&+ 2n^{-2}\bY(a,s,1)^{\T}\bpi^{H}(1)\bOmega(a,s,1;a,s,0)\bpi^{H}(0)\bY(a,s,0),
+\end{eqnarray*}
+where $\bpi^{H}(h) = \diag\{\pscore{1}{}{H}(h), \ldots, \pscore{n}{}{H}(h)\}$ is an $n\times n$ diagonal matrix with diagonal terms equal to $\pscore{i}{H}(h)$.
+For $(a,s)\neq(a^{\prime},s^{\prime})$, the covariance term is
+\begin{eqnarray*}
+    && \cov\{\hat{Y}^{\horthom}(a,s), \hat{Y}^{\horthom}(a^{\prime},s^{\prime})\} \\
+    &=& -n^{-2}\sum_{h,h^{\prime}=0,1}\sumi  Y_i(a, s, h) Y_i(\ashprime) \\ 
+    &&+ n^{-2}\sum_{h,h^{\prime}=0,1}\sumi\sumjneqi \frac{\pscore{ij}(a, s, h; \ashprime) - \pscore{i}(a, s, h)\pscore{j}(\ashprime)}{\pscore{i}(a, s, h)\pscore{j}(\ashprime)} Y_i(a, s, h) Y_j(\ashprime) \\
+    &=& n^{-2}\sum_{h, h^{\prime}=0,1} \bY(a,s,h)^{\T} \bpi^{H}(h)\bOmega(a,s,h;\ashprime)\bpi^{H}(h^{\prime}) \bY(\ashprime).
+\end{eqnarray*}
+For the Hajek estimator, we have
+\begin{eqnarray*}
+    n^2\avar\{\hat Y^{\haj}(a,s)\} &=& \bY(a,s,1)^{\T} \bOmega^{H}(a,s,1) \bY(a,s,1) \\
+    &&+ \bY(a,s,0)^{\T} \bOmega^{H}(a,s,0) \bY(a,s,0) \\
+    &&+ 2\bY(a,s,1)^{\T} \bOmega^{H}(a,s,1;a,s,0) \bY(a,s,0) \\
+    &&- 2\mu^{H}(a,s) \iota^{\T} \bOmega^{AS}(a,s) \{\bpi^{H}(1)\bY(a,s,1) + \bpi^{H}(0)\bY(a,s,0)\} \\
+    &&+ \{\mu^{H}(a,s)\}^2 \iota^{\T} \bOmega^{AS}(a,s) \iota,
+\end{eqnarray*}
+where $\iota$ is the $n$-dimensional column vector with all ones, 
+\begin{eqnarray*}
+    \bOmega^{H}_{(i,j)}(a,s,h) &=& \indicator\{j=i\} \frac{\pscore{i}{H}(h)}{\pscore{i}{AS}(a,s)} \\
+    &&+ \indicator\{j\neq i\} \frac{\pscore{i}{j}{AS}(a,s;a,s)\pscore{i}{j}{H}(h;h)}{\pscore{i}{AS}(a,s)\pscore{j}{}{AS}(a,s)}, \\
+    \bOmega^{H}_{(i,j)}(a,s,h;a,s,h^{\prime}) &=& \indicator\{j\neq i\} \frac{\pscore{i}{j}{AS}(a,s;a,s)\pscore{i}{j}{H}(h;h^{\prime})}{\pscore{i}{AS}(a,s)\pscore{j}{}{AS}(a,s)}, \\
+    \bOmega^{AS}(a,s) &=& \indicator\{j=i\}\frac{1}{\pscore{i}{AS}(a,s)} + \indicator\{j\neq i\} \frac{\pscore{i}{j}{AS}(a,s;a,s)}{\pscore{i}{AS}(a,s)\pscore{j}{}{AS}(a,s)}.
+\end{eqnarray*}
+For $(a,s)\neq(a^{\prime},s^{\prime})$, the covariance term is
+\begin{eqnarray*}
+    n^2\acov\{\hat Y^{\haj}(a,s), \hat Y^{\haj}(a^{\prime},s^{\prime})\} &=& \sum_{h,h^{\prime} = 0,1} \bY(a,s,h)^{\T} \bOmega^{H}(a,s,h;\ashprime)\bY(\ashprime) \\
+    &&- \mu^{H}(a,s) \iota^{\T} \bOmega^{AS}(a,s;a^{\prime},s^{\prime}) \{\bpi^{H}(1) \bY(a^{\prime},s^{\prime},1) + \bpi^{H}(0) \bY(a^{\prime},s^{\prime},0)\} \\
+    &&- \mu^{H}(a^{\prime},s^{\prime}) \iota^{\T} \bOmega^{AS}(a,s;a^{\prime},s^{\prime}) \{\bpi^{H}(1) \bY(a,s,1) + \bpi^{H}(0) \bY(a,s,0)\} \\
+    &&+ \mu^{H}(a,s)\mu^{H}(a^{\prime},s^{\prime}) \iota^{\T} \bOmega^{AS}(a,s;a^{\prime},s^{\prime}) \iota,
+\end{eqnarray*}
+where
+\begin{eqnarray*}
+    \bOmega^{H}_{(i,j)}(a,s,h;\ashprime) &=& \indicator\{j\neq i\} \frac{\pscore{i}{j}{AS}(a,s;a^{\prime},s^{\prime})\pscore{i}{j}{H}(h;h^{\prime})}{\pscore{i}{AS}(a,s)\pscore{j}{}{AS}(a^{\prime},s^{\prime})}, \\
+    \bOmega^{AS}(a,s;a^{\prime},s^{\prime}) &=& \indicator\{j\neq i\} \frac{\pscore{i}{j}{AS}(a,s;a^{\prime},s^{\prime})}{\pscore{i}{AS}(a,s)\pscore{j}{}{AS}(a^{\prime},s^{\prime})}.
+\end{eqnarray*}
+Similar variance and covariance formulas for $\hat Y^{*}(a,h)$ can be derived analogously by switching the role of $S$ and $H$.
+
+
+\subsection{Average marginalized potential outcomes $\hat Y^{*}(a)$}

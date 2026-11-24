@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1795452054.46352 "main.aux" "main.bbl" "main" 1795453498.14909 0
+["bibtex main"] 1795452054.46352 "main.aux" "main.bbl" "main" 1795492196.73748 0
   "./references.bib" 1795453496.5538 34345 004e6458dfc0e1161158adca812787a6 ""
   "/home/colligo/texlive/2026/texmf-dist/bibtex/bst/base/apalike.bst" 1292289607 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "main.aux" 1795453497.9438 22187 2ad9082a28c3d594e2a53b1db60b0377 "pdflatex"
+  "main.aux" 1795492196.53628 22187 2ad9082a28c3d594e2a53b1db60b0377 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1795453495.99245 "/mnt/localssd/optimal-GRR/writeup/aistats2027/main.tex" "main.pdf" "main" 1795453498.14969 0
+["pdflatex"] 1795492194.52195 "/mnt/localssd/optimal-GRR/writeup/aistats2027/main.tex" "main.pdf" "main" 1795492196.73779 0
   "../architecture.png" 1795450340.33842 1008268 2c33b394307bb5f5e216f4029cab1ed5 ""
   "../propensity_histograms.pdf" 1795450344.41842 22906 50f8684d4b4d31c7db0bae66ef256ff1 ""
   "/home/colligo/.texlive2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1778141428 419891 266a368c81ae92a4bca5677e2e1e2d5f ""
@@ -172,15 +172,15 @@
   "/home/colligo/texlive/2026/texmf-var/web2c/pdftex/pdflatex.fmt" 1771918543 2966316 205c727e03bc3fc762e2c6ca1ff770ac ""
   "/home/colligo/texlive/2026/texmf.cnf" 1771918497.87684 589 d7944c440cb3c22bbf77adf8aba40b38 ""
   "/home/colligo/texlive/texmf-local/tex/latex/mathrsfs/mathrsfs.sty" 1778141399.47151 300 12fa6f636b617656f2810ee82cb05015 ""
-  "/mnt/localssd/optimal-GRR/writeup/aistats2027/main.tex" 1795453495.1238 116880 1138e4cc1461f7b02c22bb3e3387f7d9 ""
+  "/mnt/localssd/optimal-GRR/writeup/aistats2027/main.tex" 1795492193.34628 116880 6d6ceaf8671604ff143a640bc6835e08 ""
   "aistats2027.sty" 1795451028.6174 19561 cfbd722de00ebc8d4a5ebdc72c44cf8b ""
   "algorithm.sty" 1795451028.6174 2223 ada3eaa0c1bd465a639433dfafc2fc4e ""
   "algorithmic.sty" 1795451028.6174 7414 ce084815cf0aab483787dbc4bf2ace9c ""
   "fancyhdr.sty" 1795451028.6174 20521 e5d13d98d57bd53d4fed3aa61bd29c86 ""
-  "main.aux" 1795453497.9438 22187 2ad9082a28c3d594e2a53b1db60b0377 "pdflatex"
+  "main.aux" 1795492196.53628 22187 2ad9082a28c3d594e2a53b1db60b0377 "pdflatex"
   "main.bbl" 1795452054.48591 11445 fc225bbecb1a2c1d9f7c1b48ce657523 "bibtex main"
-  "main.out" 1795453497.9438 8172 a75f0b75bce5e46e6b23a9019e270f8d "pdflatex"
-  "main.tex" 1795453495.1238 116880 1138e4cc1461f7b02c22bb3e3387f7d9 ""
+  "main.out" 1795492196.53628 8172 a75f0b75bce5e46e6b23a9019e270f8d "pdflatex"
+  "main.tex" 1795492193.34628 116880 6d6ceaf8671604ff143a640bc6835e08 ""
   (generated)
   "main.aux"
   "main.log"

@@ -1,0 +1,849 @@
+\documentclass{article}
+\usepackage[left=1in, right=1in, bottom = 1in, top = 1in]{geometry}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{bbm}
+\usepackage{amsmath}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[authoryear]{natbib}
+%\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+
+%\setlength{\parskip}{1em}
+%\onehalfspacing
+%\linespread{1.45}
+
+% Math Packages
+\usepackage{amsmath}
+%\numberwithin{equation}{section}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+%\usepackage{bbm}
+\usepackage{amstext}
+\usepackage{comment}
+\usepackage{epsfig}
+\usepackage{latexsym}
+\usepackage{epstopdf}
+\usepackage{bm}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+%\usepackage[capposition=top]{floatrow}
+
+
+% For drawing graph
+\usepackage{tikz}
+\usetikzlibrary{positioning,chains,fit,shapes,calc}
+\definecolor{myblue}{RGB}{80,80,160}
+\definecolor{mygreen}{RGB}{80,160,80}
+
+\usepackage{url}
+\usepackage[colorlinks = true, linkcolor = blue]{hyperref}
+\hypersetup{
+        urlcolor = blue,
+	colorlinks = true,
+	linkcolor = blue,
+	citecolor = blue,
+}
+\usepackage{paralist}
+\usepackage{enumitem}
+\setlist[enumerate]{topsep=0pt,noitemsep}
+
+% For Tables
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{babel}
+\usepackage{array}
+\usepackage{rotating}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{lscape}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{afterpage}
+% \usepackage{showkeys}
+\usepackage{authblk}
+
+% Theorem Environment
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{assumption}{Assumption}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{notation}{Notation}
+\newtheorem{example}{Example}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{prediction}{Prediction}
+\newtheorem{regression}{Regression}
+
+% Custom environment for continuance
+\newenvironment{continuance}[1]
+{%
+  \newcommand{\continuanceref}{\ref{#1}}% Define reference to original example
+  \continuancex % Begin the non-numbered theorem-like environment
+}
+{\endcontinuancex}
+
+% Define a non-numbered continuation environment
+\newtheorem*{continuancex}{Example \continuanceref \ (continued)}
+
+% \makeatletter
+% \renewenvironment{proof}[1][\proofname]{%
+%   \par\pushQED{\qed}\normalfont%
+%   \topsep6\p@\@plus6\p@\relax
+%   \trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]%
+%   \ignorespaces
+% }{%
+%   \popQED\endtrivlist\@endpefalse
+% }
+% \makeatother
+%\numberwithin{theorem}{section}
+%\numberwithin{corollary}{section}
+%\numberwithin{proposition}{section}
+%\numberwithin{lemma}{section}
+%\numberwithin{assumption}{section}
+
+% Formatting 
+\linespread{1.4}
+% \mathtoolsset{showonlyrefs=true}
+
+\allowdisplaybreaks
+
+
+% Define math operators
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\vect}{vec}
+\DeclareMathOperator{\Rank}{Rank}
+
+% Define shortcut
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\B}{B}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\bbm}[1]{\mathbbm{#1}}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\sq}[1]{\textquoteleft #1 \textquoteright}
+\newcommand{\dq}[1]{\textquotedblleft #1 \textquotedblright}
+\newcommand{\red}{\color{red}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\def\T{{\textsc{t}}}
+
+\newcommand{\pr}{\textup{pr}}
+\newcommand{\cov}{\textup{cov}}
+\newcommand{\var}{\textup{var}}
+\newcommand{\avar}{\textup{avar}}
+\newcommand{\acov}{\textup{acov}}
+\newcommand{\kprime}{k^{\prime}}
+\newcommand{\adj}{\textup{adj}}
+
+\newcommand{\bOneZ}{\boldsymbol{1}_{m}}
+\newcommand{\bZeroZ}{\boldsymbol{0}_{m}}
+\newcommand{\bOneA}{\boldsymbol{1}_{n}}
+\newcommand{\bZeroA}{\boldsymbol{0}_{n}}
+\newcommand{\Yt}[1]{Y_{#1}(\boldsymbol{1}_{m})}
+\newcommand{\Yc}[1]{Y_{#1}(\boldsymbol{0}_{m})}
+
+\newcommand{\bY}{\boldsymbol{Y}}
+\newcommand{\bz}{\boldsymbol{z}}
+\newcommand{\bZ}{\boldsymbol{Z}}
+\newcommand{\ba}{\boldsymbol{a}}
+\newcommand{\bA}{\boldsymbol{A}}
+\newcommand{\bW}{\boldsymbol{W}}
+\newcommand{\bV}{\boldsymbol{V}}
+\newcommand{\bX}{\boldsymbol{X}}
+\newcommand{\bpi}{\boldsymbol{\pi}}
+\newcommand{\Davg}{D_{\textup{avg}}}
+\newcommand{\bOmega}{\boldsymbol{\Omega}}
+
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cF}{\mathscr{F}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cS}{\mathcal{S}}
+
+\newcommand{\tA}{\tilde{A}}
+\newcommand{\tS}{\tilde{S}}
+\newcommand{\tH}{\tilde{H}}
+
+
+\newcommand{\allt}{\left(\prod_{k\in \mathcal{G}_{+i}} Z_k\right)}
+\newcommand{\alltj}{\left(\prod_{k\in \mathcal{G}_{+j}} Z_k\right)}
+\newcommand{\allc}{\left\{\prod_{k\in \mathcal{G}_{+i}} (1-Z_k)\right\}}
+\newcommand{\allcj}{\left\{\prod_{k\in \mathcal{G}_{+j}} (1-Z_k)\right\}}
+
+\newcommand{\plim}{\textup{plim}}
+
+\newcommand{\bG}{\boldsymbol{G}}
+\newcommand{\bGamma}{\boldsymbol{\Gamma}}
+\newcommand{\G}{G}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cGijcap}{\cG_{+i} \cap \cG_{+j}}
+\newcommand{\cGijcup}{\cG_{+i} \cup \cG_{+j}}
+
+\newcommand{\Smax}{{\max_{1\leq i\leq n}\G_{+i}}}
+\newcommand{\Dmax}{{\max_{1\leq k\leq m}\G_{k+}}}
+\newcommand{\Smaxsupp}{{\bar{D}_\textup{O}}}
+\newcommand{\Dmaxsupp}{{\bar{D}_\textup{I}}}
+
+\newcommand{\sumi}{\sum_{i=1}^n}
+\newcommand{\sumj}{\sum_{j=1}^n}
+\newcommand{\sumk}{\sum_{k=1}^m}
+\newcommand{\sumij}{\sum_{i=1}^{n} \sum_{j=1}^{n}}
+\newcommand{\sumjneqi}{\sum_{j\neq i}}
+\newcommand{\sumu}{\sum_{u=1}^n}
+\newcommand{\sumv}{\sum_{v=1}^n}
+\newcommand{\maxi}{\max_{1\leq i\leq n}}
+
+\newcommand{\de}{\textsc{de}}
+\newcommand{\bie}{\textsc{bie}}
+\newcommand{\wie}{\textsc{wie}}
+\newcommand{\horthom}{\textup{ht}}
+\newcommand{\haj}{\textup{haj}}
+\newcommand{\diag}{\textup{diag}}
+
+\newcommand{\indicator}{\mathbbm{1}}
+\newcommand{\bbI}{\mathbbm{I}}
+\newcommand{\ashprime}{a^{\prime},s^{\prime},h^{\prime}}
+
+% propensity scoressssss
+\newcommand{\pscore}[1]{\pi_{#1}}
+
+\newcommand{\sz}[1]{{\textcolor{olive}{(Sizhu: #1)}}}
+
+\makeatletter
+\newcommand{\ostar}{\mathbin{\mathpalette\make@circled\star}}
+\newcommand{\make@circled}[2]{%
+  \ooalign{$\m@th#1\smallbigcirc{#1}$\cr\hidewidth$\m@th#1#2$\hidewidth\cr}%
+}
+\newcommand{\smallbigcirc}[1]{%
+  \vcenter{\hbox{\scalebox{0.77778}{$\m@th#1\bigcirc$}}}%
+}
+\makeatother
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Estimating within-cluster and between-cluster spillover effects in randomized saturation designs}
+
+\author{ 
+Sizhu Lu\thanks{Department of Statistics, University of California, Berkeley, CA 94720, USA. Email: \href{mailto:sizhu_lu@berkeley.edu}{sizhu\_lu@berkeley.edu}}, 
+Lei Shi\thanks{Division of Biostatistics, University of California, Berkeley, CA 94720, USA. Email: \href{mailto:leishi@berkeley.edu}{leishi@berkeley.edu}}, 
+Peng Ding\thanks{Department of Statistics, University of California, Berkeley, CA 94720, USA. Email: \href{mailto:pengdingpku@berkeley.edu}{pengdingpku@berkeley.edu}}
+}
+
+% \author[1]{Sizhu Lu\thanks{The first two authors contributed equally to this work.}}
+% \author[2]{Lei Shi$^{*}$}
+% \author[1]{Peng Ding}
+
+% \affil[1]{Department of Statistics, University of California, Berkeley}
+% \affil[2]{Division of Biostatistics, University of California, Berkeley}
+
+\date{\today}
+\begin{document}
+
+\maketitle
+\begin{abstract}
+    Randomized saturation designs are two-stage experiments: they first randomly assign treatment probabilities over the clusters and then randomly assign the treatment to the units within the clusters. The existing literature on randomized saturation designs focuses on estimating within-cluster spillover effects by assuming away between-cluster spillover effects. However, the units may interact across clusters in practice. A leading example is that some units are geographically close to each other, so spillover effects arise across clusters. Based on the potential outcomes framework, we formulate the causal inference problem of estimating within-cluster and between-cluster spillover effects in randomized saturation designs. We clarify the causal estimands and establish rigorous statistics theory for inference. We also apply our theory to analyze a recent randomized saturation design of cash transfer on household expenditure in Kenya.
+\end{abstract}
+% {\small\hspace{2em} \textbf{Key Words: } }
+
+
+\section{Introduction}
+Randomized saturation designs are widely used to study causal effects in the presence of network interference \citep{hudgens2008toward}. Most existing studies focus on within-cluster interference and assume no between-cluster spillover effects, which is often an unrealistic assumption in applied settings. A leading example is the study by \citet{egger2022general}, which implemented a randomized experiment to evaluate the impact of a cash transfer program in rural Kenya. The study used a randomized saturation design: in the first stage, sublocations were randomly assigned to either high- or low-saturation groups. In the second stage, within each high-saturation sublocation, two-thirds of villages were randomly assigned to treatment, while in low-saturation sublocations, one-third of villages were treated. All eligible households in treated villages received transfers. In this setting, there are two plausible sources of interference: (i) within-sublocation interference, where villages in the same sublocation affect each other’s outcomes, and (ii) between-sublocation interference, where villages in different sublocations, but located near each other, may also exert influence.
+
+To formalize these ideas, let $k(i)$ denote the sublocation to which village $i$ belongs, and let $\cG_{+i}$ represent the set of villages that are geographically close to village $i$. We define the exposure mapping as $d_i(\bA) = (A_{i}, S_{i}, H_{i})$, where $S_i$ and $H_i$ are summaries of within-sublocation exposure and between-sublocation exposure \citep{aronow2017estimating}:
+\begin{eqnarray*}
+    S_{i} = f_i\{(A_{j}: k(j)=k(i)\}, \quad 
+    H_{i} = g_i\{A_j: k(j)\neq k(i), j\in\cG_{+i}\}. 
+\end{eqnarray*}
+For example, we can use the following exposure mapping:  
+\begin{eqnarray*}
+    S_{i} &=& \indicator\left\{\frac{\sum_{j\neq i}\indicator\{k(j)=k(i)\} A_{j}}{\sum_{j\neq i}\indicator\{k(j)=k(i)\}} > \frac{1}{2}\right\},  \\
+    H_{i} &=& \indicator \left\{\frac{\sumj \indicator\{k(j)\neq k(i), j\in\cG_{+i}\}A_{j}}{\sumj \indicator\{k(j)\neq k(i), j\in\cG_{+i}\}} > \frac{1}{2}\right\}.
+\end{eqnarray*}
+Here, $S_{i}$ indicates whether more than half of the villages are getting treated within the same sublocation as village $i$, while $H_{i}$ measures whether more than half villages are treated among those connected to village $i$ but located in different sublocations. In other words, $S_{i}$ captures within-sublocation interference, since the potential outcome of village $i$ may depend not only on its own treatment, but also on the treatments of other villages in the same sublocation. On the other hand, $H_{i}$ captures between-sublocation interference, reflecting the possibility that nearby sublocations influence each other through spillover effects \citep{egger2022general}. 
+
+\section{Causal parameters of interest}
+\label{sec::parameters}
+
+\subsection{Direct effect}
+We first consider the direct effect of treatment. Define
+\begin{eqnarray*}
+    \de(s,h) &=& n^{-1}\sumi Y_{i}(1,s,h) - n^{-1}\sumi Y_{i}(0,s,h), \\
+    \de &=& n^{-1}\sumi E_{\bA_{(-i)}}\left\{Y_{i}(1,S_{i},H_{i})\right\} - n^{-1}\sumi E_{\bA_{(-i)}}\left\{Y_{i}(0,S_{i},H_{i})\right\}.
+\end{eqnarray*}
+where $E_{\bA_{(-i)}}(\cdot)$ denotes the expectation with respect to the distribution of $\bA_{(-i)}$, the vector of treatment assignments for all villages other than $i$. 
+
+The quantity $\de(s,h)$ represents the \textit{controlled direct effect} of treatment $A_{i}$ on the outcome, while holding the exposure variables $(S_{i},H_{i})$ fixed at values $(s,h)$. In contrast, $\de$ represents the \textit{marginal direct effect} of treatment $A_{i}$, marginalizing over the distribution of treatments for all other villages. Therefore, by definition, $\de$ depends on the treatment assignment mechanism.
+
+\subsection{Indirect effect}
+We consider two types of indirect effects corresponding to the two sources of interference: within-cluster and between-cluster spillovers.
+
+For within-cluster indirect effects, we define the \textit{within-cluster controlled indirect effect} of $S_{i}$ on the outcome as
+\begin{eqnarray*}
+    \wie(s,s^{\prime},h) &=& n^{-1}\sumi Y_{i}(0,s,h) - n^{-1}\sumi Y_{i}(0,s^{\prime},h),
+\end{eqnarray*}
+and the \textit{marginal within-cluster indirect effect} of $S_{i}$ on the outcome as
+\begin{eqnarray*}
+    \wie(s,s^{\prime}) &=& n^{-1}\sumi E_{\bA_{(-i)}\mid S_{i} = s}\left\{Y_{i}(0,s,H_{i})\right\} - n^{-1}\sumi E_{\bA_{(-i)}\mid S_{i} = s^{\prime}}\left\{Y_{i}(0,s^{\prime},H_{i})\right\},
+\end{eqnarray*}
+where $E_{\bA_{(-i)}\mid S_{i} = s}(\cdot)$ denotes expectation with respect to the distribution of $\bA_{(-i)}$ conditional on $S_{i}=s$. The quantity $\wie(s,s^{\prime},h)$ captures the effect of changing the proportion of treated villages in the same sublocation (from $s$ to $s^{\prime}$) on the outcome of village $i$, while holding its own treatment fixed at zero and the between-cluster exposure $H_{i}$ at level $h$. The $\wie(s,s^{\prime})$ is a marginal version of this effect, marginalized over the conditional distribution of other villages' treatments given $S_{i}=s$ and $S_{i}=s^{\prime}$, respectively. As with the marginal direct effect, this definition depends on the treatment assignment mechanism.
+
+For between-cluster indirect effects, similarly, we define the \textit{between-cluster controlled indirect effect} of $H_{i}$ on the outcome as
+\begin{eqnarray*}
+    \bie(s,h,h^{\prime}) &=& n^{-1}\sumi Y_{i}(0,s,h) - n^{-1}\sumi Y_{i}(0,s,h^{\prime}),
+\end{eqnarray*}
+and the \textit{marginal between-cluster indirect effect} of $H_{i}$ on the outcome as
+\begin{eqnarray*}
+    \bie(h,h^{\prime}) &=& n^{-1}\sumi E_{\bA_{(-i)}\mid H_{i} = h}\left\{Y_{i}(0,S_{i},h)\right\} - n^{-1}\sumi E_{\bA_{(-i)}\mid H_{i} = h^{\prime}}\left\{Y_{i}(0,S_{i},h^{\prime})\right\},
+\end{eqnarray*}
+where $E_{\bA_{(-i)}\mid H_{i} = h}(\cdot)$ denotes expectation conditional on $H_{i}=h$. The quantity $\bie(s,h,h^{\prime})$ captures the effect of changing the level of between-cluster exposure from $h$ to $h^{\prime}$, with the own treatment fixed at zero and the within-cluster exposure $S_{i}$ fixed at level $s$. The quantity $\bie(h,h^{\prime})$ is the corresponding marginal effect, depending on the distribution of treatments of other villages under the condition $H_{i}=h$ and $H_{i}=h^{\prime}$.
+
+\begin{remark}
+    When the treatment assignments $A_{i}$'s are independent, e.g., if we have Bernoulli randomization within each sublocation, then the conditional expectations $E_{\bA_{(-i)}\mid S_{i} = s}(\cdot)$ and $E_{\bA_{(-i)}\mid H_{i} = h}(\cdot)$ are equivalent to expectations over the marginal distribution of $H_{i}$ and $S_{i}$, respectively.
+\end{remark}
+
+\begin{remark}
+    All quantities are defined conditional on the realization of the first-stage randomization $\bZ$, which affects the distribution of $\bA$.
+\end{remark}
+
+\begin{remark}
+    Here we define the two indirect effects holding the treatment status $A=0$ following \cite{hudgens2008toward}. We can similarly define analogous estimands on the treated subset.
+\end{remark}
+
+\subsection{Policy-specific causal parameters}
+In random saturation designs such as \cite{egger2022general}, we can further define estimands that compare two policies, similar to \citep{hudgens2008toward}. For a specific treatment assignment policy $\psi$, define the policy-specific direct effect $\de_{\psi}$, within-cluster indirect effect $\wie_{\psi}$, and between-cluster indirect effect $\bie_{\psi}$ as follows
+\begin{eqnarray*}
+    \de_{\psi} &=& n^{-1}\sumi E_{\psi}\{Y_i(1,S_i,H_i)\} - n^{-1}\sumi E_{\psi}\{Y_i(0,S_i,H_i)\}, \\
+    \wie_{\psi} &=& n^{-1}\sumi E_{\psi}\left\{Y_{i}(0,1,H_{i})\right\} - n^{-1}\sumi E_{\psi}\left\{Y_{i}(0,0,H_{i})\right\}, \\
+    \bie_{\psi} &=& n^{-1}\sumi E_{\psi}\left\{Y_{i}(0,S_{i},1)\right\} - n^{-1}\sumi E_{\psi}\left\{Y_{i}(0,S_{i},0)\right\},
+\end{eqnarray*}
+where the subscript $\psi$ denotes marginalization of $(S_{i}, H_{i})$ conditional on $A_{i} = a$ under the distribution induced by policy $\psi$ for $a=0,1$ in the definition of $\de_{\psi}$, marginalization of $H_{i}$ conditional on $(A_{i},S_{i}) = (0,s)$ under the distribution induced by policy $\psi$ for $s=0,1$ in the definition of $\wie_{\psi}$, and marginalization of $S_{i}$ conditional on $(A_{i},H_{i}) = (0,h)$ under the distribution induced by policy $\psi$ for $h=0,1$ in the definition of $\bie_{\psi}$.
+
+For two policies $\psi_1$, $\psi_2$, we can therefore compare their direct effect and indirect effects by the contrasts $\de_{\psi_1} - \de_{\psi_2}$, $\wie_{\psi_1} - \wie_{\psi_2}$, and $\bie_{\psi_1} - \bie_{\psi_2}$, respectively.
+
+\section{Estimation}
+\label{sec::estimation}
+
+\subsection{Estimate village average potential outcome}
+We first construct an estimator for the village average potential outcome,
+\begin{eqnarray*}
+    \bar{Y}(a,s,h) &=& n^{-1}\sumi Y_{i}(a,s,h),
+\end{eqnarray*}
+for given $(a,s,h)$. Consider the Horvitz--Thompson estimator
+\begin{eqnarray*}
+    \hat{Y}^{\horthom}(a,s,h) &=& n^{-1}\sumi\frac{ \bbI_{i}(a,s,h)}{ \pscore{i}(a,s,h)}Y_{i},
+\end{eqnarray*}
+and the Hajek-type estimator
+\begin{eqnarray*}
+    \hat{Y}^{\haj}(a,s,h) &=& n^{-1}\sumi\frac{ \bbI_{i}(a,s,h) }{ \pscore{i}(a,s,h)}Y_{i} \Big / n^{-1}\sumi\frac{ \bbI_{i}(a,s,h)}{ \pscore{i}(a,s,h)},
+\end{eqnarray*}
+where $\bbI_{i}(a,s,h)=\indicator\{A_{i}=a,S_{i}=s,H_{i}=h\}$ and $\pscore{i}(a,s,h)=\pr(A_{i}=a, S_{i}=s, H_{i}=h)$.
+
+\subsection{Policy-specific effect estimation}
+We propose to use a policy-specific re-weighting to estimate the policy-specific effects. More concretely, given weights $\gamma_i(a,s,h)$, consider a class of Horvitz--Thompson estimator with weights $\gamma_i$,
+\begin{eqnarray*}
+    \hat{Y}^{\horthom}(a,s,h;\Gamma) &=& n^{-1}\sumi\frac{ \bbI_{i}(a,s,h)\gamma_i(a,s,h)}{ \pscore{i}(a,s,h)}Y_{i},
+\end{eqnarray*}
+and the Hajek-type estimator
+\begin{eqnarray*}
+    \hat{Y}^{\haj}(a,s,h) &=& n^{-1}\sumi \gamma_i(a,s,h)\cdot n^{-1}\sumi\frac{ \bbI_{i}(a,s,h) \gamma_i(a,s,h)}{ \pscore{i}(a,s,h)}Y_{i} \Big / n^{-1}\sumi\frac{ \bbI_{i}(a,s,h) \gamma_i(a,s,h)}{ \pscore{i}(a,s,h)}. 
+\end{eqnarray*}
+We then propose the following estimators for the policy-specific direct and indirect effects in Section~\ref{sec::parameters}. 
+
+Define functions $\Gamma_{\psi}^{\de}(a,s,h)$, $\Gamma_{\psi}^{\bie}$, and $\Gamma_{\psi}^{\wie}$ as
+\begin{equation*}
+    \gamma_{\psi}^{\de}(a,s,h) = \pscore{i,\psi}(\cdot,s,h), \quad 
+    \gamma_{i,\psi}^{\wie}(a,s,h) = \pscore{i,\psi}(\cdot, \cdot, h), \quad
+    \gamma_{i,\psi}^{\bie}(a,s,h) = \pscore{i,\psi}(\cdot, s, \cdot).
+\end{equation*}
+For $*\in\{\horthom,\haj\}$, construct the following estimators
+\begin{eqnarray*}
+    \hat{\de}_{\psi}^{*} &=& \sum_{s,h=0,1} \{\hat{Y}^{*}(1,s,h;\Gamma_{\psi}^{\de})  - \hat{Y}^{*}(0,s,h;\Gamma_{\psi}^{\de})\}, \\
+    \hat{\wie}_{\psi}^{*} &=& \sum_{h=0,1} \{\hat{Y}^{*}(0,1,h;\Gamma_{\psi}^{\wie}) - \hat{Y}^{*}(0,0,h;\Gamma_{\psi}^{\wie})\}, \\
+    \hat{\bie}_{\psi}^{*} &=& \sum_{s=0,1} \{\hat{Y}^{*}(0,s,1;\Gamma_{\psi}^{\bie}) - \hat{Y}^{*}(0,s,0;\Gamma_{\psi}^{\bie})\}.
+\end{eqnarray*}
+
+
+\subsection{In-policy estimators}
+
+We then propose the following estimators for the direct and indirect effects defined in Section~\ref{sec::parameters}. For $*\in\{\horthom,\haj\}$, construct
+\begin{eqnarray*}
+    \hat{\de}^{*}(s,h) &=& \hat{Y}^{*}(1,s,h) - \hat{Y}^{*}(0,s,h), \\
+    \hat{\wie}^{*}(s,s^{\prime},h) &=& \hat{Y}^{*}(0,s,h) - \hat{Y}^{*}(0,s^{\prime},h), \\
+    \hat{\bie}^{*}(s,h,h^{\prime}) &=& \hat{Y}^{*}(0,s,h) - \hat{Y}^{*}(0,s,h^{\prime}).
+\end{eqnarray*}
+
+Under the randomization, the estimator $\hat{Y}^{\horthom}(a,s,h)$ is unbiased to $\bar{Y}(a,s,h)$. The Hajek estimator $\hat{Y}^{\haj}(a,s,h)$ is not unbiased in finite sample but is consistent to $\hat{Y}^{\haj}(a,s,h)$ and generally has more stable finite sample performance. Therefore, the corresponding Horvitz--Thompson estimators are unbiased, and the Hajek estimators are consistent.
+
+We also construct estimators for the aggregated versions of the village average potential outcome, aggregated at various levels. Define
+\begin{eqnarray*}
+    \hat{Y}^{\horthom}(a) &=& \frac{\sumi\indicator\{A_{i}=a\} Y_{i}}{\sumi\pr(A_{i}=a)}, \quad \hat{Y}^{\haj}(a) \ =\ \frac{\sumi\indicator\{A_{i}=a\} Y_{i}}{\sumi\indicator\{A_{i}=a\}}, \\
+    \hat{Y}^{\horthom}(a,s) &=& n^{-1}\sumi\frac{\indicator\{A_{i}=a, S_{i}=s\} }{\pr(A_{i}=a, S_{i}=s)}Y_{i}, \quad \hat{Y}^{\haj}(a,s) \ =\  n^{-1}\sumi\frac{\indicator\{A_{i}=a, S_{i}=s\} }{\pr(A_{i}=a, S_{i}=s)}Y_{i}\Big/ n^{-1}\sumi\frac{\indicator\{A_{i}=a, S_{i}=s\}}{\pr(A_{i}=a, S_{i}=s)}, \\
+    \hat{Y}^{\horthom}(a,h) &=& n^{-1}{\sumi \frac{\indicator\{A_{i}=a, H_{i}=h\}}{\pr(A_{i}=a, H_{i}=h)} }Y_{i}, \quad \hat{Y}^{\haj}(a,h) \ =\  n^{-1}{\sumi \frac{\indicator\{A_{i}=a, H_{i}=h\}}{\pr(A_{i}=a, H_{i}=h)} Y_{i}} \Big/ n^{-1}
+    {\sumi \frac{\indicator\{A_{i}=a, H_{i}=h\}}{\pr(A_{i}=a, H_{i}=h)} }.
+\end{eqnarray*}
+For $*\in\{\horthom,\haj\}$, estimators for the marginal quantities are therefore
+\begin{eqnarray*}
+    \hat{\de}^{*} &=& \hat{Y}^{*}(1) - \hat{Y}^{*}(0), \\
+    \hat{\wie}^{*}(s,s^{\prime}) &=& \hat{Y}^{*}(0,s) - \hat{Y}^{*}(0,s^{\prime}), \\
+    \hat{\bie}^{*}(h,h^{\prime}) &=& \hat{Y}^{*}(0,h) - \hat{Y}^{*}(0,h^{\prime}).
+\end{eqnarray*}
+Similarly, the corresponding Horvitz--Thompson estimators are unbiased, and the Hajek estimators are consistent.
+
+\section{Theoretical properties}
+
+\subsection{Asymptotic variance}
+We now compute the asymptotic variance of the reweighted estimators. This result will be our building block for analysis. Define $\bGamma(a,s,h)=\diag\{\gamma_i(a,s,h)\}$ as the $n\times n$ diagonal matrix with diagonal terms equal to $\gamma_i(a,s,h)$ for $i=1,\ldots,n$.
+\begin{theorem}
+We have the variances
+\begin{eqnarray*}
+    && \var\{\hat{Y}^{\horthom}(a,s,h;\Gamma)\}\\
+    &=& n^{-2}\sumi \frac{1 - \pscore{i}(a, s, h)}{\pscore{i}(a, s, h)}\{\gamma_i(a,s,h)Y_i(a, s, h)\}^2 \\
+    &&+ n^{-2}\sumi\sumjneqi\frac{\pscore{ij}(a, s, h; a, s, h) - \pscore{i}(a, s, h)\pscore{j}(a, s, h)}{\pscore{i}(a, s, h)\pscore{j}(a, s, h)}\gamma_i(a,s,h)\gamma_j(a,s,h)Y_i(a, s, h)Y_j(a, s, h) \\
+    &=& n^{-2} \bY(a,s,h)^{\T} \bGamma(a,s,h) \bOmega(a,s,h) \bGamma(a,s,h) \bY(a,s,h), 
+\end{eqnarray*}
+where $\bY(a,s,h)=(Y_1(a,s,h),\ldots,Y_n(a,s,h))^{\T}$ denotes the vector of potential outcomes for all units and $\bOmega(a,s,h)$ is an $n\times n$ matrix with elements
+\begin{eqnarray*}
+    \bOmega_{(i,j)}(a,s,h) &=& \indicator\{j=i\} \frac{1 - \pscore{i}(a, s, h)}{\pscore{i}(a, s, h)} + \indicator\{j\neq i\}\frac{\pscore{ij}(a, s, h; a, s, h) - \pscore{i}(a, s, h)\pscore{j}(a, s, h)}{\pscore{i}(a, s, h)\pscore{j}(a, s, h)}.
+\end{eqnarray*}
+
+The covariance is
+\begin{eqnarray*}
+    && \cov\{\hat{Y}^{\horthom}(a,s,h;\Gamma), \hat{Y}^{\horthom}(a',s',h';\Gamma)\} \\
+    &=& -n^{-2}\sumi  \gamma_i(a,s,h)\gamma_i(\ashprime) Y_i(a, s, h) Y_i(\ashprime) \\ 
+    &&+ n^{-2}\sumi\sumjneqi \frac{\pscore{ij}(a, s, h; \ashprime) - \pscore{i}(a, s, h)\pscore{j}(\ashprime)}{\pscore{i}(a, s, h)\pscore{j}(\ashprime)} \gamma_i(a,s,h)\gamma_j(\ashprime)Y_i(a, s, h) Y_j(\ashprime) \\
+    &=& n^{-2} \bY(a,s,h)^{\T} \bGamma(a,s,h)\bOmega(a,s,h;\ashprime) \bGamma(a',s',h')\bY(\ashprime),
+\end{eqnarray*}
+where $\bOmega(a,s,h;\ashprime)$ is an $n\times n$ matrix with elements
+\begin{eqnarray*}
+    \bOmega_{(i,j)}(a,s,h;\ashprime) &=& -\indicator\{j=i\}+ \indicator\{j\neq i\}\frac{\pscore{ij}(a, s, h; \ashprime) - \pscore{i}(a, s, h)\pscore{j}(\ashprime)}{\pscore{i}(a, s, h)\pscore{j}(\ashprime)}.
+\end{eqnarray*}
+\end{theorem}
+Moreover, we have the following results for $\hat{Y}^{\haj}(a,s,h;\Gamma)$:
+\begin{theorem}
+Define
+\begin{eqnarray*}
+    \tilde{Y}_i(a,s,h) = 
+    Y_i(a,s,h) - \frac{n^{-1}\sumi \gamma_i(a,s,h)Y_i(a,s,h)}{n^{-1}\sumi\gamma_i(a,s,h)}
+\end{eqnarray*}
+as the centered potential outcome for unit $i$ and $\tilde\bY(a,s,h)=(\tilde Y_1(a,s,h),\ldots,\tilde Y_n(a,s,h))^{\T}$ denotes the vector of centered potential outcomes. We have the following asymptotic variance
+\begin{eqnarray*}
+    && \avar\{\hat{Y}^{\haj}(a,s,h;\Gamma)\}\\
+    &=& n^{-2}\sumi \frac{1 - \pscore{i}(a, s, h)}{\pscore{i}(a, s, h)}\{\gamma_i(a,s,h)\tilde{Y}_i(a, s, h)\}^2 \\
+    &&+ n^{-2}\sumi\sumjneqi\frac{\pscore{ij}(a, s, h; a, s, h) - \pscore{i}(a, s, h)\pscore{j}(a, s, h)}{\pscore{i}(a, s, h)\pscore{j}(a, s, h)}\gamma_i(a,s,h)\gamma_j(a,s,h)\tilde{Y}_i(a, s, h)\tilde{Y}_j(a, s, h) \\
+    &=&
+    n^{-2} \tilde\bY(a,s,h)^{\T} \bGamma(a,s,h) \bOmega(a,s,h) \bGamma(a,s,h) \tilde\bY(a,s,h). 
+\end{eqnarray*}
+
+The covariance is
+\begin{eqnarray*}
+    && \cov\{\hat{Y}^{\haj}(a,s,h;\Gamma), \hat{Y}^{\haj}(a',s',h';\Gamma)\} \\
+    &=& -n^{-2}\sumi  \gamma_i(a,s,h)\gamma_i(\ashprime) \tilde{Y}_i(a, s, h) \tilde{Y}_i(\ashprime) \\ 
+    &&+ n^{-2}\sumi\sumjneqi \frac{\pscore{ij}(a, s, h; \ashprime) - \pscore{i}(a, s, h)\pscore{j}(\ashprime)}{\pscore{i}(a, s, h)\pscore{j}(\ashprime)} \gamma_i(a,s,h)\gamma_j(\ashprime)\tilde{Y}_i(a, s, h) \tilde{Y}_j(\ashprime) \\
+    &=& n^{-2} \tilde\bY(a,s,h)^{\T} \bGamma(a,s,h)\bOmega(a,s,h;\ashprime) \bGamma(a',s',h')\tilde\bY(\ashprime). 
+\end{eqnarray*}
+\end{theorem}
+
+
+\section{Asymptotic variance}
+We compute the variances of the building blocks, $\hat{Y}^{*}(a,s,h)$, $\hat{Y}^{*}(a)$, $\hat{Y}^{*}(a,s)$, and $\hat{Y}^{*}(a,h)$ for $*\in\{\horthom,\haj\}$.
+
+\subsection{Average potential outcomes $\hat{Y}^{*}(a,s,h)$}
+(results in this subsection are identical to those in \citet{aronow2017estimating})
+
+First, compute the variances for $\hat{Y}^{*}(a,s,h)$.
+\begin{eqnarray*}
+    \var\{\hat{Y}^{\horthom}(a,s,h)\} &=& \var \left[ n^{-1}\sumi\frac{ \bbI_{i}(a,s,h) }{ \pr(A_{i}=a, S_{i}=s, H_{i}=h)}Y_{i}\right] \\
+    &=& n^{-2}\sumi \frac{1 - \pscore{i}(a, s, h)}{\pscore{i}(a, s, h)}\{Y_i(a, s, h)\}^2 \\
+    &&+ n^{-2}\sumi\sumjneqi\frac{\pscore{ij}(a, s, h; a, s, h) - \pscore{i}(a, s, h)\pscore{j}(a, s, h)}{\pscore{i}(a, s, h)\pscore{j}(a, s, h)}Y_i(a, s, h)Y_j(a, s, h) \\
+    &=& n^{-2} \bY(a,s,h)^{\T} \bOmega(a,s,h) \bY(a,s,h),
+\end{eqnarray*}
+
+For $(a,s,h) \neq (\ashprime)$, the covariance term is
+\begin{eqnarray*}
+    && \cov\{\hat{Y}^{\horthom}(a,s,h), \hat{Y}^{\horthom}(\ashprime)\} \\
+    &=& -n^{-2}\sumi  Y_i(a, s, h) Y_i(\ashprime) \\ &&+ n^{-2}\sumi\sumjneqi \frac{\pscore{ij}(a, s, h; \ashprime) - \pscore{i}(a, s, h)\pscore{j}(\ashprime)}{\pscore{i}(a, s, h)\pscore{j}(\ashprime)} Y_i(a, s, h) Y_j(\ashprime) \\
+    &=& n^{-2} \bY(a,s,h)^{\T} \bOmega(a,s,h;\ashprime) \bY(\ashprime),
+\end{eqnarray*}
+where $\bOmega(a,s,h;\ashprime)$ is an $n\times n$ matrix with elements
+\begin{eqnarray*}
+    \bOmega_{(i,j)}(a,s,h;\ashprime) &=& -\indicator\{j=i\}+ \indicator\{j\neq i\}\frac{\pscore{ij}(a, s, h; \ashprime) - \pscore{i}(a, s, h)\pscore{j}(\ashprime)}{\pscore{i}(a, s, h)\pscore{j}(\ashprime)}.
+\end{eqnarray*}
+For the Hajek estimator, we have
+\begin{eqnarray*}
+    \avar\{\hat{Y}^{\haj}(a,s,h)\} &=& \var \left[ n^{-1}\sumi\frac{ \bbI_{i}(a,s,h) }{ \pr(A_{i}=a, S_{i}=s, H_{i}=h)}\{Y_{i}(a,s,h)-\bar Y(a,s,h)\}\right] \\
+    &=& n^{-2}\sumi \frac{1 - \pscore{i}{ASH}(a, s, h)}{\pscore{i}{ASH}(a, s, h)}\{\tilde Y_i(a, s, h)\}^2 \\
+    &&+ n^{-2}\sumi\sumjneqi\frac{\pscore{i}{j}{ASH}(a, s, h; a, s, h) - \pscore{i}{ASH}(a, s, h)\pscore{j}{}{ASH}(a, s, h)}{\pscore{i}{ASH}(a, s, h)\pscore{j}{}{ASH}(a, s, h)}\tilde Y_i(a, s, h)\tilde Y_j(a, s, h), \\
+    &=& n^{-2} \tilde\bY(a,s,h)^{\T} \bOmega(a,s,h)\tilde\bY(a,s,h),
+\end{eqnarray*}
+where $\tilde Y_i(a,s,h) = Y_i(a,s,h) - \bar Y(a,s,h)$ denotes the centered potential outcome for unit $i$ and $\tilde\bY(a,s,h)=(\tilde Y_1(a,s,h),\ldots,\tilde Y_n(a,s,h))^{\T}$ denotes the vector of centered potential outcomes, and
+\begin{eqnarray*}
+    && \cov\{\hat{Y}^{\haj}(a,s,h), \hat{Y}^{\haj}(\ashprime)\} \\
+    &=& -n^{-2}\sumi  \tilde Y_i(a, s, h) \tilde Y_i(\ashprime) \\ &&+ n^{-2}\sumi\sumjneqi \frac{\pscore{i}{j}{ASH}(a, s, h; \ashprime) - \pscore{i}{ASH}(a, s, h)\pscore{j}{}{ASH}(\ashprime)}{\pscore{i}{ASH}(a, s, h)\pscore{j}{}{ASH}(\ashprime)} \tilde Y_i(a, s, h) \tilde Y_j(\ashprime) \\
+    &=& n^{-2} \tilde\bY(a,s,h)^{\T} \bOmega(a,s,h;\ashprime)\tilde\bY(\ashprime).
+\end{eqnarray*}
+
+It is therefore easy to compute the variance estimators for the direct effect estimators $\hat{\de}^{*}(s,h)$, the within-cluster indirect effect estimators $\hat{\wie}^{*}(s,s^{\prime},h)$, and the between-cluster indirect effect estimators $\hat{\bie}^{*}(s,h,h^{\prime})$, for $*\in\{\horthom,\haj\}$.
+
+\subsection{Average marginalized potential outcomes $\hat Y^{*}(a,s)$ and $\hat Y^{*}(a,h)$}
+For the indirect effect moment estimators, we compute the variances for $\hat{Y}^{*}(a,s)$.
+\begin{eqnarray*}
+    \var\{\hat{Y}^{\horthom}(a,s)\} &=& \var \left[ n^{-1}\sumi\frac{ \indicator\{A_{i}=a, S_{i}=s\} }{ \pr(A_{i}=a, S_{i}=s)}Y_{i}\right] \\
+    &=& \var \left[ n^{-1}\sumi\sum_{h=0,1}\frac{ \indicator\{A_{i}=a, S_{i}=s,H_i=h\} }{ \pr(A_{i}=a, S_{i}=s)}Y_{i}(a,s,h)\right] \\
+    &=& \var \left[ n^{-1}\sumi\sum_{h=0,1}\frac{ \indicator\{A_{i}=a, S_{i}=s,H_i=h\} }{ \pr(A_{i}=a, S_{i}=s, H_{i}=h)}\pscore{i}{H}(h)Y_{i}(a,s,h)\right] \\
+    &=& n^{-2} \sum_{h=0,1}\bY(a,s,h)^{\T}\bpi^{H}(h)\bOmega(a,s,h)\bpi^{H}(h)\bY(a,s,h) \\
+    &&+ 2n^{-2}\bY(a,s,1)^{\T}\bpi^{H}(1)\bOmega(a,s,1;a,s,0)\bpi^{H}(0)\bY(a,s,0),
+\end{eqnarray*}
+where $\bpi^{H}(h) = \diag\{\pscore{1}{}{H}(h), \ldots, \pscore{n}{}{H}(h)\}$ is an $n\times n$ diagonal matrix with diagonal terms equal to $\pscore{i}{H}(h)$.
+For $(a,s)\neq(a^{\prime},s^{\prime})$, the covariance term is
+\begin{eqnarray*}
+    && \cov\{\hat{Y}^{\horthom}(a,s), \hat{Y}^{\horthom}(a^{\prime},s^{\prime})\} \\
+    &=& -n^{-2}\sum_{h,h^{\prime}=0,1}\sumi  Y_i(a, s, h) Y_i(\ashprime) \\ 
+    &&+ n^{-2}\sum_{h,h^{\prime}=0,1}\sumi\sumjneqi \frac{\pscore{i}{j}{ASH}(a, s, h; \ashprime) - \pscore{i}{ASH}(a, s, h)\pscore{j}{}{ASH}(\ashprime)}{\pscore{i}{ASH}(a, s, h)\pscore{j}{}{ASH}(\ashprime)} Y_i(a, s, h) Y_j(\ashprime) \\
+    &=& n^{-2}\sum_{h, h^{\prime}=0,1} \bY(a,s,h)^{\T} \bpi^{H}(h)\bOmega(a,s,h;\ashprime)\bpi^{H}(h^{\prime}) \bY(\ashprime).
+\end{eqnarray*}
+For the Hajek estimator, we have
+\begin{eqnarray*}
+    n^2\avar\{\hat Y^{\haj}(a,s)\} &=& \bY(a,s,1)^{\T} \bOmega^{H}(a,s,1) \bY(a,s,1) \\
+    &&+ \bY(a,s,0)^{\T} \bOmega^{H}(a,s,0) \bY(a,s,0) \\
+    &&+ 2\bY(a,s,1)^{\T} \bOmega^{H}(a,s,1;a,s,0) \bY(a,s,0) \\
+    &&- 2\mu^{H}(a,s) \iota^{\T} \bOmega^{AS}(a,s) \{\bpi^{H}(1)\bY(a,s,1) + \bpi^{H}(0)\bY(a,s,0)\} \\
+    &&+ \{\mu^{H}(a,s)\}^2 \iota^{\T} \bOmega^{AS}(a,s) \iota,
+\end{eqnarray*}
+where $\iota$ is the $n$-dimensional column vector with all ones, 
+\begin{eqnarray*}
+    \bOmega^{H}_{(i,j)}(a,s,h) &=& \indicator\{j=i\} \frac{\pscore{i}{H}(h)}{\pscore{i}{AS}(a,s)} \\
+    &&+ \indicator\{j\neq i\} \frac{\pscore{i}{j}{AS}(a,s;a,s)\pscore{i}{j}{H}(h;h)}{\pscore{i}{AS}(a,s)\pscore{j}{}{AS}(a,s)}, \\
+    \bOmega^{H}_{(i,j)}(a,s,h;a,s,h^{\prime}) &=& \indicator\{j\neq i\} \frac{\pscore{i}{j}{AS}(a,s;a,s)\pscore{i}{j}{H}(h;h^{\prime})}{\pscore{i}{AS}(a,s)\pscore{j}{}{AS}(a,s)}, \\
+    \bOmega^{AS}(a,s) &=& \indicator\{j=i\}\frac{1}{\pscore{i}{AS}(a,s)} + \indicator\{j\neq i\} \frac{\pscore{i}{j}{AS}(a,s;a,s)}{\pscore{i}{AS}(a,s)\pscore{j}{}{AS}(a,s)}.
+\end{eqnarray*}
+For $(a,s)\neq(a^{\prime},s^{\prime})$, the covariance term is
+\begin{eqnarray*}
+    n^2\acov\{\hat Y^{\haj}(a,s), \hat Y^{\haj}(a^{\prime},s^{\prime})\} &=& \sum_{h,h^{\prime} = 0,1} \bY(a,s,h)^{\T} \bOmega^{H}(a,s,h;\ashprime)\bY(\ashprime) \\
+    &&- \mu^{H}(a,s) \iota^{\T} \bOmega^{AS}(a,s;a^{\prime},s^{\prime}) \{\bpi^{H}(1) \bY(a^{\prime},s^{\prime},1) + \bpi^{H}(0) \bY(a^{\prime},s^{\prime},0)\} \\
+    &&- \mu^{H}(a^{\prime},s^{\prime}) \iota^{\T} \bOmega^{AS}(a,s;a^{\prime},s^{\prime}) \{\bpi^{H}(1) \bY(a,s,1) + \bpi^{H}(0) \bY(a,s,0)\} \\
+    &&+ \mu^{H}(a,s)\mu^{H}(a^{\prime},s^{\prime}) \iota^{\T} \bOmega^{AS}(a,s;a^{\prime},s^{\prime}) \iota,
+\end{eqnarray*}
+where
+\begin{eqnarray*}
+    \bOmega^{H}_{(i,j)}(a,s,h;\ashprime) &=& \indicator\{j\neq i\} \frac{\pscore{i}{j}{AS}(a,s;a^{\prime},s^{\prime})\pscore{i}{j}{H}(h;h^{\prime})}{\pscore{i}{AS}(a,s)\pscore{j}{}{AS}(a^{\prime},s^{\prime})}, \\
+    \bOmega^{AS}(a,s;a^{\prime},s^{\prime}) &=& \indicator\{j\neq i\} \frac{\pscore{i}{j}{AS}(a,s;a^{\prime},s^{\prime})}{\pscore{i}{AS}(a,s)\pscore{j}{}{AS}(a^{\prime},s^{\prime})}.
+\end{eqnarray*}
+Similar variance and covariance formulas for $\hat Y^{*}(a,h)$ can be derived analogously by switching the role of $S$ and $H$.
+
+
+\subsection{Average marginalized potential outcomes $\hat Y^{*}(a)$}
+
+
+
+\section{Regression-based analysis}
+\subsection{Saturated regression}
+We can run 
+\begin{eqnarray*}
+    Y_i \sim 1 + A_i + S_i + H_i + A_iS_i + \ldots + A_i S_i H_i. 
+\end{eqnarray*}
+The regression is equivalent to running a stratified regression \citep{zhao2022regression}:
+\begin{eqnarray*}
+    Y_i \sim \sum_{a,s,h} \indicator\{A_i=a, S_i = s, H_i = h\}.
+\end{eqnarray*}
+
+% \subsection{Partially saturated regression with centered factors}
+% Run the following partially saturated regression $Y_i \sim 1+\tA_i + \tS_i + \tH_i + \tA_i\tS_i + \tA_i \tH_i $, with $\tS_i$ and $\tH_i$ denoting the indicators $S_i$ and $H_i$ centered at their population mean $\pi_{S,i}$ and $\pi_{H,i}$. These population means depend on the geographic network and can be computed or simulated. 
+
+% \begin{eqnarray*}
+% \Omega_{XX} &=& n^{-1}
+% \begin{pmatrix}
+%     n & \sumi \tA_i & \sumi \tS_i & \sumi \tH_i & \sumi \tA_i \tS_i & \sumi \tA_i \tH_i \\
+%     \sumi \tA_i & \sumi \tA_i^2 & \sumi \tA_i \tS_i & \sumi \tA_i \tH_i & \sumi \tA_i^2 \tS_i & \sumi \tA_i^2 \tH_i \\
+%     \sumi \tS_i & \sumi \tA_i \tS_i & \sumi \tS_i^2 & \sumi \tS_i \tH_i & \sumi \tA_i \tS_i^2 & \sumi \tA_i \tS_i \tH_i \\
+%     \sumi \tH_i & \sumi \tA_i \tH_i & \sumi \tS_i \tH_i & \sumi \tH_i^2 & \sumi \tA_i \tS_i \tH_i & \sumi \tA_i \tH_i^2 \\
+%     \sumi \tA_i \tS_i & \sumi \tA_i^2 \tS_i & \sumi \tA_i \tS_i^2 & \sumi \tA_i \tS_i \tH_i & \sumi \tA_i^2 \tS_i^2 & \sumi \tA_i^2 \tS_i \tH_i \\
+%     \sumi \tA_i \tH_i & \sumi \tA_i^2 \tH_i & \sumi \tA_i \tS_i \tH_i & \sumi \tA_i \tH_i^2 & \sumi \tA_i^2 \tS_i \tH_i & \sumi \tA_i^2 \tH_i^2
+% \end{pmatrix}
+% \end{eqnarray*}
+% Due to the demeaning step and the independence among $\tA_i$, $\tS_i$, and $\tH_i$, the off-diagonal values of the expectation of the $\Omega_{XX}$ matrix are zero. Define 
+% $\pi_A = \pr(A = 1) = pe_{h} + (1-p)e_{l}$.
+% The diagonal values of $\Omega_{XX}$ are:
+% \begin{eqnarray*}
+%     E\left(n^{-1} \sumi \tA_i^2\right) &=& \pi_A(1-\pi_A), \\
+%     E\left(n^{-1} \sumi \tS_i^2\right) &=& n^{-1} \sumi \pi_{S,i}(1-\pi_{S,i}), \\
+%     E\left(n^{-1} \sumi \tH_i^2\right) &=& n^{-1} \sumi \pi_{H,i}(1-\pi_{H,i}), \\
+%     E\left(n^{-1} \sumi \tA_i^2 \tS_i^2\right) &=& \pi_A(1-\pi_A) n^{-1} \sumi \pi_{S,i}(1-\pi_{S,i}), \\
+%     E\left(n^{-1} \sumi \tA_i^2 \tH_i^2\right) &=& \pi_A(1-\pi_A) n^{-1} \sumi \pi_{H,i}(1-\pi_{H,i}). 
+% \end{eqnarray*}
+% Meanwhile, we compute
+% \begin{eqnarray*}
+%     \Omega_{XY} &=& n^{-1}
+% \begin{pmatrix}
+%     \sumi Y_i & \sumi \tA_i Y_i & \sumi \tS_i Y_i & \sumi \tH_i Y_i & \sumi \tA_i \tS_i Y_i & \sumi \tA_i \tH_i Y_i
+% \end{pmatrix}^{\T}
+% \end{eqnarray*}
+% and its population mean. Taking the expectation, we have
+
+% \begin{eqnarray*}
+%     E\left(n^{-1}\sumi Y_i \right) &=& n^{-1}\sumi \left[\pi_A E\{Y_i(1,S_i,H_i)\}+(1-\pi_A)E\{Y_i(0,S_i,H_i)\} \right].
+% \end{eqnarray*}
+
+% \begin{eqnarray*}
+%     E\left(n^{-1}\sumi \tA_i Y_i \right) &=& n^{-1}\sumi E\left[ A_i(1-\pi_A) E\{Y_i(1, S_i,H_i)\} - (1-A_i)\pi_A E\{Y_i(0,S_i,H_i)\} \right] \\
+%     &=& \pi_A(1-\pi_A) \de.
+% \end{eqnarray*}
+
+% \begin{eqnarray*}
+%     E\left(n^{-1}\sumi \tS_i Y_i \right) &=& \pi_A n^{-1}\sumi \pi_{S,i}(1-\pi_{S,i})E\{Y_i(1,1,H_i)\} + (1-\pi_A) n^{-1}\sumi \pi_{S,i}(1-\pi_{S,i})E\{Y_i(0,1,H_i)\} \\
+%     &&- \pi_A n^{-1}\sumi \pi_{S,i}(1-\pi_{S,i})E\{Y_i(1,0,H_i)\} - (1-\pi_A) n^{-1}\sumi \pi_{S,i}(1-\pi_{S,i})E\{Y_i(0,0,H_i)\} \\
+%     &=& \pi_A n^{-1}\sumi \pi_{S,i}(1-\pi_{S,i}) E\{Y_i(1,1,H_i) - Y_i(1,0,H_i)\} \\
+%     &&- (1-\pi_A) n^{-1}\sumi \pi_{S,i}(1-\pi_{S,i}) E\{Y_i(0,1,H_i) - Y_i(0,0,H_i)\}
+% \end{eqnarray*}
+
+% Similarly, 
+% \begin{eqnarray*}
+%     E\left(n^{-1}\sumi \tH_i Y_i \right) &=& \pi_A n^{-1}\sumi \pi_{H,i}(1-\pi_{H,i}) E\{Y_i(1,S_i,1) - Y_i(1,S_i,0)\} \\
+%     &&- (1-\pi_A) n^{-1}\sumi \pi_{H,i}(1-\pi_{H,i}) E\{Y_i(0,S_i,1) - Y_i(0,S_i,0)\}.
+% \end{eqnarray*}
+
+% \begin{eqnarray*}
+%     E\left(n^{-1}\sumi \tA_i \tS_i Y_i \right) &=& \pi_A(1-\pi_A) n^{-1}\sumi \pi_{S,i}(1-\pi_{S,i}) E\{Y_i(1,1,H_i) - Y_i(1,0,H_i) - Y_i(0,1,H_i) + Y_i(0,0,H_i)\}, \\
+%     E\left(n^{-1}\sumi \tA_i \tH_i Y_i \right) &=& \pi_A(1-\pi_A) n^{-1}\sumi \pi_{H,i}(1-\pi_{H,i}) E\{Y_i(1,S_i,1) - Y_i(1,S_i,0) - Y_i(0,S_i,1) + Y_i(0,S_i,0)\}.
+% \end{eqnarray*}
+
+% Therefore, the population-level values of the true coefficients from the centered regression are $(\beta_0, \beta_{A}, \beta_{S}, \beta_{H}, \beta_{AS}, \beta_{AH})^{\T}$, where
+% \begin{eqnarray*}
+%     \beta_{A} &=& \de, \\
+%     \beta_{S} &=& \pi_A \frac{\sumi \pi_{S,i}(1-\pi_{S,i}) E\{Y_i(1,1,H_i) - Y_i(1,0,H_i)\}}{\sumi \pi_{S,i}(1-\pi_{S,i})} - (1-\pi_A) \frac{\sumi \pi_{S,i}(1-\pi_{S,i}) E\{Y_i(0,1,H_i) - Y_i(0,0,H_i)\}}{\sumi \pi_{S,i}(1-\pi_{S,i})}, \\
+%     \beta_{H} &=& \pi_A \frac{\sumi \pi_{H,i}(1-\pi_{H,i}) E\{Y_i(1,S_i,1) - Y_i(1,S_i,0)\}}{\sumi \pi_{H,i}(1-\pi_{H,i})} - (1-\pi_A) \frac{\sumi \pi_{H,i}(1-\pi_{H,i}) E\{Y_i(0,S_i,1) - Y_i(0,S_i,0)\}}{\sumi \pi_{H,i}(1-\pi_{H,i})}, \\
+%     \beta_{AS} &=& \frac{\sumi \pi_{S,i}(1-\pi_{S,i}) E\{Y_i(1,1,H_i) - Y_i(1,0,H_i) - Y_i(0,1,H_i) + Y_i(0,0,H_i)\}}{\sumi \pi_{S,i}(1-\pi_{S,i})}, \\
+%     \beta_{AH} &=& \frac{\sumi \pi_{H,i}(1-\pi_{H,i}) E\{Y_i(1,S_i,1) - Y_i(1,S_i,0) - Y_i(0,S_i,1) + Y_i(0,S_i,0)\}}{\sumi \pi_{H,i}(1-\pi_{H,i})}
+% \end{eqnarray*}
+
+% Define the overlap indirect effects as
+% \begin{eqnarray*}
+%     \ie^{\textup{w,o}} &=& \frac{n^{-1}\sumi \pi_{S,i}(1-\pi_{S,i})E\{Y_i(0,1,H_i)-Y_i(0,0,H_i)\}}{n^{-1}\sumi \pi_{S,i}(1-\pi_{S,i})}, \\
+%     \ie^{\textup{b,o}} &=& \frac{n^{-1}\sumi \pi_{H,i}(1-\pi_{H,i})E\{Y_i(0,S_i,1)-Y_i(0,S_i,0)\}}{n^{-1}\sumi \pi_{H,i}(1-\pi_{H,i})},
+% \end{eqnarray*}
+% we have
+% \begin{eqnarray*}
+%     \ie^{\textup{w,o}} &=& \pi_A \beta_{AS} + \beta_{S}, \\
+%     \ie^{\textup{b,o}} &=& \pi_A \beta_{AH} + \beta_{H}.
+% \end{eqnarray*}
+
+% To summarize, from the linear regression $Y_i \sim 1+\tA_i + \tS_i + \tH_i + \tA_i\tS_i + \tA_i \tH_i$, we can estimate the direct effect as the coefficient of $\tA_i$. For the indirect effects, because of the centering, we are not able to recover exactly $\wie$ and $\bie$, but an overlap version of the estimands.
+
+% Similarly, if we define the indirect effects based on the treated subgroup, we can recover them from $(1-\pi_A) \beta_{AS} + \beta_{S}$ and $(1-\pi_A) \beta_{AH} + \beta_{H}$.
+
+\section{Further discussion}     
+Built upon the initial estimator proposed in Section \ref{sec::estimation}, our further efforts involve several aspects: 
+\begin{enumerate}
+    \item Develop asymptotic normality results for the point estimators and propose variance estimation strategy for inference. Our estimators fall broadly into weighting estimators with generalized propensity scores \citep{imbens2000role, aronow2017estimating}. We hope to further incorporate the between-cluster interference structure and provides a complete picture for statistical inference under such a setting. 
+
+    \item Propose a model-assisted approach for the estimation and inference. While we do not directly impose outcome models on our estimands, it is convenient to explore model-assisted approach to recover the point and variance estimators \citep{zhao2022reconciling}. 
+
+    \item Reanalyze the experiment by \cite{egger2022general} with the proposed interference framework, estimate the proposed causal estimands and compare with the original results. 
+\end{enumerate}
+
+\section{June 4 update}
+Consider three regressions:
+\begin{enumerate}
+    \item $Y_i \sim A_i + S_i + H_i + A_iS_i + \ldots + A_i S_i H_i$, fully saturated. most efficient for all three parameters? but high-dim when $S$ and $H$ are categorical with multiple levels
+    \item $Y_i \sim A_i + S_i + H_i + A_iS_i + A_i H_i $. conjecture: this could be our recommendation. the estimation of direct effect from this regression may be the most efficient (Lin's estimator with $S$ and $H$ adjusted), and it also gives us estimators for the two indirect effects in the same regression. plus: if $S$ and $H$ are general continuous variables, coefficient of $A$ can still be interpreted as direct effect without modeling assumptions; indirect effect estimation from linear regression needs model assumptions.
+    \item $Y_i \sim A_i + S_i + H_i$. direct effect is correct, indirect effects are not. because, for example, within indirect effect can be estimated by $Y_i\sim S_i$ on the subsample with $A_i=0$. but this regression specification does not allow us to estimate this coefficient with separation between $A=1$ and $A=0$ units.
+\end{enumerate}
+
+\section{June 18}
+First we compute the regression with centered indicators.  
+
+
+\section{June 23}
+1. center $S$ and $H$ and consider the overlap estimand
+2. compare the two estimands: \cite{aronow2017estimating}'s estimand needs ipw because it's conditional on different levels of $S$ and $H$, while \cite{hudgens2008toward} does not need the weighting because the estimand is a marginalized quantity.
+3. compare the variance of the long regression and short regressions...
+ 
+
+\section{July 9}
+1. added a remark on indirect effect on $A=1$
+
+
+\section{July 10}
+Do not center $A_i$ in the partially saturated regression.
+
+\section{July 16}
+\subsection{Partially saturated regression with centered factors}
+Run the following partially saturated regression $Y_i \sim 1+A_i + \tS_i + \tH_i + A_i\tS_i + A_i \tH_i $, with $\tS_i$ and $\tH_i$ denoting the indicators $S_i$ and $H_i$ centered at their population mean $\pi_{S,i}$ and $\pi_{H,i}$. These population means depend on the geographic network and can be computed or simulated. 
+
+\begin{eqnarray*}
+\Omega_{XX} &=& n^{-1}
+\begin{pmatrix}
+    n & \sumi A_i & \sumi \tS_i & \sumi \tH_i & \sumi A_i \tS_i & \sumi A_i \tH_i \\
+    \sumi A_i & \sumi A_i^2 & \sumi A_i \tS_i & \sumi A_i \tH_i & \sumi A_i^2 \tS_i & \sumi A_i^2 \tH_i \\
+    \sumi \tS_i & \sumi A_i \tS_i & \sumi \tS_i^2 & \sumi \tS_i \tH_i & \sumi A_i \tS_i^2 & \sumi A_i \tS_i \tH_i \\
+    \sumi \tH_i & \sumi A_i \tH_i & \sumi \tS_i \tH_i & \sumi \tH_i^2 & \sumi A_i \tS_i \tH_i & \sumi A_i \tH_i^2 \\
+    \sumi A_i \tS_i & \sumi A_i^2 \tS_i & \sumi A_i \tS_i^2 & \sumi A_i \tS_i \tH_i & \sumi A_i^2 \tS_i^2 & \sumi A_i^2 \tS_i \tH_i \\
+    \sumi A_i \tH_i & \sumi A_i^2 \tH_i & \sumi A_i \tS_i \tH_i & \sumi A_i \tH_i^2 & \sumi A_i^2 \tS_i \tH_i & \sumi A_i^2 \tH_i^2
+\end{pmatrix}
+\end{eqnarray*}
+Due to the demeaning step and the independence among $A_i$, $\tS_i$, and $\tH_i$, some off-diagonal values of the expectation of the $\Omega_{XX}$ matrix are zero. Define 
+$\pi_A = \pr(A = 1) = pe_{h} + (1-p)e_{l}$.
+The diagonal values of $\Omega_{XX}$ are:
+\begin{eqnarray*}
+    E\left(n^{-1} \sumi A_i^2\right) &=& \pi_A, \\
+    E\left(n^{-1} \sumi \tS_i^2\right) &=& n^{-1} \sumi \pi_{S,i}(1-\pi_{S,i}), \\
+    E\left(n^{-1} \sumi \tH_i^2\right) &=& n^{-1} \sumi \pi_{H,i}(1-\pi_{H,i}), \\
+    E\left(n^{-1} \sumi A_i^2 \tS_i^2\right) &=& \pi_A n^{-1} \sumi \pi_{S,i}(1-\pi_{S,i}), \\
+    E\left(n^{-1} \sumi A_i^2 \tH_i^2\right) &=& \pi_A n^{-1} \sumi \pi_{H,i}(1-\pi_{H,i}). 
+\end{eqnarray*}
+The non-zero off-diagonal terms are 
+\begin{eqnarray*}
+    E\left(n^{-1} \sumi A_i \tS_i^2\right) &=& \pi_A \sumi \pi_{S,i}(1-\pi_{S,i})
+\end{eqnarray*}
+
+\begin{eqnarray*}
+&& E(\Omega_{XX}) \\
+&=& n^{-1}
+\begin{pmatrix}
+    n & n\pi_A & 0 & 0 & 0 & 0 \\
+    n\pi_A & n\pi_A & 0 & 0 & 0 & 0 \\
+    0 & 0 & \sumi \pi_{S,i}(1-\pi_{S,i}) & 0 & \pi_A \sumi \pi_{S,i}(1-\pi_{S,i}) & 0 \\
+    0 & 0 & 0 & \sumi \pi_{H,i}(1-\pi_{H,i}) & 0 & \pi_A \sumi \pi_{H,i}(1-\pi_{H,i}) \\
+    0 & 0 & \pi_A \sumi \pi_{S,i}(1-\pi_{S,i}) & 0 & \pi_A\sumi \pi_{S,i}(1-\pi_{S,i}) & 0 \\
+    0 & 0 & 0 & \pi_A \sumi \pi_{H,i}(1-\pi_{H,i}) & 0 & \pi_A \sumi \pi_{H,i}(1-\pi_{H,i})
+\end{pmatrix}
+\end{eqnarray*}
+
+\[
+E(\Omega_{XX})^{-1} =
+\begin{pmatrix}
+\frac{\pi_A}{n \pi_A(1 - \pi_A)} & \frac{-\pi_A}{n \pi_A(1 - \pi_A)} & 0 & 0 & 0 & 0 \\
+\frac{-\pi_A}{n \pi_A(1 - \pi_A)} & \frac{1}{n \pi_A(1 - \pi_A)} & 0 & 0 & 0 & 0 \\
+0 & 0 & \frac{\pi_A}{S \pi_A(1 - \pi_A)} & 0 & \frac{-\pi_A}{S \pi_A(1 - \pi_A)} & 0 \\
+0 & 0 & 0 & \frac{\pi_A}{H \pi_A(1 - \pi_A)} & 0 & \frac{-\pi_A}{H \pi_A(1 - \pi_A)} \\
+0 & 0 & \frac{-\pi_A}{S \pi_A(1 - \pi_A)} & 0 & \frac{1}{S \pi_A(1 - \pi_A)} & 0 \\
+0 & 0 & 0 & \frac{-\pi_A}{H \pi_A(1 - \pi_A)} & 0 & \frac{1}{H \pi_A(1 - \pi_A)} \\
+\end{pmatrix}.
+\]
+
+
+
+
+Meanwhile, we compute
+\begin{eqnarray*}
+    \Omega_{XY} &=& n^{-1}
+\begin{pmatrix}
+    \sumi Y_i & \sumi A_i Y_i & \sumi \tS_i Y_i & \sumi \tH_i Y_i & \sumi A_i \tS_i Y_i & \sumi A_i \tH_i Y_i
+\end{pmatrix}^{\T}
+\end{eqnarray*}
+and its population mean. Taking the expectation, we have
+
+\begin{eqnarray*}
+    E\left(n^{-1}\sumi Y_i \right) &=& n^{-1}\sumi \left[\pi_A E\{Y_i(1,S_i,H_i)\}+(1-\pi_A)E\{Y_i(0,S_i,H_i)\} \right].
+\end{eqnarray*}
+
+\begin{eqnarray*}
+    E\left(n^{-1}\sumi A_i Y_i \right) &=& \pi_A n^{-1}\sumi E\{Y_i(1, S_i,H_i)\}.
+\end{eqnarray*}
+
+\begin{eqnarray*}
+    E\left(n^{-1}\sumi \tS_i Y_i \right) &=& \pi_A n^{-1}\sumi \pi_{S,i}(1-\pi_{S,i})E\{Y_i(1,1,H_i)\} + (1-\pi_A) n^{-1}\sumi \pi_{S,i}(1-\pi_{S,i})E\{Y_i(0,1,H_i)\} \\
+    &&- \pi_A n^{-1}\sumi \pi_{S,i}(1-\pi_{S,i})E\{Y_i(1,0,H_i)\} - (1-\pi_A) n^{-1}\sumi \pi_{S,i}(1-\pi_{S,i})E\{Y_i(0,0,H_i)\} \\
+    &=& \pi_A n^{-1}\sumi \pi_{S,i}(1-\pi_{S,i}) E\{Y_i(1,1,H_i) - Y_i(1,0,H_i)\} \\
+    &&+ (1-\pi_A) n^{-1}\sumi \pi_{S,i}(1-\pi_{S,i}) E\{Y_i(0,1,H_i) - Y_i(0,0,H_i)\}
+\end{eqnarray*}
+
+Similarly, 
+\begin{eqnarray*}
+    E\left(n^{-1}\sumi \tH_i Y_i \right) &=& \pi_A n^{-1}\sumi \pi_{H,i}(1-\pi_{H,i}) E\{Y_i(1,S_i,1) - Y_i(1,S_i,0)\} \\
+    &&+ (1-\pi_A) n^{-1}\sumi \pi_{H,i}(1-\pi_{H,i}) E\{Y_i(0,S_i,1) - Y_i(0,S_i,0)\}.
+\end{eqnarray*}
+
+\begin{eqnarray*}
+    E\left(n^{-1}\sumi A_i \tS_i Y_i \right) &=& \pi_A n^{-1}\sumi \pi_{S,i}(1-\pi_{S,i}) E\{Y_i(1,1,H_i) - Y_i(1,0,H_i)\}, \\
+    E\left(n^{-1}\sumi A_i \tH_i Y_i \right) &=& \pi_A n^{-1}\sumi \pi_{H,i}(1-\pi_{H,i}) E\{Y_i(1,S_i,1) - Y_i(1,S_i,0)\}.
+\end{eqnarray*}
+
+Define the overlap indirect effects as
+\begin{eqnarray*}
+    \wie^{\textup{o}} &=& \frac{n^{-1}\sumi \pi_{S,i}(1-\pi_{S,i})E\{Y_i(0,1,H_i)-Y_i(0,0,H_i)\}}{n^{-1}\sumi \pi_{S,i}(1-\pi_{S,i})}, \\
+    \bie^{\textup{o}} &=& \frac{n^{-1}\sumi \pi_{H,i}(1-\pi_{H,i})E\{Y_i(0,S_i,1)-Y_i(0,S_i,0)\}}{n^{-1}\sumi \pi_{H,i}(1-\pi_{H,i})}.
+\end{eqnarray*}
+
+Therefore, the population-level values of the true coefficients from the centered regression are $(\beta_0, \beta_{A}, \beta_{S}, \beta_{H}, \beta_{AS}, \beta_{AH})^{\T}$, where
+\begin{eqnarray*}
+    \beta_{A} &=& \de, \\
+    \beta_{S} &=& \wie^{\textup{o}}, \\
+    \beta_{H} &=& \bie^{\textup{o}}, \\
+    \beta_{AS} &=& \frac{\sumi \pi_{S,i}(1-\pi_{S,i}) E\{Y_i(1,1,H_i) - Y_i(1,0,H_i) - Y_i(0,1,H_i) + Y_i(0,0,H_i)\}}{\sumi \pi_{S,i}(1-\pi_{S,i})}, \\
+    \beta_{AH} &=& \frac{\sumi \pi_{H,i}(1-\pi_{H,i}) E\{Y_i(1,S_i,1) - Y_i(1,S_i,0) - Y_i(0,S_i,1) + Y_i(0,S_i,0)\}}{\sumi \pi_{H,i}(1-\pi_{H,i})}
+\end{eqnarray*}
+
+To summarize, from the linear regression $Y_i \sim 1+A_i + \tS_i + \tH_i +A_i\tS_i + A_i \tH_i$, we can estimate the direct effect as the coefficient of $A_i$. For the indirect effects, because of the centering, we are not able to recover exactly $\wie$ and $\bie$, but an overlap version of the estimands.
+
+Similarly, if we define the indirect effects based on the treated subgroup, we can recover them from $(1-\pi_A) \beta_{AS} + \beta_{S}$ and $(1-\pi_A) \beta_{AH} + \beta_{H}$.
+
+\section{August 8}
+what if a village does not have cross-sublocation neighbor? $H_i$ is not well-definied in this case. how did people deal with isolated points in the graph when defining exposure mappings? two possible solutions
+\begin{enumerate}
+    \item define between-cluster neighbor as the closest village not in the same cluster, etc.. to make sure $H_i$ is well-definied;
+    \item or define $H_i=0$ if no neighbor. problem: in this case, overlap is not satisfied, so the variances are not identified. \citep{aronow2017estimating}
+\end{enumerate}
+
+\section{August 10}
+A new project:
+Hajek is not optimal because it centers the numerator at the target estimand, which does not necessarily minimize the asymptotic variance.
+Think about the class of estimators
+\begin{eqnarray*}
+    c + \sumi\frac{Z_i (Y_i-c)}{\pi_i}.
+\end{eqnarray*}
+We can instead solve an optimization problem to minimize the asymptotic variance, get the optimal $c^*$, estimate $c^*$, and construct the corresponding estimator. In CRE, it is asymptotically equivalent to the Hajek estimator, but in network setup, they do not necessarily equal. 
+
+centering at a ``wrong'' value not equal to the target will actually help with the variance. so we can sacrifise some bias (because it is easy to debias by adding it back) to gain efficiency.
+
+Related questions:
+1. how do we improve finite sample performance? direally hajeking the ipw part will not work, because it will reduce to the hajek.
+2. how do we get this estimator from maybe regressions?
+3. easy to adapt covariate adjustment, both parametric and nonparametric.
+
+% 1. continuous exposure mapping
+% 2. two bipartite networks
+% 3. notation, subscript $ki$?
+
+
+\bibliographystyle{apalike}
+\bibliography{ref}
+
+
+
+% \newpage 
+% \appendix
+
+% \renewcommand{\thesection}{\Alph{section}}
+% \renewcommand{\thetheorem}{\Alph{section}.\arabic{theorem}}
+% \setcounter{theorem}{0}
+% \renewcommand{\thelemma}{\Alph{section}.\arabic{lemma}}
+% \setcounter{lemma}{0}
+% \renewcommand{\theproposition}{\Alph{section}.\arabic{proposition}}
+% \setcounter{proposition}{0}
+% \renewcommand{\thecorollary}{\Alph{section}.\arabic{corollary}}
+% \setcounter{corollary}{0}
+% \renewcommand{\thedefinition}{\Alph{section}.\arabic{definition}}
+% \setcounter{definition}{0}
+% \renewcommand{\thepage}{S\arabic{page}}
+% \setcounter{page}{1}
+% \renewcommand{\theequation}{\Alph{section}.\arabic{equation}}
+% \setcounter{equation}{0}
+% \renewcommand{\thetable}{S\arabic{table}}
+% \setcounter{table}{0}
+
+% \begin{center}
+%   \LARGE {\bf Supplementary Material}
+% \end{center}
+
+      
+
+
+\end{document}

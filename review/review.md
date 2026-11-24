@@ -174,6 +174,7 @@ Could the authors provide a notation list summarizing the main symbols used thro
 The theoretical guarantees in Section 4.2 are established under Bernoulli randomization, whereas the Kenya field experiment in Section 6 uses a two-stage saturation design. Could the authors clarify whether the proposed consistency and efficiency guarantees extend to this randomization scheme?
 In Tables 1 and 2, the differences between PNA-raw and PNA-based GER are relatively small. Could the authors further discuss under what conditions GER provides significant additional benefits beyond strong GNN predictions?
 Appendix H.3 mentions that PNA-no-harm requires careful initialization and reports results using a particular random seed. Could the authors provide additional evidence on the stability of the results across different random seeds?
+
 Clarity - Presentation: 3: Good (Generally clear; minor issues with organization, notation, or exposition that do not hinder understanding)
 Soundness - Correctness: 2: Questionable (Significant unaddressed gaps, overly strong unverified assumptions, or weak empirical support)
 Contribution - Significance: 2: Limited (Incremental over existing work, or empirical gains are small / lack key baselines or statistical support)

@@ -1,0 +1,48 @@
+\section*{Checklist}
+
+
+\begin{enumerate}
+
+  \item For all models and algorithms presented, check if you include:
+  \begin{enumerate}
+    \item A clear description of the mathematical setting, assumptions, algorithm, and/or model. \textbf{[Yes]} The design-based setting, exposure mapping, and model-assisted estimator are defined in the main text. Section~\ref{sec::gauger} defines GER through an estimating equation; Section~\ref{sec::g-aipw} describes GNN-assisted adjustment. Appendix~\ref{sec:regularity-condition} states the regularity conditions, and Appendix~\ref{sec:gnn_choices} describes the architectures.
+    \item An analysis of the properties and complexity (time, space, sample size) of any algorithm. \textbf{[Yes]} Theorems~\ref{thm:mean_variance}, \ref{thm:convergence_beta}, and~\ref{thm:normality} analyze estimator properties and asymptotic rates. Appendix~\ref{sec:computation} analyzes the time complexity of constructing GER inputs, and Remark~\ref{remark:mc_lambda} analyzes Monte Carlo computation of the variance structure.
+    \item (Optional) Anonymized source code, with specification of all dependencies, including external libraries. [Yes] We provide anonymized code and data in the supplemental material. 
+  \end{enumerate}
+
+  \item For any theoretical claim, check if you include:
+  \begin{enumerate}
+    \item Statements of the full set of assumptions of all theoretical results. \textbf{[Yes]} The exposure-mapping assumption is stated in the main text. Appendix~\ref{sec:regularity-condition} states first- and second-order positivity, boundedness, dependency-degree, and stability conditions. The theorem statements specify their applicable assumptions and asymptotic conditions.
+    \item Complete proofs of all theoretical results. \textbf{[Yes]} Appendix~\ref{sec:proof} provides proofs of the mean/variance result, consistency, asymptotic normality, plug-in properties, coefficient convergence, and conservative variance estimation, together with supporting lemmas. External central-limit and matrix-perturbation results used in these arguments are cited.
+    \item Clear explanations of any assumptions. \textbf{[Yes]} Section~\ref{sec::gauger} summarizes the positivity, boundedness, controlled-dependency, and normalized-moment stability requirements. Appendix~\ref{sec:regularity-condition} defines these conditions and explains their role in controlling individual-unit influence as the population grows.
+  \end{enumerate}
+
+  \item For all figures and tables that present empirical results, check if you include:
+  \begin{enumerate}
+    \item The code, data, and instructions needed to reproduce the main experimental results (either in the supplemental material or as a URL). [Yes] We provide anonymized code and data in the supplemental material. Confirm that the provided code and data are sufficient to reproduce the main results, and that any external dependencies are specified.
+    \item All the training details (e.g., data splits, hyperparameters, how they were chosen). [Yes] We discussed training details and also provided the code and data in the supplemental material. 
+    \item A clear definition of the specific measure or statistics and error bars (e.g., with respect to the random seed after running experiments multiple times). [Yes] We provide the definition of the mean-squared error and the standard-error bars in the main text. 
+    \item A description of the computing infrastructure used. (e.g., type of GPUs, internal cluster, or cloud provider). [Yes] We provide the description of the computing infrastructure in the Numerical Studies section.
+  \end{enumerate}
+
+  \item If you are using existing assets (e.g., code, data, models) or curating/releasing new assets, check if you include:
+  \begin{enumerate}
+    \item Citations of the creator If your work uses existing assets. [Yes] Section~\ref{sec:simulation} cites the cash-transfer study and the NetEstimator, GCN-Deconfounder, and RRNet baselines. The student-network analysis cites Aronow and Samii and names ICPSR 37070. 
+    \item The license information of the assets, if applicable. [Yes] We have checked license for ICPSR 37070, the cash-transfer data, and any reused baseline code/model assets. All assets are either publicly available or have been used with permission. 
+    \item New assets either in the supplemental material or as a URL, if applicable. [Not Applicable] We do not release new assets. 
+    \item Information about consent from data providers/curators. [Not Applicable] Only publicly available or permission-granted assets are used.
+    \item Discussion of sensible content if applicable, e.g., personally identifiable information or offensive content.  [Not Applicable] We do not include any personally identifiable information or offensive content in our work.
+  \end{enumerate}
+
+  \item If you used crowdsourcing or conducted research with human subjects, check if you include:
+  \begin{enumerate}
+    \item The full text of instructions given to participants and screenshots. [Not Applicable]
+    \item Descriptions of potential participant risks, with links to Institutional Review Board (IRB) approvals if applicable. [Not Applicable]
+    \item The estimated hourly wage paid to participants and the total amount spent on participant compensation. [Not Applicable] 
+
+  \end{enumerate}
+
+\end{enumerate}
+
+
+

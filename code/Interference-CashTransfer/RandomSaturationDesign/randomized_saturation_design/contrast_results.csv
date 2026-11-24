@@ -1,0 +1,73 @@
+outcome,outcome_label,estimator,contrast_type,weight_scheme,S,H,contrast,SE,t_stat,p_value
+profit_per_ent,Profit per enterprise (KES),IPW,Controlled Effect,uniform,0.0,0.0,2141.5039033720705,2179.834430104751,0.9824158540651923,0.3258950189351395
+profit_per_ent,Profit per enterprise (KES),IPW,Controlled Effect,uniform,0.0,1.0,3211.1386525238395,2405.767010677105,1.3347670985063769,0.1819525849969883
+profit_per_ent,Profit per enterprise (KES),IPW,Controlled Effect,uniform,1.0,0.0,272.1021112642402,3430.6859996048906,0.07931419876245684,0.9367827129012752
+profit_per_ent,Profit per enterprise (KES),IPW,Controlled Effect,uniform,1.0,1.0,-3232.7262359257466,2224.69683721824,-1.4531086581522479,0.14619358750765477
+profit_per_ent,Profit per enterprise (KES),IPW,Marginal Direct Effect,marginal_direct,,,576.5229353617672,2597.1845721802715,0.2219799630481366,0.8243294813989352
+profit_per_ent,Profit per enterprise (KES),IPW,Controlled Within-Sublocation Effect (A=0),within_subloc,,,232.2113955571399,1085.0317155601304,0.2140134635947157,0.8305365579853681
+profit_per_ent,Profit per enterprise (KES),IPW,Treated Within-Sublocation Effect (A=1),within_subloc,,,511.78198172187854,1380.2710629772585,0.370783678256617,0.7107986590720817
+profit_per_ent,Profit per enterprise (KES),IPW,Controlled Between-Sublocation Effect (A=0),between_subloc,,,-374.10317657381756,1385.1691578280993,-0.2700776107088605,0.7871005463459315
+profit_per_ent,Profit per enterprise (KES),IPW,Treated Between-Sublocation Effect (A=1),between_subloc,,,-963.8174170985062,1104.1833452389446,-0.8728780607444652,0.38272954570421946
+profit_per_ent,Profit per enterprise (KES),Hajek,Controlled Effect,uniform,0.0,0.0,-360.4313705531813,908.983691841119,-0.39652127292090183,0.6917205177069286
+profit_per_ent,Profit per enterprise (KES),Hajek,Controlled Effect,uniform,0.0,1.0,-557.9837397025094,615.6704892610578,-0.9063025586498625,0.3647757316101239
+profit_per_ent,Profit per enterprise (KES),Hajek,Controlled Effect,uniform,1.0,0.0,3539.144543820282,1263.1414172834634,2.8018593131334693,0.005080902558198546
+profit_per_ent,Profit per enterprise (KES),Hajek,Controlled Effect,uniform,1.0,1.0,-226.82539092314528,688.3898923802701,-0.32950133846219487,0.7417767824393688
+profit_per_ent,Profit per enterprise (KES),Hajek,Marginal Direct Effect,marginal_direct,,,334.9741746484874,1051.04768013693,0.31870502259692646,0.7499502056387624
+profit_per_ent,Profit per enterprise (KES),Hajek,Controlled Within-Sublocation Effect (A=0),within_subloc,,,-411.7494038444854,365.95406721444124,-1.1251395755172986,0.26052989333228405
+profit_per_ent,Profit per enterprise (KES),Hajek,Treated Within-Sublocation Effect (A=1),within_subloc,,,659.3871456074419,426.59581093060655,1.545695313249813,0.12217816968613612
+profit_per_ent,Profit per enterprise (KES),Hajek,Controlled Between-Sublocation Effect (A=0),between_subloc,,,433.2139142773076,547.5610454447194,0.7911700766175923,0.4288447506197475
+profit_per_ent,Profit per enterprise (KES),Hajek,Treated Between-Sublocation Effect (A=1),between_subloc,,,-427.29056123612895,636.8022530444896,-0.6709941103274908,0.5022242815316386
+revenue_per_ent,Revenue per enterprise (KES),IPW,Controlled Effect,uniform,0.0,0.0,3738.6273030430093,3301.6443978908073,1.1323531102959967,0.25748600979355407
+revenue_per_ent,Revenue per enterprise (KES),IPW,Controlled Effect,uniform,0.0,1.0,5840.878967440027,3940.390163199978,1.4823098032243254,0.13825788103937467
+revenue_per_ent,Revenue per enterprise (KES),IPW,Controlled Effect,uniform,1.0,0.0,-439.54391050313643,4518.3593502944495,-0.09727953808598525,0.9225044051632686
+revenue_per_ent,Revenue per enterprise (KES),IPW,Controlled Effect,uniform,1.0,1.0,-4785.223424496025,3363.8705704261574,-1.4225349413160688,0.1548710154403627
+revenue_per_ent,Revenue per enterprise (KES),IPW,Marginal Direct Effect,marginal_direct,,,1180.0905493815844,3929.5187830986456,0.30031426607688,0.7639374524207365
+revenue_per_ent,Revenue per enterprise (KES),IPW,Controlled Within-Sublocation Effect (A=0),within_subloc,,,359.90460413634946,1651.7881276999776,0.2178878744197638,0.8275164749944766
+revenue_per_ent,Revenue per enterprise (KES),IPW,Treated Within-Sublocation Effect (A=1),within_subloc,,,474.179545521346,2063.2264529178315,0.229824285575031,0.818228312628317
+revenue_per_ent,Revenue per enterprise (KES),IPW,Controlled Between-Sublocation Effect (A=0),between_subloc,,,-564.6917630930443,2067.6065372636276,-0.273113744281533,0.7847657818204511
+revenue_per_ent,Revenue per enterprise (KES),IPW,Treated Between-Sublocation Effect (A=1),between_subloc,,,-1070.679245563249,1734.0195104021045,-0.6174551319292638,0.5369345671103809
+revenue_per_ent,Revenue per enterprise (KES),Hajek,Controlled Effect,uniform,0.0,0.0,-46.34676294705423,1142.6973181716126,-0.04055908962944969,0.9676473990466412
+revenue_per_ent,Revenue per enterprise (KES),Hajek,Controlled Effect,uniform,0.0,1.0,299.8034259633241,876.5718943779544,0.34201806821113623,0.732337294871424
+revenue_per_ent,Revenue per enterprise (KES),Hajek,Controlled Effect,uniform,1.0,0.0,4159.393850523404,1247.0978446884087,3.3352586312605177,0.0008522009924912453
+revenue_per_ent,Revenue per enterprise (KES),Hajek,Controlled Effect,uniform,1.0,1.0,140.47934824405638,825.4027029033896,0.17019492152123347,0.8648568454936668
+revenue_per_ent,Revenue per enterprise (KES),Hajek,Marginal Direct Effect,marginal_direct,,,810.3516098850369,1241.6450009616742,0.6526435569405155,0.5139860981997374
+revenue_per_ent,Revenue per enterprise (KES),Hajek,Controlled Within-Sublocation Effect (A=0),within_subloc,,,-638.5990056035812,434.10764100582924,-1.4710614264331874,0.14127450557183052
+revenue_per_ent,Revenue per enterprise (KES),Hajek,Treated Within-Sublocation Effect (A=1),within_subloc,,,616.1796147394552,524.4598294057271,1.1748842908286363,0.2400410112637863
+revenue_per_ent,Revenue per enterprise (KES),Hajek,Controlled Between-Sublocation Effect (A=0),between_subloc,,,663.0461005123652,636.0257729033797,1.042483070278176,0.2971877705369971
+revenue_per_ent,Revenue per enterprise (KES),Hajek,Treated Between-Sublocation Effect (A=1),between_subloc,,,-193.57158289870267,752.8630898452407,-0.2571139235136278,0.7970908293758227
+cost_per_ent,Total costs per enterprise (KES),IPW,Controlled Effect,uniform,0.0,0.0,542.0955689132348,351.7919120746065,1.5409551792034082,0.12332769484108728
+cost_per_ent,Total costs per enterprise (KES),IPW,Controlled Effect,uniform,0.0,1.0,824.506499260067,475.9076981732816,1.7324924610903394,0.08318591822427847
+cost_per_ent,Total costs per enterprise (KES),IPW,Controlled Effect,uniform,1.0,0.0,-300.01653054874885,468.81863893348077,-0.6399415587043613,0.5222105942159991
+cost_per_ent,Total costs per enterprise (KES),IPW,Controlled Effect,uniform,1.0,1.0,-457.7392492820168,353.49305522773693,-1.2949030893608915,0.19535366264194176
+cost_per_ent,Total costs per enterprise (KES),IPW,Marginal Direct Effect,marginal_direct,,,190.95392178321703,476.2514698920348,0.4009518791123225,0.6884555530317407
+cost_per_ent,Total costs per enterprise (KES),IPW,Controlled Within-Sublocation Effect (A=0),within_subloc,,,102.18897426263601,200.44605185676718,0.5098078675835293,0.6101860732394315
+cost_per_ent,Total costs per enterprise (KES),IPW,Treated Within-Sublocation Effect (A=1),within_subloc,,,-32.77450950097389,229.03328744657563,-0.14309932790280053,0.8862117357358523
+cost_per_ent,Total costs per enterprise (KES),IPW,Controlled Between-Sublocation Effect (A=0),between_subloc,,,-49.30045201806479,224.2888975285234,-0.21980781287578055,0.8260208346440894
+cost_per_ent,Total costs per enterprise (KES),IPW,Treated Between-Sublocation Effect (A=1),between_subloc,,,19.31499686986575,201.01566598824735,0.09608702274475975,0.9234514579643016
+cost_per_ent,Total costs per enterprise (KES),Hajek,Controlled Effect,uniform,0.0,0.0,200.0538930023356,134.59600923654426,1.48632856306128,0.13719223513844378
+cost_per_ent,Total costs per enterprise (KES),Hajek,Controlled Effect,uniform,0.0,1.0,328.9033992089037,167.67991168377148,1.9614955417509077,0.04982124456173242
+cost_per_ent,Total costs per enterprise (KES),Hajek,Controlled Effect,uniform,1.0,0.0,86.79216520228579,168.51390272037222,0.5150445381726548,0.6065218974954988
+cost_per_ent,Total costs per enterprise (KES),Hajek,Controlled Effect,uniform,1.0,1.0,115.03154932184589,157.84707110866168,0.7287531438746706,0.4661526781808819
+cost_per_ent,Total costs per enterprise (KES),Hajek,Marginal Direct Effect,marginal_direct,,,164.27153042315337,231.64014747310222,0.7091669221209954,0.47822089766245657
+cost_per_ent,Total costs per enterprise (KES),Hajek,Controlled Within-Sublocation Effect (A=0),within_subloc,,,15.465005437209527,87.75004666661664,0.17623928447542336,0.8601059592275978
+cost_per_ent,Total costs per enterprise (KES),Hajek,Treated Within-Sublocation Effect (A=1),within_subloc,,,-40.86429468412024,90.37166676926716,-0.4521803806988876,0.6511390407927342
+cost_per_ent,Total costs per enterprise (KES),Hajek,Controlled Between-Sublocation Effect (A=0),between_subloc,,,73.87403448965856,101.26285739225784,0.7295274535212422,0.4656790807296721
+cost_per_ent,Total costs per enterprise (KES),Hajek,Treated Between-Sublocation Effect (A=1),between_subloc,,,122.48354846692598,106.21967874183402,1.1531154106069286,0.24886301711864522
+wagebill_per_ent,Wage bill per enterprise (KES),IPW,Controlled Effect,uniform,0.0,0.0,406.2030418654581,262.273195358537,1.5487783313508792,0.12143501619495957
+wagebill_per_ent,Wage bill per enterprise (KES),IPW,Controlled Effect,uniform,0.0,1.0,625.2164450992418,360.5725551522661,1.733954612367043,0.0829261366915318
+wagebill_per_ent,Wage bill per enterprise (KES),IPW,Controlled Effect,uniform,1.0,0.0,-252.93961655660974,371.90207860903183,-0.6801242345905699,0.4964258006494471
+wagebill_per_ent,Wage bill per enterprise (KES),IPW,Controlled Effect,uniform,1.0,1.0,-340.2665325648208,260.3342548847943,-1.3070371116371102,0.19120010778362462
+wagebill_per_ent,Wage bill per enterprise (KES),IPW,Marginal Direct Effect,marginal_direct,,,139.5327199674884,369.8904147919275,0.37722718510015724,0.706004779281334
+wagebill_per_ent,Wage bill per enterprise (KES),IPW,Controlled Within-Sublocation Effect (A=0),within_subloc,,,89.38305801163293,155.52469800420522,0.5747193799997998,0.5654810983930556
+wagebill_per_ent,Wage bill per enterprise (KES),IPW,Treated Within-Sublocation Effect (A=1),within_subloc,,,-35.593323290078644,173.30198936916105,-0.20538323547030468,0.8372727172481619
+wagebill_per_ent,Wage bill per enterprise (KES),IPW,Controlled Between-Sublocation Effect (A=0),between_subloc,,,-32.51975630084979,170.170569448045,-0.1911009430498406,0.8484465088073582
+wagebill_per_ent,Wage bill per enterprise (KES),IPW,Treated Between-Sublocation Effect (A=1),between_subloc,,,32.50261118198799,169.967100747494,0.1912288380459841,0.8483463110082285
+wagebill_per_ent,Wage bill per enterprise (KES),Hajek,Controlled Effect,uniform,0.0,0.0,162.504707533795,116.16834971575868,1.3988724805974464,0.16185122626932913
+wagebill_per_ent,Wage bill per enterprise (KES),Hajek,Controlled Effect,uniform,0.0,1.0,268.1587203891436,145.4262708161103,1.8439496446156343,0.06519047910633392
+wagebill_per_ent,Wage bill per enterprise (KES),Hajek,Controlled Effect,uniform,1.0,0.0,22.81411044248523,159.00094507602032,0.1434841184848148,0.8859078530801767
+wagebill_per_ent,Wage bill per enterprise (KES),Hajek,Controlled Effect,uniform,1.0,1.0,72.96522267897365,133.77741717168843,0.5454225699792881,0.5854629210165844
+wagebill_per_ent,Wage bill per enterprise (KES),Hajek,Marginal Direct Effect,marginal_direct,,,120.90568593253195,204.3531689475825,0.5916506534016353,0.5540845470893114
+wagebill_per_ent,Wage bill per enterprise (KES),Hajek,Controlled Within-Sublocation Effect (A=0),within_subloc,,,28.591363181744043,77.87201268351845,0.36715839486444124,0.7135008714150685
+wagebill_per_ent,Wage bill per enterprise (KES),Hajek,Treated Within-Sublocation Effect (A=1),within_subloc,,,-45.18832476282,77.44288275863603,-0.5835051996147552,0.5595532577710683
+wagebill_per_ent,Wage bill per enterprise (KES),Hajek,Controlled Between-Sublocation Effect (A=0),between_subloc,,,58.15023373655873,88.98422282582393,0.6534892578696891,0.5134409124566983
+wagebill_per_ent,Wage bill per enterprise (KES),Hajek,Treated Between-Sublocation Effect (A=1),between_subloc,,,108.5264366353909,95.75172232261863,1.1334149820274784,0.2570400254068552
