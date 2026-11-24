@@ -87,6 +87,10 @@ def exp3():
         path = os.path.join(R, f"exp3_{name}.csv")
         if os.path.exists(path):
             d = pd.read_csv(path).dropna(subset=["tau"])
+            gat = os.path.join(R, f"exp3_{name}_gat.csv")
+            if os.path.exists(gat):  # GAT rows come from a separate 20-draw run on the same draw seeds
+                g = pd.read_csv(gat).dropna(subset=["tau"])
+                d = pd.concat([d, g[g.method.str.startswith("gat")]])
             m = d.groupby("method", sort=False).apply(metrics)
             m["median_cond"] = d.groupby("method", sort=False)["cond"].median()
             print(f"\n{name} (true tau {d.true_tau.iloc[0]:.4f})")
@@ -115,9 +119,75 @@ def exp5():
             print(mm.round(4).to_string())
 
 
+def exp4():
+    for outcome in ("revenue_per_ent", "wagebill_per_ent"):
+        path = os.path.join(R, f"exp4_kenya_{outcome}.csv")
+        if not os.path.exists(path):
+            continue
+        d = pd.read_csv(path)
+        print(f"\n=== Experiment 4: Kenya {outcome}, PNA over {d.seed.nunique()} seeds (incl. 50039) ===")
+        fixed = d[d.seed.isna()].pivot(index="contrast", columns="method", values="width")
+        print("CI widths of deterministic and seed-ensemble estimators:")
+        print(fixed.round(0).to_string())
+        print("estimates [CI]:")
+        fe = d[d.seed.isna()].assign(est=lambda x: x.apply(lambda r: f"{r.tau:.0f} [{r.lo:.0f}, {r.hi:.0f}]", axis=1))
+        print(fe.pivot(index="contrast", columns="method", values="est").to_string())
+        haj = d[d.method == "hajek"].set_index("contrast")
+        for m in ("pna-ger-pred", "pna-raw"):
+            s = d[d.method == m]
+            q = lambda x, p: x.quantile(p)
+            g = s.groupby("contrast").agg(tau_med=("tau", "median"), tau_q1=("tau", lambda x: q(x, .25)),
+                                          tau_q3=("tau", lambda x: q(x, .75)), width_med=("width", "median"),
+                                          width_q1=("width", lambda x: q(x, .25)), width_q3=("width", lambda x: q(x, .75)))
+            g["share_narrower_than_hajek"] = s.groupby("contrast").apply(lambda x: (x.width < haj.loc[x.name, "width"]).mean())
+            g["share_significant"] = s.groupby("contrast").apply(lambda x: ((x.lo > 0) | (x.hi < 0)).mean())
+            avg = s.groupby("seed").width.mean()
+            print(f"\n{m}: per-contrast distribution over seeds")
+            print(g.round(2).to_string())
+            print(f"average width over contrasts: median {avg.median():.0f} IQR [{avg.quantile(.25):.0f}, {avg.quantile(.75):.0f}]"
+                  f"; Hajek {haj.width.mean():.0f}; share of seeds narrower than Hajek {(avg < haj.width.mean()).mean():.2f};"
+                  f" seed 50039: {avg.get(50039.0, np.nan):.0f} (rank {int((avg < avg.get(50039.0, np.inf)).sum()) + 1} of {len(avg)})")
+
+
+def exp6():
+    for setting in ("out1", "out2"):
+        gpath, epath = (os.path.join(R, f"exp6_retune_{setting}_{k}.csv") for k in ("grid", "eval"))
+        if not os.path.exists(epath):
+            continue
+        grid = pd.read_csv(gpath).sort_values("rmse")
+        e = pd.read_csv(epath)
+        print(f"\n=== Experiment 6: re-tuning on a replicate population, {setting} ===")
+        print("grid on the replicate population (objective: RMSE of GER on PNA representations), top 5:")
+        print(grid.head(5)[["config", "bias", "sd", "rmse"]].round(4).to_string(index=False))
+        print(f"selected: {e.config.iloc[0]}; evaluated on the paper's population (exp1 draws):")
+        m = e.groupby("method", sort=False).apply(metrics)
+        e1 = os.path.join(R, f"exp1_{setting}.csv")
+        if os.path.exists(e1):
+            p = pd.read_csv(e1)
+            p = p[(p.config == "paper") & (p.seed == 0) & p.method.isin(["pna-raw", "pna-pred", "pna-linear"])
+                  & (p.rcond.isna() | (p.rcond == 1e-2)) & p.draw.isin(e.draw)]
+            pm = p.groupby("method").apply(metrics)
+            pm.index = [f"{i} (paper config)" for i in pm.index]
+            m = pd.concat([m, pm])
+        print(m.round(4).to_string())
+
+
+def exp7():
+    path = os.path.join(R, "exp7_semisyn_crossfit.csv")
+    if os.path.exists(path):
+        d = pd.read_csv(path)
+        print(f"\n=== Experiment 7: cross-fitting on the student network (true tau {d.true_tau.iloc[0]:.4f}) ===")
+        m = d.groupby("method", sort=False).apply(metrics)
+        m["width"] = (d.hi - d.lo).groupby(d.method, sort=False).median()
+        print(m.round(4).to_string())
+
+
 if __name__ == "__main__":
     for s in ("out1", "out2"):
         exp1(s)
     exp2()
     exp3()
+    exp4()
     exp5()
+    exp6()
+    exp7()
