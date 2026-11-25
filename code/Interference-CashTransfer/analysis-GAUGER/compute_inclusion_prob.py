@@ -41,8 +41,9 @@ from tqdm import tqdm
 # =============================================================================
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-PROCESSED_DIR = os.path.join(SCRIPT_DIR, "processed_data")
-OUTPUT_DIR = os.path.join(SCRIPT_DIR, "inclusion_probabilities")
+DERIVED_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, "..", "..", "..", "data", "cash-transfer-derived"))
+PROCESSED_DIR = os.path.join(DERIVED_DIR, "processed_data")
+OUTPUT_DIR = os.path.join(DERIVED_DIR, "inclusion_probabilities")
 
 # Default Monte Carlo settings
 DEFAULT_N_SIMULATIONS = 100000

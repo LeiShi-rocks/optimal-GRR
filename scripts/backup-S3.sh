@@ -16,7 +16,7 @@ PREFIX="${S3_BACKUP_PREFIX:-$(basename "${SRC}")}"
 DST="s3://${BUCKET}/${PREFIX}"
 REGION="${AWS_DEFAULT_REGION:-us-west-2}"
 ENV_FILE="${S3_BACKUP_ENV_FILE:-${SRC}/.env}"
-DIRS=(results datasets data runs dgp-2/results)
+DIRS=(results data)
 
 if [[ ! -f "${ENV_FILE}" ]]; then
     echo "[backup-S3] Credential file not found: ${ENV_FILE}" >&2

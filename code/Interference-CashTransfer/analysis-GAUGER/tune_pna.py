@@ -24,9 +24,10 @@ from propensity import build_W_pi
 
 def load_data():
     """Load the preprocessed village data, adjacency matrix, and propensity scores."""
-    script_dir = os.path.dirname(__file__)
-    data_dir = os.path.join(script_dir, 'processed_data')
-    propensity_dir = os.path.join(script_dir, 'inclusion_probabilities')
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    derived_dir = os.path.join(script_dir, '..', '..', '..', 'data', 'cash-transfer-derived')
+    data_dir = os.path.join(derived_dir, 'processed_data')
+    propensity_dir = os.path.join(derived_dir, 'inclusion_probabilities')
     
     # Load village data
     village_data = pd.read_csv(os.path.join(data_dir, 'village_data.csv'))

@@ -85,7 +85,7 @@ def main():
     ap.add_argument("--seed-outcome", type=int, default=999)
     ap.add_argument("--seed-mc", type=int, default=111)
     ap.add_argument("--seed-base", type=int, default=20260000)
-    ap.add_argument("--out", default=str(HERE / "results"))
+    ap.add_argument("--out", default=str(HERE.parents[1] / "results" / "semisynthetic"))
     args = ap.parse_args()
 
     start = datetime.now()

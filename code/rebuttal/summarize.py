@@ -1,10 +1,10 @@
-"""Summarize the rebuttal experiments into plain-text tables (results/summary.txt)."""
+"""Summarize the rebuttal experiments into plain-text tables (results/rebuttal/summary.txt)."""
 import os
 
 import numpy as np
 import pandas as pd
 
-R = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results")
+R = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "results", "rebuttal")
 pd.set_option("display.width", 200)
 
 

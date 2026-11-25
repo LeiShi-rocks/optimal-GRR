@@ -14,7 +14,7 @@ Deviations from the student-network study, forced by the much denser graphs:
 Assignment: i.i.d. Bernoulli(1/3); fraction mapping with k = 3. Exposure probabilities by Monte Carlo.
 Estimators: HT, Hajek; linear-raw/-linear/-pred; {PNA, GAT}-raw/-pred/-linear with the paper configurations.
 Each GER row is also solved with diag(Delta 1) in place of Delta ("-ydiag"): Delta is indefinite here.
-Output: results/exp3_<graph>.csv (one row per draw x method) and results/exp3_graphs.csv.
+Output: results/rebuttal/exp3_<graph>.csv (one row per draw x method) and results/rebuttal/exp3_graphs.csv.
 """
 import argparse
 import os
@@ -33,7 +33,7 @@ sys.path.insert(0, SEMI)
 from semisynthetic_data import PARAMS, _neighbor_mean, generate_potential_outcomes  # noqa: E402
 from GRR import GAT_embedding, prepare_grr_inputs  # noqa: E402
 
-DATA = os.path.join(SEMI, "data", "attributed")
+DATA = os.path.join(os.path.dirname(os.path.dirname(HERE)), "data", "attributed")
 K, D1, D2, P = 3, 1, 0, 1 / 3
 # d = 1 vs 0 spans only half the dose range (s = d/2), so the main effect is raised from 0.4 to 1.0.
 EXP3_PARAMS = {**PARAMS, "beta1": 1.0}
@@ -145,7 +145,7 @@ def main():
     ap.add_argument("--seed-outcome", type=int, default=999)
     ap.add_argument("--seed-mc", type=int, default=111)
     ap.add_argument("--seed-base", type=int, default=9_000_000)
-    ap.add_argument("--out", default=os.path.join(HERE, "results"))
+    ap.add_argument("--out", default=os.path.join(HERE, "..", "..", "results", "rebuttal"))
     args = ap.parse_args()
     os.makedirs(args.out, exist_ok=True)
 

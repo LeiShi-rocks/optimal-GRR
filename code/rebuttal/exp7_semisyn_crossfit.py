@@ -4,7 +4,7 @@ Same population, covariates, Bernoulli(1/3) design and contrast (d = 2 vs 0) as 
 connected components of the two-hop graph are independent, so they are assigned whole to the smaller fold; a
 component larger than a quarter of the sample is split by spectral bisection, and units with a two-hop
 neighbour in the other fold are removed from the training set (the buffer). Each fold's PNA predicts the other.
-Output: results/exp7_semisyn_crossfit.csv
+Output: results/rebuttal/exp7_semisyn_crossfit.csv
 """
 import argparse
 import os
@@ -80,7 +80,7 @@ def main():
     ap.add_argument("--mc-reps", type=int, default=1000)
     ap.add_argument("--n-jobs", type=int, default=6)
     ap.add_argument("--seed-base", type=int, default=20260000)  # run_semisynthetic.py's draws
-    ap.add_argument("--out", default=os.path.join(HERE, "results"))
+    ap.add_argument("--out", default=os.path.join(HERE, "..", "..", "results", "rebuttal"))
     args = ap.parse_args()
     t0 = time.time()
     net = build_student_network()

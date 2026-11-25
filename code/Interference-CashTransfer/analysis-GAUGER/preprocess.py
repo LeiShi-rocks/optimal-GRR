@@ -21,7 +21,7 @@ Output files:
 Usage:
     python preprocess.py
 
-Note: Requires replication_materials/analysisdata/ folder with:
+Note: Requires data/cash-transfer/analysisdata/ folder with:
     - GE_VillageLevel_ECMA.dta
     - village_buffers_hhs_ge.dta
 """
@@ -39,9 +39,9 @@ from datetime import datetime
 # =============================================================================
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-BASE_DIR = os.path.dirname(SCRIPT_DIR)  # Interference-CashTransfer/
-DATA_DIR = os.path.join(BASE_DIR, "replication_materials", "analysisdata")
-OUTPUT_DIR = os.path.join(SCRIPT_DIR, "processed_data")
+REPO_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, "..", "..", ".."))
+DATA_DIR = os.path.join(REPO_DIR, "data", "cash-transfer", "analysisdata")
+OUTPUT_DIR = os.path.join(REPO_DIR, "data", "cash-transfer-derived", "processed_data")
 
 # Network construction parameters
 DISTANCE_THRESHOLD = 8  # km (strictly less than)
@@ -81,14 +81,14 @@ def load_data():
     if not os.path.exists(village_file):
         raise FileNotFoundError(
             f"Village data file not found: {village_file}\n"
-            "Please ensure the replication_materials/analysisdata/ folder exists "
+            "Please ensure the data/cash-transfer/analysisdata/ folder exists "
             "with the required Stata files."
         )
     
     if not os.path.exists(geo_file):
         raise FileNotFoundError(
             f"Geographic data file not found: {geo_file}\n"
-            "Please ensure the replication_materials/analysisdata/ folder exists "
+            "Please ensure the data/cash-transfer/analysisdata/ folder exists "
             "with the required Stata files."
         )
     
@@ -508,7 +508,7 @@ def main():
         print(f"\nERROR: {e}")
         print("\nTo obtain the data files:")
         print("  1. Download from the original study's replication materials")
-        print("  2. Place in: Interference-CashTransfer/replication_materials/analysisdata/")
+        print("  2. Place in: <repo>/data/cash-transfer/analysisdata/")
         print("  3. Required files:")
         print("     - GE_VillageLevel_ECMA.dta")
         print("     - village_buffers_hhs_ge.dta")

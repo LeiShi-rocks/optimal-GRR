@@ -7,7 +7,7 @@ The original code was not recovered from this repository, the S3 bucket, git his
 
 ## Data (restricted use)
 
-ICPSR 37070, Paluck, Shepherd & Aronow, "Changing Climates of Conflict". Put `37070-0001-Data.dta` under `data/ICPSR_37070/DS0001/`. A copy is in `s3://epic-ace-leis-jobs/TabFN-CATE/data/paluck/`. `data/` and `results/` are git-ignored; do not commit or redistribute the data.
+ICPSR 37070, Paluck, Shepherd & Aronow, "Changing Climates of Conflict". Put `37070-0001-Data.dta` under `<repo>/data/school-network/ICPSR_37070/DS0001/`. A copy is in `s3://epic-ace-leis-jobs/TabFN-CATE/data/paluck/` and in the project backup under `data/`. `data/` and `results/` are git-ignored; do not commit or redistribute the data.
 
 ## Run
 
@@ -16,7 +16,7 @@ python run_semisynthetic.py                     # B = 200, all methods, 1,000 Mo
 python run_semisynthetic.py --B 2 --mc-reps 50  # smoke test
 ```
 
-The driver imports the estimators, GNN code and GAT/PNA settings from `../synthetic` (via `_run_method` of the medium-density driver). Method keys mean the same as there; see `../synthetic/README.md`. Outputs are written to `results/semisyn_<timestamp>_{summary.csv,full.npz,config.json}`.
+The driver imports the estimators, GNN code and GAT/PNA settings from `../synthetic` (via `_run_method` of the medium-density driver). Method keys mean the same as there; see `../synthetic/README.md`. Outputs are written to `<repo>/results/semisynthetic/semisyn_<timestamp>_{summary.csv,full.npz,config.json}`.
 
 ## Specification and evidence
 

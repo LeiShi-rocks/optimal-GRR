@@ -8,7 +8,7 @@ Usage:
     python simulation-out1-dgp2-parallel.py
     
     # With nohup (background):
-    nohup python simulation-out1-dgp2-parallel.py > dgp-2/results/simulation_out1_dgp2_parallel.log 2>&1 &
+    nohup python simulation-out1-linear-no-cal.py > ../../results/synthetic/dgp2/simulation_out1_linear_no_cal.log 2>&1 &
 """
 
 import os
@@ -538,7 +538,7 @@ if __name__ == "__main__":
     print("="*100)
     
     # Save results
-    results_dir = 'dgp-2/results'
+    results_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..', 'results', 'synthetic', 'dgp2')
     os.makedirs(results_dir, exist_ok=True)
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
     

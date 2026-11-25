@@ -5,7 +5,7 @@ objective = RMSE of GER on PNA representations over 20 draws). Here the same 16-
 run on a replicate population drawn with different graph/covariate/outcome seeds; the selected configuration is then
 evaluated on the paper's population with exp1's draws (seed_base 7,000,000), so it can be compared with the paper
 configuration row by row.
-Output: results/exp6_retune_<setting>_grid.csv and results/exp6_retune_<setting>_eval.csv
+Output: results/rebuttal/exp6_retune_<setting>_grid.csv and results/rebuttal/exp6_retune_<setting>_eval.csv
 """
 import argparse
 import os
@@ -87,7 +87,7 @@ def main():
     ap.add_argument("--B-tune", type=int, default=20)
     ap.add_argument("--B-eval", type=int, default=50)
     ap.add_argument("--n-jobs", type=int, default=6)
-    ap.add_argument("--out", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "results"))
+    ap.add_argument("--out", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "results", "rebuttal"))
     args = ap.parse_args()
     os.makedirs(args.out, exist_ok=True)
     for setting in args.settings:

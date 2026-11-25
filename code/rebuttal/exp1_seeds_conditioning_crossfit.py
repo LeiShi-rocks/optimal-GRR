@@ -8,7 +8,7 @@ contrast d=0 vs d=2, B seeded draws. Per draw:
     linear (GER on representations, at every rcond / ridge), plus a seed-ensemble of the predictions;
   * PNA with two pre-specified, untuned configurations (package defaults; a small network), seed 0;
   * graph cross-fitting (Appendix D.5, Algorithm 2) with the paper configuration, seed 0.
-Rows: one per (draw, method); written to results/exp1_<setting>.csv.
+Rows: one per (draw, method); written to results/rebuttal/exp1_<setting>.csv.
 """
 import argparse
 import os
@@ -109,7 +109,7 @@ def main():
     ap.add_argument("--seeds", type=int, default=5)
     ap.add_argument("--n-jobs", type=int, default=4)
     ap.add_argument("--seed-base", type=int, default=7_000_000)
-    ap.add_argument("--out", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "results"))
+    ap.add_argument("--out", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "results", "rebuttal"))
     args = ap.parse_args()
 
     t0 = time.time()

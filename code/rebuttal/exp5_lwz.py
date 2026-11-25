@@ -12,8 +12,8 @@ With b_n = 3, B is exactly our Delta (pairs within two hops). Auxiliary variable
                 phi0(G) = G - gamma_i w_HT,i, gamma_i = E[w_HT,i G_i]/E[w_HT,i^2] (Monte Carlo);
     ND-phi0(G2) G2 = (G1 1{T=t}, G1 1{T=t'}), same normalization.
 Same population, design and draws as exp1 (seed_base 7,000,000; the first 50 draws are exp1's draws), so the
-PNA rows of results/exp1_<setting>.csv can be compared on identical assignments.
-Output: results/exp5_lwz_<setting>.csv
+PNA rows of results/rebuttal/exp1_<setting>.csv can be compared on identical assignments.
+Output: results/rebuttal/exp5_lwz_<setting>.csv
 """
 import argparse
 import os
@@ -109,7 +109,7 @@ def main():
     ap.add_argument("--gamma-reps", type=int, default=5000)
     ap.add_argument("--n-jobs", type=int, default=16)
     ap.add_argument("--seed-base", type=int, default=7_000_000)
-    ap.add_argument("--out", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "results"))
+    ap.add_argument("--out", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "results", "rebuttal"))
     args = ap.parse_args()
     os.makedirs(args.out, exist_ok=True)
     for setting in args.settings:

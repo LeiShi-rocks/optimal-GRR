@@ -6,7 +6,7 @@ A seed ensemble averages the S models' predictions, a fixed feature map that inv
 HT, Hajek and Linear are deterministic and computed once. Seed 50039 (the paper's wage-bill seed) is
 always included so its rank among the seeds can be reported.
 Requires the outputs of preprocess.py and compute_inclusion_prob.py in analysis-GAUGER/.
-Output: results/exp4_kenya_<outcome>.csv
+Output: results/rebuttal/exp4_kenya_<outcome>.csv
 """
 import argparse
 import importlib.util
@@ -72,7 +72,7 @@ def main():
     ap.add_argument("--outcomes", nargs="+", default=["revenue_per_ent", "wagebill_per_ent"])
     ap.add_argument("--S", type=int, default=50)
     ap.add_argument("--n-jobs", type=int, default=4)
-    ap.add_argument("--out", default=os.path.join(HERE, "results"))
+    ap.add_argument("--out", default=os.path.join(HERE, "..", "..", "results", "rebuttal"))
     args = ap.parse_args()
     os.makedirs(args.out, exist_ok=True)
 

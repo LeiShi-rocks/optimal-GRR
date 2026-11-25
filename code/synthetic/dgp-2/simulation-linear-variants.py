@@ -103,8 +103,9 @@ def main():
     print(f"setting={args.setting}, true_tau={true_tau:.4f}, B={args.B}")
     print(summary.to_string(index=False))
 
-    os.makedirs("dgp-2/results", exist_ok=True)
-    prefix = f"dgp-2/results/{args.setting}_linear_variants_{datetime.now():%Y%m%d_%H%M%S}"
+    out_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "results", "synthetic", "dgp2")
+    os.makedirs(out_dir, exist_ok=True)
+    prefix = os.path.join(out_dir, f"{args.setting}_linear_variants_{datetime.now():%Y%m%d_%H%M%S}")
     summary.to_csv(f"{prefix}_summary.csv", index=False)
     np.savez(f"{prefix}_full.npz", **{f"results_{m}": np.array([o[1][m] for o in out]) for m in METHODS})
     with open(f"{prefix}_config.json", "w") as f:

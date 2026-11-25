@@ -51,9 +51,10 @@ from propensity import build_W_pi
 # Configuration
 # =============================================================================
 
-PROCESSED_DIR = os.path.join(SCRIPT_DIR, "processed_data")
-PROPENSITY_DIR = os.path.join(SCRIPT_DIR, "inclusion_probabilities")
-OUTPUT_DIR = os.path.join(SCRIPT_DIR, "results")
+REPO_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, "..", "..", ".."))
+PROCESSED_DIR = os.path.join(REPO_DIR, "data", "cash-transfer-derived", "processed_data")
+PROPENSITY_DIR = os.path.join(REPO_DIR, "data", "cash-transfer-derived", "inclusion_probabilities")
+OUTPUT_DIR = os.path.join(REPO_DIR, "results", "kenya")
 
 # All estimators to run
 ALL_ESTIMATORS = [

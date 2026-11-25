@@ -540,7 +540,7 @@ if __name__ == "__main__":
     print("="*100)
     
     # Save results
-    results_dir = 'dgp-2/results'
+    results_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..', 'results', 'synthetic', 'dgp2')
     os.makedirs(results_dir, exist_ok=True)
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
     

@@ -12,12 +12,12 @@ The rest of `code/Interference-CashTransfer/` (`analysis/`, `analysis-2/`) conta
 
 Expected run order: `preprocess.py`, then `compute_inclusion_prob.py`, then `tune_pna.py` (optional), then `GRR-analysis.py --outcome revenue_per_ent` (and `wagebill_per_ent --seed 50039`).
 
-## Missing before this study can be rerun
+Locations: raw data in `<repo>/data/cash-transfer/analysisdata/` (Egger et al., 2022 replication package); `processed_data/` and `inclusion_probabilities/` in `<repo>/data/cash-transfer-derived/`; estimates in `<repo>/results/kenya/`.
 
-1. **Raw data.** `preprocess.py` expects `../replication_materials/analysisdata/GE_VillageLevel_ECMA.dta` and `village_buffers_hhs_ge.dta` from the Egger et al. (2022) replication package. They are not on this machine or in S3.
-2. **Intermediate files and results.** There are no `processed_data/`, `inclusion_probabilities/` or `results/` outputs, so Tables 3 and 7–10 and Figure 2 cannot be checked against archived numbers.
-3. **The seed search itself.** Only the selected seed (50039) survives. The search loop and its other seeds were not recovered.
-4. **Table and figure scripts.** No scripts produce the paper's tables or the propensity histograms.
+## Still missing
+
+1. **The seed search itself.** Only the selected seed (50039) survives. The search loop and its other seeds were not recovered.
+2. **Table and figure scripts.** No scripts produce the paper's tables or the propensity histograms.
 
 ## Issues found in the recovered code (relevant to the AISTATS reviews)
 

@@ -5,7 +5,7 @@ driver was not recovered. Choices that the written record does not pin down are 
 and are justified in README.md.
 
 Data: ICPSR 37070 (Paluck, Shepherd & Aronow, "Changing Climates of Conflict"), restricted-use.
-Place 37070-0001-Data.dta under data/ICPSR_37070/DS0001/ (git-ignored; do not redistribute).
+Place 37070-0001-Data.dta under <repo>/data/school-network/ICPSR_37070/DS0001/ (git-ignored; do not redistribute).
 """
 from pathlib import Path
 
@@ -13,7 +13,7 @@ import numpy as np
 import pandas as pd
 
 HERE = Path(__file__).resolve().parent
-DTA = HERE / "data" / "ICPSR_37070" / "DS0001" / "37070-0001-Data.dta"
+DTA = HERE.parents[1] / "data" / "school-network" / "ICPSR_37070" / "DS0001" / "37070-0001-Data.dta"
 NOMINATIONS = [f"ST{i}" for i in range(1, 11)]  # wave-1 "spent time with" nominations
 
 # Rebuttal parameter values (writeup/icml2026/rebuttal.tex, eq. dgp).

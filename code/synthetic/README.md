@@ -1,8 +1,8 @@
 # Synthetic studies (paper Table 1 and Appendix Table 6)
 
-Run every command from this folder (`code/synthetic/`). Outputs go to `dgp-2/results/`.
+Run every command from this folder (`code/synthetic/`). Outputs go to `<repo>/results/synthetic/dgp2/`, which also holds the archived runs below.
 
-| Paper result | Script | Archived output (`reference-results/`) |
+| Paper result | Script | Archived output (`results/synthetic/dgp2/`) |
 | --- | --- | --- |
 | Table 1, all rows except linear-raw and the pure-GNN baselines | `dgp-2/simulation-out1-dgp2-parallel.py` | `out1_dgp2_parallel_20260128_054224_*` |
 | Table 1, linear-raw row | `dgp-2/simulation-out1-linear-no-cal.py` | `out1_dgp2_linear_no_cal_20260128_194808_*` |
@@ -15,8 +15,9 @@ Each driver runs B = 100 randomizations with 3 workers on GPU 0 (`N_JOBS` in the
 
 - The sparse driver `simulation-out1-dgp2-parallel.py` is the original version, saved before it was narrowed to the linear-only ablation. It was recovered from the editor's local history (Cursor, saved 2026-01-28 19:39). Its method list (10 methods) matches the archived run. Its GAT and PNA settings are identical to the medium-density driver.
 - `simulation-out1-linear-no-cal.py` is the repository's narrowed version, which runs only the `linear-no-cal` ablation.
-- The core modules are byte-identical to the repository root and to `GaugerREPLICATION/`.
+- The core modules were byte-identical to the former repository-root copies (now removed) and to `GaugerREPLICATION/`.
 - The tuning scripts were copied from the repository root and from `legacy/`. Each gained a single `sys.path` line so it runs from this folder.
+- Older scripts with no counterpart here (the DGP-1 studies, DGP-2 out3/out4, notebooks) are kept in `../legacy/` for provenance; their imports assume the old flat layout.
 
 ## Method keys and paper labels
 

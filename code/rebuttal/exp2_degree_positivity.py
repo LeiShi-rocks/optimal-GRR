@@ -95,7 +95,7 @@ def main():
     ap.add_argument("--mc-reps", type=int, default=5000)
     ap.add_argument("--n-jobs", type=int, default=16)
     ap.add_argument("--seed-base", type=int, default=8_000_000)
-    ap.add_argument("--out", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "results"))
+    ap.add_argument("--out", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "results", "rebuttal"))
     args = ap.parse_args()
     os.makedirs(args.out, exist_ok=True)
     rows, graphs = [], []
