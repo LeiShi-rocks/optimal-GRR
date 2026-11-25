@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The best predictor is not the best adjustment: regression adjustment for experiments on networks</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+<script src="data/toy.js"></script>
+<style>
+  :root { --blue:#2b6cb0; --orange:#dd6b20; --gray:#8a8f98; --dark:#2d3748; --red:#c53030; --text:#1a202c; --muted:#5a6270; }
+  * { box-sizing: border-box; }
+  body { margin:0; color:var(--text); font: 18px/1.65 Georgia, "Times New Roman", serif; background:#fff; }
+  header { padding: 72px 20px 28px; border-bottom: 1px solid #e2e8f0; }
+  header .inner, main > * { max-width: 720px; margin-left:auto; margin-right:auto; }
+  h1 { font: 700 40px/1.15 -apple-system, "Helvetica Neue", Arial, sans-serif; margin:0 0 8px; letter-spacing:-0.5px; }
+  .kicker { font: 600 22px/1.3 -apple-system, "Helvetica Neue", Arial, sans-serif; color: var(--blue); margin: 0 0 16px; }
+  .subtitle { font-size: 21px; color: var(--muted); margin: 0 0 18px; }
+  .byline { font: 14px/1.5 -apple-system, "Helvetica Neue", Arial, sans-serif; color: var(--muted); }
+  main { padding: 10px 20px 80px; }
+  h2 { font: 700 26px/1.25 -apple-system, "Helvetica Neue", Arial, sans-serif; margin: 56px auto 10px; }
+  h3 { font: 700 19px/1.3 -apple-system, "Helvetica Neue", Arial, sans-serif; margin: 34px auto 6px; }
+  p, ul, ol { margin-top: 0; margin-bottom: 18px; }
+  figure { max-width: 940px !important; margin: 30px auto 34px; }
+  figure img { width: 100%; display:block; }
+  figcaption { max-width: 720px; margin: 10px auto 0; font: 15px/1.5 -apple-system, "Helvetica Neue", Arial, sans-serif; color: var(--muted); }
+  figcaption b { color: var(--text); }
+  .takeaway { border-left: 3px solid var(--blue); padding: 2px 0 2px 16px; color: #2a4365; font-style: italic; }
+  .note { background:#f7fafc; border:1px solid #e2e8f0; border-radius:6px; padding: 14px 18px; font-size: 16px; }
+  code, pre { font-family: Menlo, Consolas, monospace; font-size: 14px; }
+  pre { background:#f7fafc; border:1px solid #e2e8f0; border-radius:6px; padding: 14px 16px; overflow-x:auto; line-height:1.5; }
+  sup.fn a { text-decoration:none; color: var(--blue); font-size: 13px; }
+  .footnotes { font-size: 15px; color: var(--muted); border-top: 1px solid #e2e8f0; margin-top: 60px; padding-top: 14px; }
+  .footnotes li { margin-bottom: 8px; }
+  .refs li { margin-bottom: 6px; font-size: 15px; }
+  .c-blue { color: var(--blue); } .c-orange { color: var(--orange); } .c-gray { color: var(--gray); } .c-red { color: var(--red); }
+  table.nums { border-collapse: collapse; font: 15px/1.4 -apple-system, "Helvetica Neue", Arial, sans-serif; margin: 6px auto 22px; }
+  table.nums td, table.nums th { padding: 4px 12px; border-bottom: 1px solid #edf2f7; text-align: right; }
+  table.nums th:first-child, table.nums td:first-child { text-align: left; }
+  /* interactive figure */
+  #explorer { max-width: 760px !important; border:1px solid #e2e8f0; border-radius: 8px; padding: 14px 18px 8px; }
+  #explorer .controls { font: 15px -apple-system, "Helvetica Neue", Arial, sans-serif; display:flex; align-items:center; gap: 14px; flex-wrap: wrap; }
+  #explorer input[type=range] { flex: 1; min-width: 220px; }
+  #explorer .readout { font: 15px/1.5 -apple-system, "Helvetica Neue", Arial, sans-serif; margin-top: 6px; }
+  #explorer svg text { font: 12px -apple-system, "Helvetica Neue", Arial, sans-serif; fill: #4a5568; }
+  a { color: var(--blue); }
+  .eq { overflow-x: auto; overflow-y: hidden; }
+  .katex-display { margin: 0.6em 0; }
+</style>
+</head>
+<body>
+
+<header><div class="inner">
+  <h1>The best predictor is not the best adjustment</h1>
+  <p class="kicker">Regression adjustment for experiments on networks</p>
+  <p class="subtitle">In a randomized experiment on a network, the variance of a regression-adjusted estimator weights units very unequally. So the outcome model that predicts best is generally not the one that estimates the effect most precisely. We show how to recalibrate any predictor, from a linear model to a graph neural network, toward the variance itself, and we report where this helps and where it does not.</p>
+  <p class="byline">A companion to our paper <a href="https://arxiv.org/abs/2607.19627"><i>GAUGER: Generalized Regression Adjustment via Graph-Weighted Exposure-Level Residualization for Design-Based Inference Under Interference</i></a> (Shi, Lyu and Lu, 2026; arXiv:2607.19627). All result figures are re-plotted directly from our experiment outputs.</p>
+</div></header>
+
+<main>
+
+<figure>
+  <img src="figures/fig1_mismatch.svg" alt="Prediction error and estimator SD as functions of the adjustment coefficient">
+  <figcaption><b>Prediction error and estimator variance prefer different adjustments.</b> Left: in a toy network experiment (an illustration, not a paper result), the coefficient that minimizes prediction error (<span class="c-gray">gray</span>, $b=1.13$) is far from the one that minimizes the variance of the effect estimator (<span class="c-blue">blue</span>, $b=2.23$). Right: across 1,000 simulated experiments, a standard least-squares fit lands near the left minimum; our calibration (GER, <span class="c-orange">orange</span>) is noisier but centred much closer to the right one, and its effect estimates have 20% smaller standard deviation (0.244 vs. 0.306).</figcaption>
+</figure>
+
+<p>Suppose you run a randomized experiment on a social network: some people receive an intervention, and you want to know how much it matters, for them and for their friends. Because outcomes spill over along edges, the analysis has to account for each person's <i>exposure</i>, a summary of their own and their neighbours' treatments. Randomization still gives you an unbiased estimator for free. What it does not give you is precision, and with a few hundred or a few thousand units, precision is usually the binding constraint.</p>
+
+<p>The standard way to buy precision is <i>regression adjustment</i>: predict each unit's outcome from covariates, and let the estimator correct only the part the model gets wrong. The natural instinct is to make the prediction as good as possible. Under interference this instinct is subtly wrong, and the figure above shows why: the coefficient that minimizes prediction error and the coefficient that minimizes estimator variance can be far apart.</p>
+
+<p>In this article we explain where that gap comes from, describe a simple calibration step that closes it without needing the unknown optimum, and walk through five experiments, including two where the calibration does not help and one where it fails outright.</p>
+
+<h2>1. Randomization makes any adjustment unbiased</h2>
+
+<p>We have $n$ units on a graph $G$, each randomly treated ($A_i \in \{0,1\}$). An <i>exposure mapping</i> turns the treatment vector into a discrete exposure $D_i$ for each unit, for example "the share of my neighbourhood that is treated, cut into low, medium, high". We assume each unit's outcome depends on treatments only through $D_i$, so unit $i$ has one potential outcome $Y_i^{(d)}$ per exposure level, and we want the average contrast $\tau = \frac1n\sum_i \big(Y_i^{(d_1)} - Y_i^{(d_2)}\big)$.<sup class="fn"><a href="#fn1" id="r1">1</a></sup></p>
+
+<p>Because the treatment is randomized by us, the probability $\pi_i^{(d)} = \Pr(D_i = d)$ is known (we compute it by simulating the design). That makes the augmented inverse-probability-weighted (AIPW) estimator available:</p>
+
+<div class="eq">$$
+\hat\mu^{(d)} \;=\; \frac1n \sum_{i=1}^n \Big\{ \underbrace{f_i^{(d)}}_{\text{prediction}} \;+\; \underbrace{\frac{\mathbb 1(D_i = d)}{\pi_i^{(d)}}\big(Y_i - f_i^{(d)}\big)}_{\text{reweighted correction}} \Big\}, \qquad \hat\tau = \hat\mu^{(d_1)} - \hat\mu^{(d_2)}.
+$$</div>
+
+<p>The correction term has expectation $Y_i^{(d)} - f_i^{(d)}$ under the design, whatever $f$ is, so $\hat\tau$ is unbiased for any prediction $f$: a linear model, a random forest, a graph neural network, or zero. No modelling assumption is needed for validity. The prediction only decides how noisy the estimate is.</p>
+
+<p class="takeaway">With a randomized design, the outcome model is not about bias. It is purely a variance-reduction device.</p>
+
+<p>So which prediction gives the smallest variance?</p>
+
+<h2>2. The variance weights residuals by the design, not equally</h2>
+
+<p>Write $f_i^{(d)} = F_i^{(d)\top}\beta$ for some features $F$ (covariates, or a model's predictions, or a network's learned representation). Stack the residuals at the two exposure levels into one vector $r(\beta)$ of length $2n$. The variance of the AIPW estimator is then exactly a quadratic form:</p>
+
+<div class="eq">$$
+n^2\,\mathrm{Var}(\hat\tau) \;=\; r(\beta)^\top \,\Lambda\, r(\beta), \qquad r(\beta) = \begin{pmatrix} Y^{(d_1)} - F^{(d_1)}\beta_1 \\ Y^{(d_2)} - F^{(d_2)}\beta_2 \end{pmatrix}.
+$$</div>
+
+<p>The matrix $\Lambda$ is the covariance of the reweighted exposure indicators $\mathbb 1(D_i=d)/\pi_i^{(d)}$; it depends only on the graph and the randomization. Two features of it matter:</p>
+<ul>
+  <li><b>Unequal diagonal.</b> Unit $i$'s own residual is weighted by $(1-\pi_i)/\pi_i$. Units that rarely reach an exposure level get large weights.</li>
+  <li><b>Off-diagonal pairs.</b> Two units whose exposures are dependent (in practice: units within two hops, which share a neighbour) contribute a cross term. Their residuals can add up or cancel.</li>
+</ul>
+
+<p>Prediction error, by contrast, is $r^\top r$: every unit counts once and pairs do not interact. The two objectives coincide only when $\Lambda$ is proportional to the identity, which is roughly the no-interference, equal-probability case. On a network it is far from that.</p>
+
+<figure>
+  <img src="figures/fig2_weights.svg" alt="Variance weight versus number of neighbours">
+  <figcaption><b>The design puts most of its weight on well-connected units.</b> In the toy network, a unit with many neighbours rarely has a "high" share of treated neighbours, so its probability $\pi_i$ of reaching $d=2$ is small and its weight $(1-\pi_i)/\pi_i$ is large; note the log scale. We made the covariate $x$ matter more for exactly these units (<span class="c-orange">orange</span>). A least-squares fit averages over everyone; the variance cares mostly about the orange units.</figcaption>
+</figure>
+
+<p>That is the whole mechanism behind the hero figure. Our toy experiment has $995$ units on a sparse random graph (mean degree $2.8$), Bernoulli(1/3) treatment, and the outcome $Y_i = s_i x_i + \text{noise}$, where the slope $s_i$ is $3.0$ for units with at least four neighbours and $0.3$ otherwise. We adjust with $f_i = b\,x_i$ and sweep $b$. Least squares wants the average slope; the variance wants the slope of the heavily weighted units.</p>
+
+<figure id="explorer">
+  <div class="controls">
+    <label for="bslider">adjustment coefficient $b$</label>
+    <input type="range" id="bslider" min="0" max="140" value="0" step="1">
+  </div>
+  <svg id="explsvg" viewBox="0 0 720 260" width="100%"></svg>
+  <div class="readout" id="readout"></div>
+  <figcaption><b>Try it.</b> Drag the slider. The <span class="c-gray">gray</span> curve is prediction error and the <span class="c-blue">blue</span> curve is the exact design standard deviation of $\hat\tau$, both computed from the same toy population (toy illustration). Moving from the prediction-optimal $b$ to the variance-optimal $b$ makes predictions worse and the estimate more precise.</figcaption>
+</figure>
+
+<p class="takeaway">Under interference, prediction error and estimator variance are two different weighted sums of the same residuals. Minimizing one does not minimize the other.</p>
+
+<p>The obvious fix is to choose $\beta$ to minimize $r(\beta)^\top\Lambda\, r(\beta)$ directly. Can we?</p>
+
+<h2>3. Calibrating toward a variance we cannot compute</h2>
+
+<p>The variance-optimal coefficient is a weighted least-squares solution,</p>
+<div class="eq">$$
+\beta^\star = \big(F^\top \Lambda F\big)^{\dagger} F^\top \Lambda\, Y,
+$$</div>
+<p>but it involves every unit's potential outcomes at <i>both</i> exposure levels, and we observe each unit at only one. We cannot compute $\beta^\star$. We can, however, estimate the two matrices it is built from.</p>
+
+<p>The trick is to reweight what we do observe. For each feature, form the residualized, inverse-probability-weighted version $\hat R_k = F^{(d_k)}\,\mathrm{diag}\{\mathbb 1(D_i = d_k)/\pi_i^{(d_k)}\} - F^{(d_k)}$, and similarly a reweighted outcome contrast $\hat y$. These are noisy, but their products have the right expectation on the right pairs: for units $i,j$ whose exposures are dependent, $\mathbb E[\hat R_i \hat R_j]$ equals the corresponding entry of $F^\top\Lambda F$. So we sum products only over those pairs, which are recorded in a 0/1 <i>dependency graph</i> $\Delta$ (for exposures that depend on one-hop neighbours under Bernoulli assignment, $\Delta$ is just "within two hops"). This gives the <b>graph-weighted exposure residualization</b> (GER) equation:</p>
+
+<div class="eq">$$
+\underbrace{\hat X^\top \Delta\, \hat X}_{\textstyle \hat A \;\approx\; F^\top\Lambda F}\;\hat\beta \;=\; \underbrace{\hat X^\top \Delta\, \hat y}_{\textstyle \hat b \;\approx\; F^\top \Lambda Y}, \qquad \hat X = (\hat R_1,\, -\hat R_2).
+$$</div>
+
+<p>Two properties make this practical. First, it needs only first-order probabilities $\pi_i^{(d)}$ and the graph, not the dense $n\times n$ matrix of joint probabilities. Second, it plugs into any predictor. We use it in two ways:<sup class="fn"><a href="#fn2" id="r2">2</a></sup></p>
+<ul>
+  <li><b>Calibrate predictions.</b> Take $F_i = (1, \hat Y_i^{(d)})$ from any trained model. GER then fits only an affine rescaling of the model's output: two numbers per exposure level, so the system is small and well conditioned.</li>
+  <li><b>Calibrate representations.</b> Take $F_i = (1, H_i^{(d)})$, a network's last hidden layer. GER then refits the final layer. This is more flexible but much worse conditioned.</li>
+</ul>
+
+<p>In code, the calibration step is a few lines on top of whatever model produced the features:</p>
+<pre>def ger(F1, F2, pi1, pi2, D, Y, Delta, d1, d2, rcond=1e-2):
+    """F1, F2: n x p features at levels d1, d2; pi: known exposure probabilities."""
+    w1, w2 = (D == d1) / pi1, (D == d2) / pi2         # reweighted indicators
+    X = np.hstack([(w1[:, None] - 1) * F1, -(w2[:, None] - 1) * F2])
+    y = w1 * Y - w2 * Y                                # reweighted outcome contrast
+    A, b = X.T @ Delta @ X, X.T @ Delta @ y
+    return np.linalg.lstsq(A, b, rcond=rcond)[0]       # truncated pseudoinverse</pre>
+<p>(Illustrative; our implementation follows the same steps.)</p>
+
+<p><b>What we can prove.</b> Under positivity (every $\pi_i^{(d)}$ bounded below at a polylogarithmic rate), bounded outcomes, a dependency graph whose maximum degree grows at most polylogarithmically, and a stability condition on the weighted second moments, $\hat\beta$ is consistent for $\beta^\star$; the calibrated estimator is asymptotically normal; and its asymptotic variance is no larger than that of <i>any</i> fixed coefficient on the same features, including the least-squares one and the "use the predictions as they are" choice $\beta = (0,1)$. A conservative variance estimator gives valid confidence intervals.<sup class="fn"><a href="#fn3" id="r3">3</a></sup> These are asymptotic statements about a fixed feature set; they say nothing about how large the gain is in a given experiment, which is what the experiments below measure.</p>
+
+<p>Back in the toy: across 1,000 simulated experiments the least-squares coefficient sits at $\hat b \approx 0.92$, while the GER coefficient has median $1.67$ (interquartile range $1.17$–$2.24$), noisier but pulled toward the variance optimum at $2.23$. The resulting effect estimates have standard deviation $0.244$ with GER and $0.306$ with least squares.</p>
+
+<p>That is a constructed example. Does the gap show up in realistic settings, and does it survive a strong graph neural network?</p>
+
+<h2>4. Experiment 1: synthetic networks, and a rerun</h2>
+
+<p><b>Question.</b> Starting from the same features, does calibrating reduce the error of the effect estimate, and how does that depend on how good the predictor already is?</p>
+
+<p><b>Setup.</b> $n = 2{,}000$ units on a synthetic graph with mean degree 3 (sparse) or 5 (denser), Bernoulli(1/3) treatment, exposure = share of treated neighbours in three bins, and the contrast "high vs. zero" (true $\tau = -0.594$). Outcomes depend nonlinearly on covariates, on degree and on neighbours' covariates; the adjustment sees only one of the three covariates plus the graph. We compare three backbones (a linear model, a graph attention network, and a principal neighbourhood aggregation network, PNA), each used <span class="c-gray">uncalibrated</span> (plug in the MSE-trained predictions) and <span class="c-blue">calibrated</span> with GER. Filled dots are the runs reported in the paper (100 randomizations). Because a single training run of a neural network can be lucky or unlucky, we later reran the main rows independently: 50 new randomizations, PNA trained with five seeds, median reported (hollow dots).<sup class="fn"><a href="#fn4" id="r4">4</a></sup></p>
+
+<figure>
+  <img src="figures/fig3_synthetic.svg" alt="RMSE of each estimator in two synthetic settings">
+  <figcaption><b>Calibration mostly rescues weak or misaligned predictors.</b> RMSE of the effect estimate; further left is better. Filled: paper runs. Hollow: independent rerun. Read each backbone as a pair: the <span class="c-gray">gray</span> dot is the predictor used as is, the <span class="c-blue">blue</span> dot is the same predictor after GER. Differences of about 10% are within Monte Carlo noise at these sample sizes; compare the two Hájek dots in the right panel.</figcaption>
+</figure>
+
+<p><b>What we see.</b></p>
+<ul>
+  <li><b>Weak predictors gain the most.</b> In the denser design, the uncalibrated linear adjustment is <i>worse</i> than no adjustment at all (Hájek): RMSE $0.467$ vs. $0.368$ in the paper run. After calibration it drops to $0.245$. The rerun confirms the direction ($0.357 \to 0.268$, Hájek $0.310$). The graph attention network goes from $0.382$ to $0.250$.</li>
+  <li><b>A strong GNN gains little.</b> PNA is the best backbone everywhere, and once it is used, calibration changes little. In the sparse design, $0.127 \to 0.124$ (rerun: $0.131 \to 0.129$).</li>
+  <li><b>One large gain did not replicate.</b> In the paper's denser run, calibration cut the PNA error from $0.242$ to $0.164$. In the rerun, uncalibrated PNA was already at $0.154$, and calibration did not improve on it ($0.160$). The large gap in the paper run reflects a weak PNA fit in that run, not a systematic effect.</li>
+  <li><b>In the sparse design the linear gain is within noise</b> in the rerun ($0.185$ vs. $0.188$), although the paper run shows $0.203 \to 0.173$.</li>
+</ul>
+<p>Coverage of the 95% intervals for the calibrated estimators was 0.92–0.98 in the paper runs and 0.96–1.00 in the rerun.</p>
+
+<p class="takeaway">GER behaves like a safeguard: it reliably repairs an adjustment that is badly aligned with the design, and it costs little when the predictor is already good. It does not turn a good GNN into a much better one.</p>
+
+<p>These graphs are synthetic. What happens on a real social network?</p>
+
+<h2>5. Experiment 2: a real friendship network</h2>
+
+<p><b>Question.</b> Do the same patterns hold on a real network, and does cross-fitting the GNN (training it on units whose exposures are independent of the ones it adjusts) cost precision?</p>
+
+<p><b>Setup.</b> The friendship network of 2,983 students from a school-climate field experiment (ICPSR 37070), mean degree about 2.5. Covariates are real; outcomes are simulated from them with spillovers through one- and two-hop neighbours (true $\tau \approx 0.46$). 50 randomizations, Bernoulli(1/3), contrast "high vs. zero".<sup class="fn"><a href="#fn5" id="r5">5</a></sup></p>
+
+<figure>
+  <img src="figures/fig4_student.svg" alt="RMSE on the student network">
+  <figcaption><b>On a real network, the GNN does the heavy lifting; calibration helps the linear model and is neutral for PNA.</b> RMSE of the effect estimate over 50 randomizations. Cross-fitting the PNA model (<span class="c-orange">orange</span>) costs almost nothing here.</figcaption>
+</figure>
+
+<ul>
+  <li>Calibration cuts the linear adjustment's error by 27% ($0.0375 \to 0.0272$).</li>
+  <li>PNA is more than four times as accurate as Hájek ($0.0106$ vs. $0.0483$), and calibration leaves it unchanged ($0.0105$).</li>
+  <li>Cross-fitting costs almost nothing ($0.0109$), with coverage 0.98–1.00. Our guarantees are stated for features fixed in advance; cross-fitting is how we make learned features satisfy that. This graph's two-hop structure splits into 1,208 small components, so no training data is lost. On a graph that forms one giant two-hop component (our synthetic graphs), the buffer between folds discards most units and cross-fitting at least doubles the error. We have not found a good fix for that case.</li>
+</ul>
+
+<p>So far the networks have been sparse with modest degrees. Our theory requires exposure probabilities bounded away from zero, which hubs violate. How much does that matter?</p>
+
+<h2>6. Experiment 3: hubs and vanishing probabilities</h2>
+
+<p><b>Question.</b> When some units have hundreds of neighbours, the probability that, say, <i>none</i> of them is treated becomes astronomically small. Do the inverse weights blow up the calibrated estimator?</p>
+
+<p><b>Setup.</b> Heavy-tailed random graphs ($n = 2{,}000$, mean degree 3) with the maximum degree capped at 10, 30, 100 or 300; two exposure mappings (share of treated neighbours; "any neighbour treated"); 200 randomizations each. The smallest exposure probability falls to $7\times 10^{-20}$ and $5\times10^{-32}$, so our positivity assumption fails badly.</p>
+
+<figure>
+  <img src="figures/fig5_heavy_tails.svg" alt="SD relative to Hajek across degree caps">
+  <figcaption><b>Calibration keeps the estimator stable even where our assumptions fail.</b> Standard deviation relative to Hájek (dotted line at 1); lower is better. The uncalibrated linear adjustment (<span class="c-gray">gray</span>) is 8–79% noisier than Hájek; both calibrated versions (<span class="c-blue">blue</span>) are 28–56% of Hájek at every degree cap.</figcaption>
+</figure>
+
+<p>The calibrated intervals covered 0.955–1.00 of the time, while Hájek's covered only 0.80–0.90. Calibration cannot remove the huge inverse weights, but it shrinks the residuals they multiply. This is outside what our theorems cover, so it is an empirical finding about these graphs, not a guarantee.</p>
+
+<p>Hubs in an otherwise sparse graph are fine. What if <i>every</i> unit is well connected?</p>
+
+<h2>7. Experiment 4: where calibration breaks, dense graphs</h2>
+
+<p><b>Question.</b> On graphs where the average unit has dozens of neighbours, is the two-hop dependency graph $\Delta$ still a good stand-in for $\Lambda$?</p>
+
+<p><b>Setup.</b> Two standard attributed social graphs, BlogCatalog (5,196 nodes, mean degree 66) and Flickr (7,575 nodes, mean degree 63), with simulated outcomes as in Experiment 2 and the contrast "medium vs. zero" (which has good support: every unit has $\pi \geq 0.27$). 30 randomizations.<sup class="fn"><a href="#fn6" id="r6">6</a></sup></p>
+
+<figure>
+  <img src="figures/fig6_dense.svg" alt="RMSE and bias on BlogCatalog and Flickr">
+  <figcaption><b>On dense graphs, calibration with the two-hop weight fails, and a positive semidefinite weight only partly repairs it.</b> RMSE as a percentage of the true effect (log scale), with bias annotated. GER with the two-hop $\Delta$ (<span class="c-red">red</span>) is biased toward zero by 30% and 46%. Replacing $\Delta$ by a positive semidefinite bound (<span class="c-blue">blue</span>) removes most of the bias, but the uncalibrated PNA estimate (<span class="c-gray">gray</span>) is better still.</figcaption>
+</figure>
+
+<p>Here two-hop neighbourhoods cover 48–58% of all pairs, and $\Delta$ is strongly indefinite (smallest eigenvalue $-330$ and $-891$). The GER equation is then a stationary point of an indefinite quadratic rather than a minimum, and the noisy estimate $\hat A$ no longer resembles $F^\top\Lambda F$. One possibility, which we have not verified, is that the error in $\hat A$ grows with the number of pairs it sums over and overwhelms the signal once that number is a constant fraction of $n^2$.</p>
+
+<p>A simple repair is to replace $\Delta$ by the diagonal matrix of two-hop degrees, $\mathrm{diag}(\Delta\mathbf 1)$, which upper-bounds $\Delta$ in the positive semidefinite order.<sup class="fn"><a href="#fn7" id="r7">7</a></sup> It removes the bias (−1% to −3% of $\tau$), but it gives up the cross-unit information that made calibration useful, and the uncalibrated PNA estimate, already three times more accurate than Hájek, remains the better choice.</p>
+
+<p class="takeaway">GER is a method for sparse dependence. When two-hop neighbourhoods cover a sizeable fraction of the graph, use a positive semidefinite weight or the learned predictions as they are.</p>
+
+<h2>8. Experiment 5: a real field experiment, and how stable it is</h2>
+
+<p><b>Question.</b> In a real randomized experiment, does calibrating a GNN give narrower confidence intervals than standard estimators, and is that conclusion robust to the GNN's random seed?</p>
+
+<p><b>Setup.</b> The GiveDirectly cash-transfer experiment in Kenya (Egger et al., 2022): 653 villages, a two-stage randomized-saturation design, and a geographic network linking each village to its nearest neighbours within 8 km. Exposure combines a village's own treatment with whether more than a third of its neighbours were treated, giving four levels and four contrasts (two direct effects, two spillover effects). We trained PNA with 50 different seeds, including the seed used in our paper for the wage-bill outcome.<sup class="fn"><a href="#fn8" id="r8">8</a></sup></p>
+
+<figure>
+  <img src="figures/fig7_kenya.svg" alt="Average CI width over 50 seeds">
+  <figcaption><b>The substantive conclusions are stable across seeds; the efficiency gain is not.</b> Each dot is one random seed's average 95% confidence-interval width over the four contrasts; the dotted and dashed lines mark Hájek and the linear adjustment. The <span class="c-orange">orange</span> ring is the seed reported in the paper.</figcaption>
+</figure>
+
+<ul>
+  <li><b>Conclusions do not depend on the seed.</b> For revenue, the direct effect among villages with many treated neighbours is significant for all 50 seeds. For the wage bill, the direct effect among villages with few treated neighbours and the spillover effect on untreated villages are significant for 49 of 50.</li>
+  <li><b>Narrower intervals do not hold up.</b> With calibration, the median average width is 3,268 KES for revenue (Hájek 3,214) and 550 KES for the wage bill (Hájek 521). Only 26% and 2% of seeds beat Hájek. The paper's wage-bill seed is the single best of the 50 (512 KES).</li>
+  <li>The PNA hyperparameters were themselves tuned on these data by interval width, which favours the reported configuration. Re-tuning on independent replicate data, which we did in the synthetic setting, changed little there (0.127 vs. 0.129), but we have not done the equivalent check here.</li>
+</ul>
+
+<p class="takeaway">In this application GER reproduces the standard estimators' conclusions with comparable precision. It does not deliver the narrower intervals a single favourable seed suggested.</p>
+
+<h2>What we take away</h2>
+
+<p>Under interference, an adjustment's quality is measured by a design-weighted quadratic form, not by prediction error, and the two can disagree a lot. GER estimates that quadratic form from data using only first-order probabilities and the dependency graph, and it fits any predictor's output or representation toward it, with asymptotic guarantees on a fixed feature set.</p>
+
+<p>In practice it acts as a safeguard more than a booster. It repairs adjustments that are misaligned with the design, sometimes dramatically (linear models on denser graphs, hub-heavy graphs). It leaves a strong GNN about where it was. And it should not be used with the two-hop weight on graphs where two-hop neighbourhoods are a large fraction of the network.</p>
+
+<p>Several questions remain open: a finite-sample analysis that predicts when the gain is worth the extra noise in $\hat\beta$; a principled positive semidefinite weight that keeps cross-unit information on dense graphs; cross-fitting that works when the two-hop graph is one giant component; and a formal statement of our guarantees for the cross-fitted estimator, which we expect to follow by adapting the conditional cross-fitting argument of Lu, Shi, Liu and Ding (2025).</p>
+
+<div class="footnotes">
+<ol>
+  <li id="fn1">The exposure mapping is a modelling choice. If it is misspecified, the estimator still targets a well-defined average of expected outcomes at each exposure value (Leung, 2022). <a href="#r1">↩</a></li>
+  <li id="fn2">The GNNs are trained with mean squared error plus an optional representation-balancing penalty; their training objective does not see the design weights. That is the gap GER fills. <a href="#r2">↩</a></li>
+  <li id="fn3">The guarantees assume features that do not depend on the realized assignment. Learned GNN features violate this unless the model is cross-fitted; see Experiment 2. The truncated pseudoinverse (relative threshold $10^{-2}$) matters for representation features, whose dimensions are linearly dependent; for calibrating predictions the system is well conditioned (median condition number 12–24). <a href="#r3">↩</a></li>
+  <li id="fn4">The rerun draws new treatment assignments, so it also re-samples Monte Carlo noise; the Hájek estimator, which has no learned component, moved from 0.368 to 0.310 in the denser design. Differences smaller than this between paper run and rerun should not be over-interpreted. <a href="#r4">↩</a></li>
+  <li id="fn5">The data are restricted-use and not redistributed. The study code was rebuilt from the paper's description; the numbers here come from that rebuilt pipeline and are close to the paper's Table 2 (e.g. calibrated PNA 0.011 vs. Hájek 0.054 there). <a href="#r5">↩</a></li>
+  <li id="fn6">The contrast "high vs. zero" used elsewhere has no support on these graphs: almost no unit can reach the top exposure bin. The main effect in the outcome model was increased so that the "medium vs. zero" contrast is comparable in size. Graph attention networks behave like PNA here (20 randomizations). <a href="#r6">↩</a></li>
+  <li id="fn7">For any vector $e$, $\sum_{ij}\Delta_{ij}e_ie_j \le \sum_i (\Delta\mathbf 1)_i e_i^2$ by $2e_ie_j \le e_i^2 + e_j^2$; equivalently, the graph Laplacian $\mathrm{diag}(\Delta\mathbf 1) - \Delta$ is positive semidefinite. This is the same device as Aronow and Samii's (2017) conservative variance bound. <a href="#r7">↩</a></li>
+  <li id="fn8">Inference is conditional on the first-stage sublocation saturations, under which villages are independent draws with probability 2/3 or 1/3 and the two-hop graph is a valid dependency graph. Exposure probabilities come from 100,000 simulated assignments. "Calibrated" here means GER on the PNA predictions. <a href="#r8">↩</a></li>
+</ol>
+</div>
+
+<h3>References</h3>
+<ol class="refs">
+  <li>Aronow, P. M. and Samii, C. (2017). Estimating average causal effects under general interference, with application to a social network experiment. <i>Annals of Applied Statistics</i>.</li>
+  <li>Chen, L. H. Y. and Shao, Q.-M. (2004). Normal approximation under local dependence. <i>Annals of Probability</i>.</li>
+  <li>Corso, G., Cavalleri, L., Beaini, D., Liò, P. and Veličković, P. (2020). Principal neighbourhood aggregation for graph nets. <i>NeurIPS</i>.</li>
+  <li>Egger, D., Haushofer, J., Miguel, E., Niehaus, P. and Walker, M. (2022). General equilibrium effects of cash transfers: experimental evidence from Kenya. <i>Econometrica</i>.</li>
+  <li>Leung, M. P. (2022). Causal inference under approximate neighborhood interference. <i>Econometrica</i>.</li>
+  <li>Lu, X., Shi, L., Liu, H. and Ding, P. (2025). Conditional cross-fitting for unbiased machine-learning-assisted covariate adjustment in randomized experiments. arXiv:2508.15664.</li>
+  <li>Paluck, E. L., Shepherd, H. and Aronow, P. M. (2016). Changing climates of conflict: a social network experiment in 56 schools. <i>PNAS</i>. Data: ICPSR 37070.</li>
+  <li>Shi, L., Lyu, R. and Lu, S. (2026). GAUGER: Generalized regression adjustment via graph-weighted exposure-level residualization for design-based inference under interference. <a href="https://arxiv.org/abs/2607.19627">arXiv:2607.19627</a>.</li>
+  <li>Veličković, P., Cucurull, G., Casanova, A., Romero, A., Liò, P. and Bengio, Y. (2018). Graph attention networks. <i>ICLR</i>.</li>
+</ol>
+
+<p class="note"><b>Reproducibility.</b> The toy example in Figures 1–2 is self-contained and runs in about a minute on a CPU. Figures 3–7 are re-plotted from the outputs of our experiments; no values were entered by hand.</p>
+
+</main>
+
+<script>
+(function () {
+  const T = window.TOY; if (!T) return;
+  const svg = document.getElementById('explsvg'), slider = document.getElementById('bslider'), out = document.getElementById('readout');
+  const W = 720, H = 260, L = 50, R = 20, Tp = 14, B = 36, NS = 'http://www.w3.org/2000/svg';
+  const sdRel = T.sd.map(v => v / Math.min(...T.sd)), mseRel = T.mse.map(v => v / Math.min(...T.mse));
+  const yMax = 2.2, yMin = 0.95, bMin = T.b[0], bMax = T.b[T.b.length - 1];
+  const x = b => L + (b - bMin) / (bMax - bMin) * (W - L - R);
+  const y = v => Tp + (yMax - v) / (yMax - yMin) * (H - Tp - B);
+  const el = (n, a) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); svg.appendChild(e); return e; };
+  const path = (vals, color) => el('path', { d: vals.map((v, i) => (i ? 'L' : 'M') + x(T.b[i]).toFixed(1) + ' ' + y(v).toFixed(1)).join(' '), fill: 'none', stroke: color, 'stroke-width': 2.5, 'clip-path': 'url(#plotarea)' });
+  const cp = el('clipPath', { id: 'plotarea' });
+  const rect = document.createElementNS(NS, 'rect');
+  [['x', L], ['y', Tp], ['width', W - L - R], ['height', H - Tp - B]].forEach(([k, v]) => rect.setAttribute(k, v));
+  cp.appendChild(rect);
+  el('line', { x1: L, y1: H - B, x2: W - R, y2: H - B, stroke: '#a0aec0' });
+  [0, 1, 2, 3].forEach(t => { el('text', { x: x(t), y: H - B + 18, 'text-anchor': 'middle' }).textContent = t; });
+  el('text', { x: (L + W - R) / 2, y: H - 4, 'text-anchor': 'middle' }).textContent = 'adjustment coefficient b';
+  el('text', { x: 12, y: Tp + 8 }).textContent = 'relative to own minimum';
+  path(mseRel, '#8a8f98'); path(sdRel, '#2b6cb0');
+  [[T.b_mse, '#8a8f98'], [T.b_var, '#2b6cb0']].forEach(([b, c]) => el('line', { x1: x(b), x2: x(b), y1: Tp, y2: H - B, stroke: c, 'stroke-dasharray': '3 3' }));
+  const vline = el('line', { y1: Tp, y2: H - B, stroke: '#dd6b20', 'stroke-width': 1.5 });
+  const dMse = el('circle', { r: 5, fill: '#8a8f98' }), dSd = el('circle', { r: 5, fill: '#2b6cb0' });
+  slider.max = T.b.length - 1;
+  slider.value = T.b.findIndex(b => b >= T.b_mse);
+  function update() {
+    const i = +slider.value, b = T.b[i];
+    vline.setAttribute('x1', x(b)); vline.setAttribute('x2', x(b));
+    dMse.setAttribute('cx', x(b)); dMse.setAttribute('cy', y(Math.min(mseRel[i], yMax)));
+    dSd.setAttribute('cx', x(b)); dSd.setAttribute('cy', y(Math.min(sdRel[i], yMax)));
+    out.innerHTML = `b = <b>${b.toFixed(2)}</b> &nbsp;·&nbsp; <span class="c-gray">prediction MSE ${(100 * (mseRel[i] - 1)).toFixed(0)}% above its minimum</span> &nbsp;·&nbsp; <span class="c-blue">SD of τ̂ = ${T.sd[i].toFixed(3)}</span> (no adjustment: ${T.sd_unadjusted.toFixed(3)})`;
+  }
+  slider.addEventListener('input', update); update();
+})();
+</script>
+</body>
+</html>
